@@ -29,7 +29,7 @@ const DEFAULT_SERVER_PORT = '0';
 
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
     // start dotnet server
-    // TODO: run dotnet
+    // TODO: dotnet *.dll
     
     // Wrap server with quickstart component
     const workflowServer = new SocketGlspVscodeServer({
