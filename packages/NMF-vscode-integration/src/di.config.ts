@@ -13,7 +13,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import { createWorkflowDiagramContainer } from '@eclipse-glsp-examples/workflow-glsp';
+import { createWorkflowDiagramContainer } from 'nmf-glsp-client';
 import {
     ConsoleLogger,
     EditMode,

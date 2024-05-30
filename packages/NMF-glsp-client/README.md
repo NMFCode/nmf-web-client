@@ -1,16 +1,30 @@
-# workflow-glsp
+# React + TypeScript + Vite
 
-This package contains the configuration for the GLSP diagrams of the Workflow example language.
-It contains the base code that is independent from the actual application framework and integration variant.
-Separating this base configuration and the actual integration code means that it can be reused for various different integration variants of the GLSP Workflow example language e.g in a Theia application, Standalone application, VS Code plugin or integrated into the Eclipse IDE.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Building
+Currently, two official plugins are available:
 
-This package is built with `yarn` and is available from npm via [@eclipse-glsp-examples/workflow-glsp](https://www.npmjs.com/package/@eclipse-glsp-examples/worfklow-glsp)
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## More information
+## Expanding the ESLint configuration
 
-For more information, please visit the [Eclipse GLSP Umbrella repository](https://github.com/eclipse-glsp/glsp) and the [Eclipse GLSP Website](https://www.eclipse.org/glsp/).
-If you have questions, please raise them in the [discussions](https://github.com/eclipse-glsp/glsp/discussions) and have a look at our [communication and support options](https://www.eclipse.org/glsp/contact/).
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-![alt](https://www.eclipse.org/glsp/images/diagramanimated.gif)
+- Configure the top-level `parserOptions` property like this:
+
+```js
+export default {
+  // other rules...
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+  },
+}
+```
+
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
