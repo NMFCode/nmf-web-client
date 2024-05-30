@@ -1,5 +1,5 @@
 {
-  "name": "NMFA-vscode-client",
+  "name": "nmf-vscode-integration",
   "version": "0.0.1",
   "private": true,
   "description": "Standalone browser-app for the Workflow example",

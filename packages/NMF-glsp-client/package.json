@@ -1,5 +1,5 @@
 {
-  "name": "nmf-base-client",
+  "name": "nmf-glsp-client",
   "version": "0.0.1",
   "description": "GLSP diagrams for the Workflow DSL",
   "keywords": [
