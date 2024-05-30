@@ -1,4 +1,3 @@
-/** @jsx svg */
 import {
     GCompartment,
     GCompartmentView,

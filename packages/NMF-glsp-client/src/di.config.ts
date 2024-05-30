@@ -1,4 +1,4 @@
-import { createNMetaDiagramContainer } from './nmeta/diagramContainer';
+import { createNMetaDiagramContainer } from './diagramContainer';
 import {
     accessibilityModule,
     bindOrRebind,
