@@ -24,19 +24,32 @@ import {
 import * as process from 'process';
 import * as vscode from 'vscode';
 import WorkflowEditorProvider from './workflow-editor-provider';
+import { DotNetGlspSocketServerLauncher } from './dotnet-glsp-socket-server-launcher';
+import path = require('path');
 
 const DEFAULT_SERVER_PORT = '0';
+const DOTNET_EXECUTABLE = path.join(__dirname, '..', 'dist', 'NMetaGlspEditor.Server.exe');
 
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
-    // start dotnet server
-    // TODO: dotnet *.dll
+    const outputChannel = vscode.window.createOutputChannel('NMF GLSP Logs');
+    context.subscriptions.push(outputChannel);
+
+    const serverProcess = new DotNetGlspSocketServerLauncher({
+        executable: DOTNET_EXECUTABLE,
+        socketConnectionOptions: { host: 'localhost', port: JSON.parse(process.env.GLSP_SERVER_PORT || DEFAULT_SERVER_PORT) },
+        logging: true
+    });
+
+    outputChannel.appendLine('starting Server')
+    context.subscriptions.push(serverProcess);
+    await serverProcess.start();
     
     // Wrap server with quickstart component
-    const workflowServer = new SocketGlspVscodeServer({
+    const workflowServer =  new SocketGlspVscodeServer({
               clientId: 'vscode',
               clientName: 'vscode',
               connectionOptions: {
-                  port: JSON.parse(process.env.GLSP_SERVER_PORT || DEFAULT_SERVER_PORT),
+                  port: serverProcess?.getPort() || JSON.parse(process.env.GLSP_SERVER_PORT || DEFAULT_SERVER_PORT),
                   path: process.env.GLSP_WEBSOCKET_PATH
               }
           });
