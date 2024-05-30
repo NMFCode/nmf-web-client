@@ -1,4 +1,4 @@
-import { createNMetaDiagramContainer } from 'nmf-glsp-client';
+import { createNMetaDiagramContainer } from 'nmf-glsp-client/lib/diagram-module';
 import {
     accessibilityModule,
     bindOrRebind,

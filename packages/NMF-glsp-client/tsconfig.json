@@ -1,7 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "outDir": "lib",
     "declaration": true,
     "declarationMap": true,
     "noImplicitAny": true,
