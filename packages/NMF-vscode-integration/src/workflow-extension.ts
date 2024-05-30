@@ -31,16 +31,12 @@ const DEFAULT_SERVER_PORT = '0';
 const DOTNET_EXECUTABLE = path.join(__dirname, '..', 'dist', 'NMetaGlspEditor.Server.exe');
 
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
-    const outputChannel = vscode.window.createOutputChannel('NMF GLSP Logs');
-    context.subscriptions.push(outputChannel);
-
     const serverProcess = new ExeGlspSocketServerLauncher({
         executable: DOTNET_EXECUTABLE,
         socketConnectionOptions: { host: 'localhost', port: JSON.parse(process.env.GLSP_SERVER_PORT || DEFAULT_SERVER_PORT) },
         logging: true
     });
 
-    outputChannel.appendLine('starting Server')
     context.subscriptions.push(serverProcess);
     await serverProcess.start();
     
