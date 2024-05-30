@@ -2,7 +2,7 @@ import { GlspSocketServerLauncher } from "@eclipse-glsp/vscode-integration";
 import * as childProcess from 'child_process';
 
 
-export class DotNetGlspSocketServerLauncher extends GlspSocketServerLauncher {
+export class ExeGlspSocketServerLauncher extends GlspSocketServerLauncher {
     protected override startProcess(): childProcess.ChildProcessWithoutNullStreams {
         if (this.options.executable.endsWith('.exe')) {
             return this.startExeProcess();

@@ -24,7 +24,7 @@ import {
 import * as process from 'process';
 import * as vscode from 'vscode';
 import WorkflowEditorProvider from './workflow-editor-provider';
-import { DotNetGlspSocketServerLauncher } from './dotnet-glsp-socket-server-launcher';
+import { ExeGlspSocketServerLauncher } from './exe-glsp-socket-server-launcher';
 import path = require('path');
 
 const DEFAULT_SERVER_PORT = '0';
@@ -34,7 +34,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     const outputChannel = vscode.window.createOutputChannel('NMF GLSP Logs');
     context.subscriptions.push(outputChannel);
 
-    const serverProcess = new DotNetGlspSocketServerLauncher({
+    const serverProcess = new ExeGlspSocketServerLauncher({
         executable: DOTNET_EXECUTABLE,
         socketConnectionOptions: { host: 'localhost', port: JSON.parse(process.env.GLSP_SERVER_PORT || DEFAULT_SERVER_PORT) },
         logging: true
