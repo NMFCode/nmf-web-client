@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2023 EclipseSource and others.
+ * Copyright (c) 2020-2024 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -13,4 +13,19 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-export * from './lib/browser/index';
+import { createNMetaDiagramContainer } from 'nmf-glsp-client';
+import { ContainerConfiguration } from '@eclipse-glsp/client';
+import { GLSPStarter } from '@eclipse-glsp/vscode-integration-webview';
+import '@eclipse-glsp/vscode-integration-webview/css/glsp-vscode.css';
+import '@vscode/codicons/dist/codicon.css';
+import { Container } from 'inversify';
+
+class WorkflowGLSPStarter extends GLSPStarter {
+    createContainer(...containerConfiguration: ContainerConfiguration): Container {
+        return createNMetaDiagramContainer(...containerConfiguration);
+    }
+}
+
+export function launch(): void {
+    new WorkflowGLSPStarter();
+}

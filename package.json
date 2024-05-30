@@ -11,6 +11,8 @@
   "devDependencies": {
     "@types/lodash": "^4.17.4",
     "@types/node": "^20.12.12",
+    "@types/vscode": "^1.54.0",
+    "@types/ws": "^8.5.10",
     "typescript": "^5.2.2"
   }
 }
