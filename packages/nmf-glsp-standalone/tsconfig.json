@@ -1,7 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "outDir": "lib",
     "declaration": true,
     "declarationMap": true,
     "noImplicitAny": true,
@@ -21,10 +20,9 @@
     "resolveJsonModule": true,
     "module": "commonjs",
     "moduleResolution": "Node",
-    "target": "ES2022",
+    "target": "ES2017",
     "jsx": "react",
-    "reactNamespace": "JSX",
-    "lib": ["ES2022", "DOM"],
+    "lib": ["ES2017", "DOM"],
     "sourceMap": true,
     "types": ["node", "reflect-metadata"]
   },

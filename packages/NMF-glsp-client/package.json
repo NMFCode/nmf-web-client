@@ -1,7 +1,8 @@
 {
   "name": "nmf-glsp-client",
   "private": true,
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "main": "lib/index",
   "scripts": {
     "build": "tsc",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
