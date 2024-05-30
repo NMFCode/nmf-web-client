@@ -14,6 +14,9 @@ import {
 } from '@eclipse-glsp/client';
 import { VNode } from 'snabbdom';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const JSX = { createElement: svg };
+
 export class ReferenceEdgeView extends PolylineEdgeViewWithGapsOnIntersections {
     protected override renderAdditionals(edge: GEdge, segments: Point[], context: RenderingContext): VNode[] {
         const additionals = super.renderAdditionals(edge, segments, context);

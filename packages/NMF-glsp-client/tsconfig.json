@@ -20,9 +20,10 @@
     "resolveJsonModule": true,
     "module": "commonjs",
     "moduleResolution": "Node",
-    "target": "ES2017",
+    "target": "ES2022",
     "jsx": "react",
-    "lib": ["ES2017", "DOM"],
+    "reactNamespace": "JSX",
+    "lib": ["ES2022", "DOM"],
     "sourceMap": true,
     "types": ["node", "reflect-metadata"]
   },
