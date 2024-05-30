@@ -12,13 +12,13 @@ import {
 import { Container } from 'inversify';
 import { MessageConnection } from 'vscode-jsonrpc';
 import createContainer from './di.config';
-const port = 7052;
+const port = 5052;
 const id = 'glsp';
 const diagramType = 'nmeta';
 
 const clientId = 'sprotty';
 
-const webSocketUrl = `wss://localhost:${port}/${id}`;
+const webSocketUrl = `ws://localhost:${port}/${id}`;
 
 let glspClient: GLSPClient;
 let container: Container;
