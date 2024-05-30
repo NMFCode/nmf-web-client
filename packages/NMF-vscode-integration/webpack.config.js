@@ -40,6 +40,9 @@ const config = {
         new CopyPlugin({
             patterns: [
                 {
+                    from: path.resolve(__dirname, '..', '..', 'NMetaGlspEditor.Server.exe')
+                },
+                {
                     from: path.resolve(__dirname, '..', 'nmf-glsp-webview', 'dist')
                 }
             ]
