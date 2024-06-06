@@ -1,0 +1,188 @@
+{
+  "name": "nmeta-vscode-integration",
+  "displayName": "NMF GLSP",
+  "private": "true",
+  "version": "1.0.0",
+  "main": "./dist/nmeta-extension",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "yarn compile && yarn bundle",
+    "bundle": "webpack",
+    "bundle:prod": "webpack --config ./webpack.prod.js",
+    "clean": "rimraf lib tsconfig.tsbuildinfo dist",
+    "compile": "tsc -b",
+    "lint": "eslint --ext .ts,.tsx ./src",
+    "package": "vsce package --yarn",
+    "watch": "tsc -w",
+    "watch:bundle": "webpack --watch"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "nmeta.fit",
+        "title": "Fit to Screen",
+        "category": "nmeta Diagram",
+        "enablement": "activeCustomEditorId == 'nmeta.glspDiagram'"
+      },
+      {
+        "command": "nmeta.center",
+        "title": "Center selection",
+        "category": "nmeta Diagram",
+        "enablement": "activeCustomEditorId == 'nmeta.glspDiagram'"
+      },
+      {
+        "command": "nmeta.layout",
+        "title": "Layout diagram",
+        "category": "nmeta Diagram",
+        "enablement": "activeCustomEditorId == 'nmeta.glspDiagram'"
+      },
+      {
+        "command": "nmeta.goToNextNode",
+        "title": "Go to next Node",
+        "category": "nmeta Navigation",
+        "enablement": "activeCustomEditorId == 'nmeta.glspDiagram' && nmeta.editorSelectedElementsAmount == 1"
+      },
+      {
+        "command": "nmeta.goToPreviousNode",
+        "title": "Go to previous Node",
+        "category": "nmeta Navigation",
+        "enablement": "activeCustomEditorId == 'nmeta.glspDiagram' && nmeta.editorSelectedElementsAmount == 1"
+      },
+      {
+        "command": "nmeta.showDocumentation",
+        "title": "Show documentation...",
+        "category": "nmeta Diagram",
+        "enablement": "activeCustomEditorId == 'nmeta.glspDiagram' && nmeta.editorSelectedElementsAmount == 1"
+      },
+      {
+        "command": "nmeta.exportAsSVG",
+        "title": "Export as SVG",
+        "category": "nmeta Diagram",
+        "enablement": "activeCustomEditorId == 'nmeta.glspDiagram'"
+      }
+    ],
+    "customEditors": [
+      {
+        "viewType": "nmeta.glspDiagram",
+        "displayName": "nmeta Diagram Editor",
+        "selector": [
+          {
+            "filenamePattern": "*.nmeta"
+          }
+        ]
+      }
+    ],
+    "keybindings": [
+      {
+        "key": "alt+f",
+        "mac": "alt+f",
+        "command": "nmeta.fit",
+        "when": "activeCustomEditorId == 'nmeta.glspDiagram'"
+      },
+      {
+        "key": "alt+c",
+        "mac": "alt+c",
+        "command": "nmeta.center",
+        "when": "activeCustomEditorId == 'nmeta.glspDiagram'"
+      },
+      {
+        "key": "ctrl+a",
+        "mac": "ctrl+a",
+        "command": "nmeta.selectAll",
+        "when": "activeCustomEditorId == 'nmeta.glspDiagram'"
+      },
+      {
+        "key": "alt+l",
+        "mac": "alt+l",
+        "command": "nmeta.layout",
+        "when": "activeCustomEditorId == 'nmeta.glspDiagram'"
+      },
+      {
+        "key": "alt+e",
+        "mac": "alt+e",
+        "command": "nmeta.exportAsSVG",
+        "when": "activeCustomEditorId == 'nmeta.glspDiagram'"
+      },
+      {
+        "key": "Ctrl+4",
+        "mac": "cmd+4",
+        "command": "nmeta.goToNextNode",
+        "when": "activeCustomEditorId == 'nmeta.glspDiagram' && nmeta.editorSelectedElementsAmount == 1"
+      },
+      {
+        "key": "Ctrl+3",
+        "mac": "cmd+3",
+        "command": "nmeta.goToPreviousNode",
+        "when": "activeCustomEditorId == 'nmeta.glspDiagram' && nmeta.editorSelectedElementsAmount == 1"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "submenu": "nmeta.editor.title",
+          "group": "bookmarks"
+        },
+        {
+          "command": "nmeta.goToNextNode",
+          "group": "navigation",
+          "when": "activeCustomEditorId == 'nmeta.glspDiagram' && nmeta.editorSelectedElementsAmount == 1"
+        },
+        {
+          "command": "nmeta.goToPreviousNode",
+          "group": "navigation",
+          "when": "activeCustomEditorId == 'nmeta.glspDiagram' && nmeta.editorSelectedElementsAmount == 1"
+        },
+        {
+          "command": "nmeta.showDocumentation",
+          "group": "navigation",
+          "when": "activeCustomEditorId == 'nmeta.glspDiagram' && nmeta.editorSelectedElementsAmount == 1"
+        }
+      ],
+      "nmeta.editor.title": [
+        {
+          "command": "nmeta.fit",
+          "group": "navigation",
+          "when": "activeCustomEditorId == 'nmeta.glspDiagram'"
+        },
+        {
+          "command": "nmeta.center",
+          "group": "navigation",
+          "when": "activeCustomEditorId == 'nmeta.glspDiagram'"
+        },
+        {
+          "command": "nmeta.layout",
+          "group": "navigation",
+          "when": "activeCustomEditorId == 'nmeta.glspDiagram'"
+        },
+        {
+          "command": "nmeta.exportAsSVG",
+          "when": "activeCustomEditorId == 'nmeta.glspDiagram'"
+        }
+      ]
+    },
+    "submenus": [
+      {
+        "id": "nmeta.editor.title",
+        "label": "Diagram"
+      }
+    ]
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "devDependencies": {
+    "@eclipse-glsp/vscode-integration": "2.1.1",
+    "@vscode/vsce": "^2.19.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "ts-loader": "^9.4.4",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-merge": "^5.9.0",
+    "nmeta-glsp-webview": "1.0.0"
+  },
+  "engines": {
+    "vscode": "^1.54.0"
+  }
+}

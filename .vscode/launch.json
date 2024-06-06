@@ -5,22 +5,22 @@
     "version": "0.2.0",
     "configurations": [
         {
-        "name": "NMF GLSP",
+        "name": "Run NMeta Extension",
         "type": "extensionHost",
         "request": "launch",
         "runtimeExecutable": "${execPath}",
         "args": [
             "${workspaceFolder}/example/workspace",
-            "--extensionDevelopmentPath=${workspaceFolder}/packages/nmf-vscode-integration"
+            "--extensionDevelopmentPath=${workspaceFolder}/packages/nmeta-vscode"
         ],
         "outFiles": [
-            "${workspaceRoot}/packages/nmf-vscode-integration/dist/workflow-extension.js",
-            "${workspaceRoot}/packages/nmf-vscode-integration/lib/**/*.js",
+            "${workspaceRoot}/packages/nmeta-vscode/dist/nmeta-extension.js",
+            "${workspaceRoot}/packages/nmeta-vscode/lib/**/*.js",
             "${workspaceRoot}/node_modules/@eclipse-glsp/*/lib/**/*.js"
         ],
         "sourceMaps": true,
         "sourceMapPathOverrides": {
-            "webpack://nmf-vscode-integration/(.+)": "${workspaceFolder}/packages/nmf-vscode-integration/$1"
+            "webpack://nmeta-vscode/(.+)": "${workspaceFolder}/packages/nmeta-vscode/$1"
         },
         "env": {
             "GLSP_LOG_DIR": "${workspaceFolder}/logs",
@@ -28,6 +28,52 @@
             "GLSP_SERVER_PORT": "5052",
             "GLSP_WEBSOCKET_PATH": "glsp"
         }
+        },
+        {
+            "name": "Run Yeoman Generator",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/examples",
+            "runtimeExecutable": "npx",
+            "runtimeArgs": [
+                "yo",
+                "nmfglsp"
+            ],
+            "console": "integratedTerminal",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+        },
+        {
+            "name": "Extension Tests",
+            "type": "extensionHost",
+            "request": "launch",
+            "runtimeExecutable": "${execPath}",
+            "args": [
+                "--extensionDevelopmentPath=${workspaceFolder}/packages/nmf-vscode",
+                "--extensionTestsPath=${workspaceFolder}/out/test/suite/index"
+            ]
+        },
+        {
+            "name": "Vitest: Run All",
+            "type": "node",
+            "request": "launch",
+            "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
+            "program": "${workspaceRoot}/node_modules/vitest/vitest.mjs",
+            "args": ["run", "--no-color", "--no-coverage", "--no-watch"],
+            "smartStep": true,
+            "console": "integratedTerminal",
+        },
+        {
+            "name": "Vitest: Run Selected File",
+            "type": "node",
+            "request": "launch",
+            "autoAttachChildProcesses": true,
+            "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
+            "program": "${workspaceRoot}/node_modules/vitest/vitest.mjs",
+            "args": ["run", "${relativeFile}"],
+            "smartStep": true,
+            "console": "integratedTerminal",
         }
     ]
 }

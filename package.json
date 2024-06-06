@@ -1,18 +1,55 @@
 {
-  "name": "parent",
-  "version": "0.0.1",
+  "name": "nmf-workspaces",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "engineStrict": true,
+  "engines": {
+    "node": ">= 18.0.0",
+    "npm": ">= 9.5.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "shx rm -rf packages/*/lib packages/*/out packages/*/*.tsbuildinfo examples/*/*.tsbuildinfo",
+    "build": "tsc -b tsconfig.build.json && npm run build --workspace=nmeta-glsp-webview --workspace=nmeta-glsp-standalone --workspace=nmeta-vscode --workspace=generator-nmfglsp",
+    "watch": "concurrently -n tsc,vscode,domainmodel,arithmetics,requirements,statemachine -c blue,yellow,green,green,green,green \"tsc -b tsconfig.build.json -w\" \"npm run watch --workspace=nmf-vscode\"",
+    "build:clean": "npm run clean && npm run build",
+    "lint": "npm run lint --workspaces",
+    "test": "vitest",
+    "test-ui": "vitest --ui",
+    "coverage": "vitest run --coverage",
+    "validate-exports": "npm run validate-exports --workspace=nmf",
+    "version:dependencies": "node ./scripts/update-version.js && npm install",
+    "dev-build": "npm run dev-clean && npm install && npm link ./packages/nmf && npm link ./packages/generator-nmf",
+    "dev-clean": "shx rm -rf packages/**/node_modules && npm uninstall -g nmf-workspaces generator-nmf nmf && npm unlink nmf-workspaces generator-nmf nmf",
+    "reset:repo": "git clean -f -X -d"
   },
   "devDependencies": {
-    "@types/lodash": "^4.17.4",
-    "@types/node": "^20.12.12",
-    "@types/vscode": "^1.54.0",
+    "@types/node": "~16.18.41",
+    "@types/vscode": "~1.67.0",
     "@types/ws": "^8.5.10",
-    "typescript": "^5.2.2"
-  }
+    "@typescript-eslint/eslint-plugin": "~6.4.1",
+    "@typescript-eslint/parser": "~6.4.1",
+    "@vitest/coverage-v8": "~1.0.0",
+    "@vitest/ui": "~1.5.0",
+    "concurrently": "~8.2.1",
+    "editorconfig": "~2.0.0",
+    "esbuild": "~0.19.2",
+    "eslint": "~8.56.0",
+    "eslint-plugin-header": "~3.1.1",
+    "shx": "~0.3.4",
+    "typescript": "~5.1.6",
+    "vitest": "~1.5.0"
+  },
+  "overrides": {
+    "@types/node": "~16.18.41"
+  },
+  "volta": {
+    "node": "18.19.1",
+    "npm": "10.2.4"
+  },
+  "workspaces": [
+    "packages/generator-nmfglsp",
+    "packages/nmeta-glsp-client",
+    "packages/nmeta-glsp-webview",
+    "packages/nmeta-vscode",
+    "packages/nmeta-glsp-standalone"
+  ]
 }

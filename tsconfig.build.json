@@ -1,0 +1,11 @@
+{
+    "files": [],
+    "references": [
+        { "path": "./packages/nmeta-glsp-client/tsconfig.json" },
+        { "path": "./packages/nmeta-glsp-webview/tsconfig.json" },
+        { "path": "./packages/nmeta-glsp-standalone/tsconfig.json" },
+        { "path": "./packages/nmeta-vscode/tsconfig.json" },
+        { "path": "./packages/generator-nmfglsp/tsconfig.src.json" },
+        { "path": "./packages/generator-nmfglsp/tsconfig.test.json" },
+    ]
+ }

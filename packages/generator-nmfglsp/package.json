@@ -1,0 +1,62 @@
+{
+  "name": "generator-nmfglsp",
+  "version": "3.0.0",
+  "description": "Yeoman generator for NMF GLSP clients",
+  "homepage": "https://github.com/NMFCode",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "yeoman-generator",
+    "glsp",
+    "dsl",
+    "nmf",
+    "vscode"
+  ],
+  "license": "BSD-3-Clause",
+  "files": [
+    "app",
+    "templates",
+    "src"
+  ],
+  "type": "module",
+  "exports": "./app/index.js",
+  "scripts": {
+    "clean": "shx rm -rf app",
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "lint": "eslint src test --ext .ts",
+    "run": "yo nmf",
+    "test": "vitest run",
+    "debug": "npx --node-arg=--inspect yo nmf",
+    "publish:next": "npm --no-git-tag-version version \"$(semver $npm_package_version -i minor)-next.$(git rev-parse --short HEAD)\" && npm publish --tag next",
+    "publish:latest": "npm publish --tag latest --access public"
+  },
+  "dependencies": {
+    "chalk": "~5.3.0",
+    "lodash": "~4.17.21",
+    "which": "~4.0.0",
+    "yeoman-generator": "~7.1.1"
+  },
+  "devDependencies": {
+    "@types/lodash": "~4.17.0",
+    "@types/which": "~3.0.3",
+    "@yeoman/types": "~1.2.0",
+    "yeoman-test": "~8.2.0",
+    "yo": "~5.0.0"
+  },
+  "volta": {
+    "node": "18.19.1",
+    "npm": "10.2.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NMFCode/nmf-web-client",
+    "directory": "packages/generator-nmf"
+  },
+  "bugs": "https://github.com/NMFCode/nmf-web-client/issues",
+  "author": {
+    "name": ".Net Modeling Framework",
+    "url": "https://github.com/NMFCode"
+  }
+}
