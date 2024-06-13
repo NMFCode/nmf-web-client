@@ -25,33 +25,20 @@ jobs:
       run: |
         npm ci
         npm run build:clean
-        npm run langium:generate:production --workspace=langium
         npm run build
-    - name: Test
-      if: success() || failure()
-      shell: bash
-      run: |
-        npm run test
     - name: Publish NPM Packages
       shell: bash
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       # Update the following list when a new npm package is added
       run: |
-        npm run publish:latest --provenance --workspace=langium
-        npm run publish:latest --provenance --workspace=langium-railroad
-        npm run publish:latest --provenance --workspace=langium-cli
-        npm run publish:latest --provenance --workspace=langium-sprotty
-        npm run publish:latest --provenance --workspace=generator-langium
-        npm run publish:latest --provenance --workspace=langium-arithmetics-dsl
-        npm run publish:latest --provenance --workspace=langium-domainmodel-dsl
-        npm run publish:latest --provenance --workspace=langium-statemachine-dsl
+        npm run publish:latest --provenance --workspace=generator-nmfglsp
     - name: Publish VSCode Extension
       shell: bash
       run: |
         npm install -g @vscode/vsce ovsx
-        cd packages/langium-vscode
+        cd packages/nmeta-vscode
         PACKAGE_VERSION=`npm pkg get version --workspaces=false | tr -d \"`
         vsce package
-        vsce publish -i langium-vscode-$PACKAGE_VERSION.vsix -p ${{ secrets.VSCE_TOKEN }}
-        ovsx publish langium-vscode-$PACKAGE_VERSION.vsix -p ${{ secrets.OVSX_TOKEN }}
+        vsce publish -i nmeta-vscode-$PACKAGE_VERSION.vsix -p ${{ secrets.VSCE_TOKEN }}
+        ovsx publish nmeta-vscode-$PACKAGE_VERSION.vsix -p ${{ secrets.OVSX_TOKEN }}
