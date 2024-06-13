@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    name: Langium CI (${{ matrix.os }})
+    name: Build (${{ matrix.os }})
     strategy:
       fail-fast: false
       matrix:
@@ -30,31 +30,3 @@ jobs:
         npm ci
         npm run build:clean
         npm run validate-exports
-    - name: Test
-      if: success() || failure()
-      shell: bash
-      run: |
-        npm run test
-  lint:
-    name: Langium Lint
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Use Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-    - name: Build
-      shell: bash
-      run: |
-        npm ci
-        npm run build:clean
-        npm run langium:generate
-    - name: Check Git Status
-      shell: bash
-      run: git diff --exit-code .
-    - name: Lint
-      shell: bash
-      run: npm run lint

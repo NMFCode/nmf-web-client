@@ -50,7 +50,7 @@
             "request": "launch",
             "runtimeExecutable": "${execPath}",
             "args": [
-                "--extensionDevelopmentPath=${workspaceFolder}/packages/nmf-vscode",
+                "--extensionDevelopmentPath=${workspaceFolder}/packages/nmeta-vscode",
                 "--extensionTestsPath=${workspaceFolder}/out/test/suite/index"
             ]
         },

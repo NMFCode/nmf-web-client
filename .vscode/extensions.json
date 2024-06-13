@@ -1,6 +1,5 @@
 {
     "recommendations": [
-        "langium.langium-vscode",
         "dbaeumer.vscode-eslint",
         "editorconfig.editorconfig",
         "vitest.explorer"

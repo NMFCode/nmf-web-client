@@ -24,14 +24,14 @@ import {
 import * as process from 'process';
 import * as vscode from 'vscode';
 import NMetaEditorProvider from './nmeta-editor-provider';
-import { ExeGlspSocketServerLauncher } from './exe-glsp-socket-server-launcher';
+import { DotnetGlspSocketServerLauncher } from './dotnet-glsp-socket-server-launcher';
 import path = require('path');
 
 const DEFAULT_SERVER_PORT = '0';
 const DOTNET_EXECUTABLE = path.join(__dirname, '..', 'dist', 'NMetaGlspEditor.Server.exe');
 
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
-    const serverProcess = new ExeGlspSocketServerLauncher({
+    const serverProcess = new DotnetGlspSocketServerLauncher({
         executable: DOTNET_EXECUTABLE,
         socketConnectionOptions: { host: 'localhost', port: JSON.parse(process.env.GLSP_SERVER_PORT || DEFAULT_SERVER_PORT) },
         logging: true

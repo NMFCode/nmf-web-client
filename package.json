@@ -9,16 +9,16 @@
   "scripts": {
     "clean": "shx rm -rf packages/*/lib packages/*/out packages/*/*.tsbuildinfo examples/*/*.tsbuildinfo",
     "build": "tsc -b tsconfig.build.json && npm run build --workspace=nmeta-glsp-webview --workspace=nmeta-glsp-standalone --workspace=nmeta-vscode --workspace=generator-nmfglsp",
-    "watch": "concurrently -n tsc,vscode,domainmodel,arithmetics,requirements,statemachine -c blue,yellow,green,green,green,green \"tsc -b tsconfig.build.json -w\" \"npm run watch --workspace=nmf-vscode\"",
+    "watch": "concurrently -n tsc,vscode -c blue,yellow,green,green,green,green \"tsc -b tsconfig.build.json -w\" \"npm run watch --workspace=nmeta-vscode\"",
     "build:clean": "npm run clean && npm run build",
     "lint": "npm run lint --workspaces",
     "test": "vitest",
     "test-ui": "vitest --ui",
     "coverage": "vitest run --coverage",
-    "validate-exports": "npm run validate-exports --workspace=nmf",
+    "validate-exports": "npm run validate-exports --workspace=nmeta-glsp-client",
     "version:dependencies": "node ./scripts/update-version.js && npm install",
-    "dev-build": "npm run dev-clean && npm install && npm link ./packages/nmf && npm link ./packages/generator-nmf",
-    "dev-clean": "shx rm -rf packages/**/node_modules && npm uninstall -g nmf-workspaces generator-nmf nmf && npm unlink nmf-workspaces generator-nmf nmf",
+    "dev-build": "npm run dev-clean && npm install && npm link ./packages/nmeta-glsp-client && npm link ./packages/generator-nmfglsp",
+    "dev-clean": "shx rm -rf packages/**/node_modules && npm uninstall -g nmf-workspaces generator-nmfglsp nmeta-glsp-client && npm unlink nmf-workspaces generator-nmfglsp nmeta-glsp-client",
     "reset:repo": "git clean -f -X -d"
   },
   "devDependencies": {

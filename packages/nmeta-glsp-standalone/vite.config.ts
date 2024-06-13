@@ -6,7 +6,7 @@ export default defineConfig({
         commonjsOptions: { include: [/nmeta-glsp-client/, /\@eclipse-glsp\/client/] },
     },
     optimizeDeps: {
-        include: ['nmf-glsp-client', '@eclipse-glsp/client'],
+        include: ['nmeta-glsp-client', '@eclipse-glsp/client'],
         esbuildOptions: {
             tsconfig: 'tsconfig.json'
         }

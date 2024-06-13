@@ -41,6 +41,12 @@ const config = {
             patterns: [
                 {
                     from: path.resolve(__dirname, '..', '..', 'backend', 'NMetaGlspEditor.Server.exe')
+                },
+                {
+                    from: path.resolve(__dirname, '..', 'nmeta-glsp-webview', 'webview.js')
+                },
+                {
+                    from: path.resolve(__dirname, '..', 'nmeta-glsp-webview', '*.ttf')
                 }
             ]
         })
