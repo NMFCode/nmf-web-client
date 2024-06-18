@@ -1,7 +1,7 @@
 {
   "name": "nmeta-vscode",
   "displayName": "NMeta Diagram Editor",
-  "homepage": "https://github.com/NMFCode",
+  "homepage": "https://nmfcode.github.io/NMFdocs/index.html",
   "categories": [
     "Programming Languages",
     "Other"
@@ -207,6 +207,6 @@
   "bugs": "https://github.com/NMFCode/nmf-web-client/issues",
   "author": {
     "name": ".Net Modeling Framework",
-    "url": "https://github.com/NMFCode"
+    "url": "https://nmfcode.github.io/NMFdocs/index.html"
   }
 }
