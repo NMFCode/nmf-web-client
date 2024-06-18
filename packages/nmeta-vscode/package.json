@@ -1,6 +1,17 @@
 {
-  "name": "nmeta-vscode-integration",
-  "displayName": "NMF GLSP",
+  "name": "nmeta-vscode",
+  "displayName": "NMeta Diagram Editor",
+  "homepage": "https://github.com/NMFCode",
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "license": "BSD-3-Clause",
+  "icon": "data/NMF-Logo.png",
+  "galleryBanner": {
+    "color": "#262626",
+    "theme": "dark"
+  },
   "private": "true",
   "version": "0.1.0",
   "main": "./dist/nmeta-extension",
