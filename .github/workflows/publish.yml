@@ -41,4 +41,3 @@ jobs:
         PACKAGE_VERSION=`npm pkg get version --workspaces=false | tr -d \"`
         vsce package
         vsce publish -i nmeta-vscode-$PACKAGE_VERSION.vsix -p ${{ secrets.VSCE_TOKEN }}
-        ovsx publish nmeta-vscode-$PACKAGE_VERSION.vsix -p ${{ secrets.OVSX_TOKEN }}

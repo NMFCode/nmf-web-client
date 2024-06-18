@@ -1,6 +1,6 @@
 {
   "name": "generator-nmfglsp",
-  "version": "3.0.0",
+  "version": "0.1.0",
   "description": "Yeoman generator for NMF GLSP clients",
   "homepage": "https://github.com/NMFCode",
   "engines": {

@@ -2,7 +2,7 @@
   "name": "nmeta-vscode-integration",
   "displayName": "NMF GLSP",
   "private": "true",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "./dist/nmeta-extension",
   "files": [
     "dist"
@@ -184,5 +184,18 @@
   },
   "engines": {
     "vscode": "^1.54.0"
+  },
+  "vsce": {
+    "dependencies": false
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NMFCode/nmf-web-client",
+    "directory": "packages/nmeta-vscode"
+  },
+  "bugs": "https://github.com/NMFCode/nmf-web-client/issues",
+  "author": {
+    "name": ".Net Modeling Framework",
+    "url": "https://github.com/NMFCode"
   }
 }
