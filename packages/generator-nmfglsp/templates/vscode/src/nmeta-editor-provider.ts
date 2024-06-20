@@ -1,8 +1,8 @@
 import { GlspEditorProvider, GlspVscodeConnector } from '@eclipse-glsp/vscode-integration';
 import * as vscode from 'vscode';
 
-export default class NMetaEditorProvider extends GlspEditorProvider {
-    diagramType = 'nmeta';
+export default class <%= LanguageName %>EditorProvider extends GlspEditorProvider {
+    diagramType = '<%= language-id %>';
 
     constructor(
         protected readonly extensionContext: vscode.ExtensionContext,

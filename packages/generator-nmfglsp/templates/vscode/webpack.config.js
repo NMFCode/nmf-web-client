@@ -9,10 +9,10 @@ const nodeModules = path.resolve(__dirname, '../../../node_modules');
 const config = {
     target: 'node',
 
-    entry: path.resolve(__dirname, 'src/nmeta-extension.ts'),
+    entry: path.resolve(__dirname, 'src/<%= language-id %>-extension.ts'),
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'nmeta-extension.js',
+        filename: '<%= language-id %>-extension.js',
         libraryTarget: 'commonjs2'
     },
     devtool: 'source-map',
@@ -40,10 +40,10 @@ const config = {
         new CopyPlugin({
             patterns: [
                 {
-                    from: path.resolve(__dirname, '..', '..', 'backend', 'NMetaGlspEditor.Server.exe')
+                    from: path.resolve(__dirname, '..', '..', 'backend', '<%= LanguageName %>GlspEditor.Server.exe')
                 },
                 {
-                    from: path.resolve(__dirname, '..', 'nmeta-glsp-webview', 'dist', 'webview.js')
+                    from: path.resolve(__dirname, '..', '<%= language-id %>-glsp-webview', 'dist', 'webview.js')
                 }
             ]
         })

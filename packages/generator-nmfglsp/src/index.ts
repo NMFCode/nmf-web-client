@@ -15,9 +15,11 @@ import * as url from 'node:url';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
-const TEMPLATE_CORE_DIR = '../templates/core';
+const TEMPLATE_CORE_DIR = '../templates/client';
 const TEMPLATE_VSCODE_DIR = '../templates/vscode';
 const TEMPLATE_WEB_DIR = '../templates/web';
+const TEMPLATE_STANDALONE_DIR = '../templates/standalone';
+const TEMPLATE_BACKEND_DIR = '../templates/backend';
 const USER_DIR = '.';
 
 const EXTENSION_NAME = /<%= extension-name %>/g;
@@ -29,6 +31,7 @@ const TSCONFIG_BASE_NAME = /<%= tsconfig %>/g;
 const LANGUAGE_NAME = /<%= LanguageName %>/g;
 const LANGUAGE_ID = /<%= language-id %>/g;
 const LANGUAGE_PATH_ID = /language-id/g;
+const LANGUAGE_PATH_NAME = /LanguageName/g;
 
 const NEWLINES = /\r?\n/g;
 
@@ -147,17 +150,34 @@ export class NMFGenerator extends Generator {
         const referencedTsconfigBaseName = 'tsconfig.json';
         const templateCopyOptions: CopyOptions = {
             process: content => this._replaceTemplateWords(fileExtensionGlob, languageName, languageId, referencedTsconfigBaseName, content),
-            processDestinationPath: path => this._replaceTemplateNames(languageId, path)
+            processDestinationPath: path => this._replaceTemplateNames(languageId, languageName, path)
         };
 
         this.sourceRoot(path.join(__dirname, TEMPLATE_CORE_DIR));
-        const pkgJson = this.fs.readJSON(path.join(this.sourceRoot(), '.package.json'));
-        this.fs.extendJSON(this._extensionPath('package-template.json'), pkgJson, undefined, 4);
+        const pkgJson = this.fs.readJSON(path.join(__dirname, '..', 'templates', '.package.json'));
 
-        for (const path of ['.', '.vscode', '.eslintrc.cjs']) {
+        for (const path of ['.', '.eslintrc.cjs']) {
             this.fs.copy(
                 this.templatePath(path),
-                this._extensionPath(path),
+                this._extensionPath('packages/' + languageId + '-glsp-client/' + path),
+                templateCopyOptions
+            );
+        }
+
+        this.sourceRoot(path.join(__dirname, TEMPLATE_WEB_DIR));
+        for (const path of ['.']) {
+            this.fs.copy(
+                this.templatePath(path),
+                this._extensionPath('packages/' + languageId + '-glsp-web/' + path),
+                templateCopyOptions
+            );
+        }
+
+        this.sourceRoot(path.join(__dirname, TEMPLATE_BACKEND_DIR));
+        for (const path of ['.']) {
+            this.fs.copy(
+                this.templatePath(path),
+                this._extensionPath('backend/' + path),
                 templateCopyOptions
             );
         }
@@ -165,34 +185,33 @@ export class NMFGenerator extends Generator {
         // .gitignore files don't get published to npm, so we need to copy it under a different name
         this.fs.copy(this.templatePath('../gitignore.txt'), this._extensionPath('.gitignore'));
 
-        if (this.answers.includeVSCode) {
-            this.sourceRoot(path.join(__dirname, TEMPLATE_VSCODE_DIR));
-            const pkgJson = this.fs.readJSON(path.join(this.sourceRoot(), '.package.json'));
-            this.fs.extendJSON(this._extensionPath('package-template.json'), pkgJson, undefined, 4);
-            this.sourceRoot(path.join(__dirname, TEMPLATE_VSCODE_DIR));
-            for (const path of ['.', '.vscode', '.vscodeignore']) {
-                this.fs.copy(
-                    this.templatePath(path),
-                    this._extensionPath(path),
-                    templateCopyOptions
-                );
-            }
-        }
-
         if (this.answers.includeWeb) {
-            this.sourceRoot(path.join(__dirname, TEMPLATE_WEB_DIR));
-            const pkgJson = this.fs.readJSON(path.join(this.sourceRoot(), '.package.json'));
-            this.fs.extendJSON(this._extensionPath('package-template.json'), pkgJson, undefined, 4);
-            this.sourceRoot(path.join(__dirname, TEMPLATE_WEB_DIR));
-            for (const path of ['.']) {
+            pkgJson.workspaces.push('packages/' + languageId + '-standalone');
+            pkgJson.scripts.build += ' --workspace=' + languageId + '-standalone';
+            this.sourceRoot(path.join(__dirname, TEMPLATE_STANDALONE_DIR));
+            for (const path of ['.', '.eslintrc.cjs']) {
                 this.fs.copy(
                     this.templatePath(path),
-                    this._extensionPath(path),
+                    this._extensionPath('packages/' + languageId + '-standalone/' + path),
                     templateCopyOptions
                 );
             }
         }
 
+        if (this.answers.includeVSCode) {
+            pkgJson.workspaces.push('packages/' + languageId + '-vscode');
+            pkgJson.scripts.build += ' --workspace=' + languageId + '-vscode';
+            this.sourceRoot(path.join(__dirname, TEMPLATE_VSCODE_DIR));
+            for (const path of ['.', '.eslintrc.js', '.vscodeignore']) {
+                this.fs.copy(
+                    this.templatePath(path),
+                    this._extensionPath('packages/' + languageId + '-vscode/' +path),
+                    templateCopyOptions
+                );
+            }
+        }
+
+        this.fs.extendJSON(this._extensionPath('package-template.json'), pkgJson, undefined, 4);
         this.fs.copy(
             this._extensionPath('package-template.json'),
             this._extensionPath('package.json'),
@@ -206,15 +225,9 @@ export class NMFGenerator extends Generator {
 
         const opts = { cwd: extensionPath };
         if(!this.args.includes('skip-install')) {
+            this.spawnSync('npm', ['link'], opts);
             this.spawnSync('npm', ['install'], opts);
-        }
-
-        if (this.answers.includeVSCode) {
-            this.spawnSync('npm', ['run', 'build'], opts);
-        }
-
-        if (this.answers.includeWeb) {
-            this.spawnSync('npm', ['run', 'build:web'], opts);
+            this.spawnSync('dotnet', ['build', 'backend'], opts);
         }
     }
 
@@ -259,8 +272,8 @@ export class NMFGenerator extends Generator {
             .replace(NEWLINES, EOL);
     }
 
-    _replaceTemplateNames(languageId: string, path: string): string {
-        return path.replace(LANGUAGE_PATH_ID, languageId);
+    _replaceTemplateNames(languageId: string, languageName: string, path: string): string {
+        return path.replace(LANGUAGE_PATH_ID, languageId).replace(LANGUAGE_PATH_NAME, languageName);
     }
 }
 

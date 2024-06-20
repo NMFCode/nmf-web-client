@@ -7,4 +7,5 @@ out/
 node_modules/
 *.vsix
 *.tsbuildinfo
-backend/
+bin/
+obj/
