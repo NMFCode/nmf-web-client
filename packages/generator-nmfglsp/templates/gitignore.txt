@@ -4,3 +4,5 @@
 !.vscode/tasks.json
 node_modules/
 out/
+bin/
+obj/
