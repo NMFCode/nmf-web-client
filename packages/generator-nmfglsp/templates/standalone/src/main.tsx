@@ -12,7 +12,7 @@ import {
 import { Container } from 'inversify';
 import { MessageConnection } from 'vscode-jsonrpc';
 import createContainer from './di.config';
-const port = 7052;
+const port = 58816;
 const id = 'glsp';
 const diagramType = '<%= language-id %>';
 

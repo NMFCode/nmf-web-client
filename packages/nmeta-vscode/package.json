@@ -178,7 +178,18 @@
         "id": "nmeta.editor.title",
         "label": "Diagram"
       }
-    ]
+    ],
+    "views": {
+        "explorer": [
+            {
+                "type": "webview",
+                "id": "nmeta.propertyView",
+                "name": "Properties",
+                "contextualTitle": "Properties View",
+                "icon": "images/edit.min.svg"
+            }
+        ]
+    }
   },
   "activationEvents": [
     "onStartupFinished"

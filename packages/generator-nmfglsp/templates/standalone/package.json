@@ -1,5 +1,5 @@
 {
-  "name": "<%= language-id %>-glsp-standalone",
+  "name": "<%= language-id %>-standalone",
   "private": true,
   "version": "1.0.0",
   "type": "module",

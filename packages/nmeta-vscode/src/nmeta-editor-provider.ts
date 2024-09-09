@@ -19,9 +19,7 @@ export default class NMetaEditorProvider extends GlspEditorProvider {
     ): void {
         const webview = webviewPanel.webview;
         const extensionUri = this.extensionContext.extensionUri;
-        const webviewScriptSourceUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'dist', 'webview.js'));
-
-        console.log(webviewScriptSourceUri);
+        const webviewScriptSourceUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'dist', 'nmetaWebview.js'));
 
         webviewPanel.webview.options = {
             enableScripts: true

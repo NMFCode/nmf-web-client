@@ -156,6 +156,17 @@ export class NMFGenerator extends Generator {
         this.sourceRoot(path.join(__dirname, TEMPLATE_CORE_DIR));
         const pkgJson = this.fs.readJSON(path.join(__dirname, '..', 'templates', '.package.json'));
 
+        this.fs.copy(
+            this.templatePath('../tsconfig.json'),
+            this._extensionPath('tsconfig.json'),
+            templateCopyOptions
+        );
+        this.fs.copy(
+            this.templatePath('../tsconfig.build.json'),
+            this._extensionPath('tsconfig.build.json'),
+            templateCopyOptions
+        );
+
         for (const path of ['.', '.eslintrc.cjs']) {
             this.fs.copy(
                 this.templatePath(path),

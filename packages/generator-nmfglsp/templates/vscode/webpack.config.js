@@ -40,15 +40,12 @@ const config = {
         new CopyPlugin({
             patterns: [
                 {
-                    from: path.resolve(__dirname, '..', '..', 'backend', '<%= LanguageName %>GlspEditor.Server.exe')
-                },
-                {
-                    from: path.resolve(__dirname, '..', '<%= language-id %>-glsp-webview', 'dist', 'webview.js')
+                    from: path.resolve(__dirname, '..', '<%= language-id %>-glsp-web', 'dist', 'webview.js')
                 }
             ]
         })
     ],
-    ignoreWarnings: [/Can't resolve .* in '.*ws\/lib'/],
+    ignoreWarnings: [/Can't resolve .* in '.*ws[\/\\]lib'/],
     performance: {
         hints: false
     }

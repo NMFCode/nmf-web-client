@@ -251,7 +251,7 @@ namespace <%= LanguageName %>.Metamodel
         
         private static ITypedElement RetrieveNameAttribute()
         {
-            return ((ITypedElement)(((ModelElement)(LanguageName.Metamodel.State.ClassInstance)).Resolve("name")));
+            return ((ITypedElement)(((ModelElement)(<%= LanguageName %>.Metamodel.State.ClassInstance)).Resolve("name")));
         }
         
         /// <summary>
@@ -282,7 +282,7 @@ namespace <%= LanguageName %>.Metamodel
         
         private static ITypedElement RetrieveIsFinalStateAttribute()
         {
-            return ((ITypedElement)(((ModelElement)(LanguageName.Metamodel.State.ClassInstance)).Resolve("isFinalState")));
+            return ((ITypedElement)(((ModelElement)(<%= LanguageName %>.Metamodel.State.ClassInstance)).Resolve("isFinalState")));
         }
         
         /// <summary>
@@ -313,7 +313,7 @@ namespace <%= LanguageName %>.Metamodel
         
         private static ITypedElement RetrieveOutgoingReference()
         {
-            return ((ITypedElement)(((ModelElement)(LanguageName.Metamodel.State.ClassInstance)).Resolve("outgoing")));
+            return ((ITypedElement)(((ModelElement)(<%= LanguageName %>.Metamodel.State.ClassInstance)).Resolve("outgoing")));
         }
         
         /// <summary>
@@ -338,7 +338,7 @@ namespace <%= LanguageName %>.Metamodel
         
         private static ITypedElement RetrieveIncomingReference()
         {
-            return ((ITypedElement)(((ModelElement)(LanguageName.Metamodel.State.ClassInstance)).Resolve("incoming")));
+            return ((ITypedElement)(((ModelElement)(<%= LanguageName %>.Metamodel.State.ClassInstance)).Resolve("incoming")));
         }
         
         /// <summary>

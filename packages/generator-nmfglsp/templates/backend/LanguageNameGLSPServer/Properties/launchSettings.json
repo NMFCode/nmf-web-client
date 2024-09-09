@@ -1,0 +1,12 @@
+{
+    "profiles": {
+      "StateMachinesGLSPServer": {
+        "commandName": "Project",
+        "launchBrowser": true,
+        "environmentVariables": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+        },
+        "applicationUrl": "https://localhost:58816;http://localhost:58817"
+      }
+    }
+  }

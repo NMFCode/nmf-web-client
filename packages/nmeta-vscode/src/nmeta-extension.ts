@@ -26,6 +26,7 @@ import * as vscode from 'vscode';
 import NMetaEditorProvider from './nmeta-editor-provider';
 import { DotnetGlspSocketServerLauncher } from './dotnet-glsp-socket-server-launcher';
 import path = require('path');
+import { PropertyViewProvider } from './property-view-provider';
 
 const DEFAULT_SERVER_PORT = '0';
 const DOTNET_EXECUTABLE = path.join(__dirname, '..', 'dist', 'NMetaGlspEditor.Server.exe');
@@ -38,6 +39,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     });
 
     context.subscriptions.push(serverProcess);
+
     await serverProcess.start();
     
     // Wrap server with quickstart component
@@ -62,6 +64,16 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
         {
             webviewOptions: { retainContextWhenHidden: true },
             supportsMultipleEditorsPerDocument: false
+        }
+    );
+
+    vscode.window.registerWebviewViewProvider(
+        'nmeta.propertyView',
+        new PropertyViewProvider(context),
+        {
+            webviewOptions: {
+                retainContextWhenHidden: true
+            }
         }
     );
 

@@ -8,4 +8,4 @@ ports:
 
 vscode:
   extensions:
-    - nmf.nmf-vscode
+    - nmf.nmeta-vscode

@@ -16,14 +16,16 @@ import {
     configureModelElement,
     initializeDiagramContainer,
     RectangularNodeView,
+    GLabel,
 } from '@eclipse-glsp/client';
 import 'balloon-css/balloon.min.css';
 import { Container, ContainerModule } from 'inversify';
 import 'sprotty/css/edit-label.css';
 import '../css/diagram.css';
-import { AttributeLabel, DefaultNode, ElementLabel } from './model';
+import { DefaultNode, ElementLabel } from './model';
 import { DividerView, InheritanceEdgeView, ReferenceEdgeView } from './views';
 import { ContextMenuService } from './menu';
+import { validatedEditor } from './validated-text';
 
 export const nmetaDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) => {
     const context = { bind, unbind, isBound, rebind };
@@ -36,7 +38,8 @@ export const nmetaDiagramModule = new ContainerModule((bind, unbind, isBound, re
     bindOrRebind(context, TYPES.IContextMenuService).to(ContextMenuService);
 
     configureDefaultModelElements(context);
-    configureModelElement(context, 'label', AttributeLabel, GLabelView);
+    configureModelElement(context, 'label', ElementLabel, GLabelView);
+    configureModelElement(context, 'label:static', GLabel, GLabelView);
     configureModelElement(context, 'comp:header', GCompartment, GCompartmentView);
     configureModelElement(context, 'comp:attributes', GCompartment, GCompartmentView);
     configureModelElement(context, 'comp:operations', GCompartment, GCompartmentView);
@@ -54,5 +57,5 @@ export const nmetaDiagramModule = new ContainerModule((bind, unbind, isBound, re
 });
 
 export function createNMetaDiagramContainer(...containerConfiguration: ContainerConfiguration): Container {
-    return initializeDiagramContainer(new Container(), nmetaDiagramModule, ...containerConfiguration);
+    return initializeDiagramContainer(new Container(), nmetaDiagramModule, validatedEditor, ...containerConfiguration);
 }

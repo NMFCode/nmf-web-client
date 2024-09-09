@@ -189,7 +189,7 @@
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
     "webpack-merge": "^5.9.0",
-    "<%= language-id %>-glsp-webview": "1.0.0"
+    "<%= language-id %>-glsp-web": "1.0.0"
   },
   "engines": {
     "vscode": "^1.54.0"

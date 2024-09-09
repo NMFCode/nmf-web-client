@@ -1,0 +1,9 @@
+{
+    "files": [],
+    "references": [
+        { "path": "./packages/<%= language-id %>-glsp-client/tsconfig.json" },
+        { "path": "./packages/<%= language-id %>-glsp-web/tsconfig.json" },
+        { "path": "./packages/<%= language-id %>-standalone/tsconfig.json" },
+        { "path": "./packages/<%= language-id %>-vscode/tsconfig.json" },
+    ]
+ }

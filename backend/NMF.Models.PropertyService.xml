@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NMF.Models.PropertyService</name>
+    </assembly>
+    <members>
+        <member name="T:NMF.Models.Services.Forms.Controller.SelectionController">
+            <summary>
+            Denotes a controller to obtain the selected element and properties
+            </summary>
+        </member>
+        <member name="M:NMF.Models.Services.Forms.Controller.SelectionController.#ctor(NMF.Models.Services.Forms.IPropertyService,NMF.Models.Services.IModelServer,NMF.Models.Services.JsonModelSerializer)">
+            <summary>
+            Creates a new instance
+            </summary>
+            <param name="propertyService">the property service</param>
+            <param name="serializer">the serializer that should be used</param>
+            <param name="modelServer">the model server, the controller is connected to</param>
+        </member>
+        <member name="M:NMF.Models.Services.Forms.Controller.SelectionController.Get">
+            <summary>
+            Gets the selected element
+            </summary>
+            <returns>A structure representing the currently selected element and its schema</returns>
+        </member>
+        <member name="M:NMF.Models.Services.Forms.Controller.SelectionController.Patch(System.String)">
+            <summary>
+            Patches the selected element with the given properties
+            </summary>
+            <param name="uri">the URI of the element that should be patched</param>
+            <returns>An action result indicating whether the patch was successful</returns>
+        </member>
+        <member name="T:NMF.Models.Services.Forms.IPropertyService">
+            <summary>
+            Denotes a service to access properties of the currently selected element
+            </summary>
+        </member>
+        <member name="M:NMF.Models.Services.Forms.IPropertyService.GetSelectedElements">
+            <summary>
+            Obtains the currently selected elements
+            </summary>
+            <returns>An object encapsulating the currently selected element</returns>
+        </member>
+        <member name="E:NMF.Models.Services.Forms.IPropertyService.SelectedElementsChanged">
+            <summary>
+            Gets called when the selected element changes
+            </summary>
+        </member>
+        <member name="M:NMF.Models.Services.Forms.IPropertyService.ChangeSelectedElement(NMF.Models.Services.Forms.ModelElementInfo)">
+            <summary>
+            Patches the currently selected element
+            </summary>
+            <param name="updated">the element that should be patched</param>
+            <returns>true, if the operation was successful, otherwise false</returns>
+        </member>
+        <member name="M:NMF.Models.Services.Forms.IPropertyService.ShutdownAsync">
+            <summary>
+             Send a `shutdown` notification to the server.
+            </summary>
+        </member>
+        <member name="M:NMF.Models.Services.Forms.IPropertyService.ObserveUri(System.String)">
+            <summary>
+            Notifies the server that the given URI has been opened
+            </summary>
+            <param name="uri">The URI of the model that should be observed</param>
+        </member>
+        <member name="T:NMF.Models.Services.Forms.ModelElementInfo">
+            <summary>
+            The record for a model element and schema information
+            </summary>
+            <param name="Uri">The URI of the model element</param>
+            <param name="Identifier">The identifier of the model element</param>
+            <param name="Data">the selected model element</param>
+            <param name="Schema">the schema</param>
+        </member>
+        <member name="M:NMF.Models.Services.Forms.ModelElementInfo.#ctor(System.String,System.String,NMF.Models.IModelElement,NMF.Models.Services.Forms.SchemaElement)">
+            <summary>
+            The record for a model element and schema information
+            </summary>
+            <param name="Uri">The URI of the model element</param>
+            <param name="Identifier">The identifier of the model element</param>
+            <param name="Data">the selected model element</param>
+            <param name="Schema">the schema</param>
+        </member>
+        <member name="P:NMF.Models.Services.Forms.ModelElementInfo.Uri">
+            <summary>The URI of the model element</summary>
+        </member>
+        <member name="P:NMF.Models.Services.Forms.ModelElementInfo.Identifier">
+            <summary>The identifier of the model element</summary>
+        </member>
+        <member name="P:NMF.Models.Services.Forms.ModelElementInfo.Data">
+            <summary>the selected model element</summary>
+        </member>
+        <member name="P:NMF.Models.Services.Forms.ModelElementInfo.Schema">
+            <summary>the schema</summary>
+        </member>
+        <member name="M:NMF.Models.Services.Forms.ModelElementInfo.FromModelElement(NMF.Models.IModelElement)">
+            <summary>
+            Wraps an existing model element into a ModelElementInfo
+            </summary>
+            <param name="modelElement">The model element</param>
+            <returns>The element info</returns>
+        </member>
+        <member name="T:NMF.Models.Services.Forms.PropertyService">
+            <summary>
+            The default implementation for a property service
+            </summary>
+        </member>
+        <member name="M:NMF.Models.Services.Forms.PropertyService.#ctor(NMF.Models.Services.IModelServer)">
+            <summary>
+            Creates a new instance
+            </summary>
+            <param name="modelServer">the model server, the controller is connected to</param>
+        </member>
+        <member name="E:NMF.Models.Services.Forms.PropertyService.SelectedElementsChanged">
+            <inheritdoc />
+        </member>
+        <member name="M:NMF.Models.Services.Forms.PropertyService.ChangeSelectedElement(NMF.Models.Services.Forms.ModelElementInfo)">
+            <inheritdoc />
+        </member>
+        <member name="M:NMF.Models.Services.Forms.PropertyService.GetSelectedElements">
+            <inheritdoc />
+        </member>
+        <member name="M:NMF.Models.Services.Forms.PropertyService.ShutdownAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:NMF.Models.Services.Forms.PropertyService.ObserveUri(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:NMF.Models.Services.Forms.PropertyServiceExtensions">
+            <summary>
+            Denotes extension methods for a property service
+            </summary>
+        </member>
+        <member name="M:NMF.Models.Services.Forms.PropertyServiceExtensions.AddSelectionController(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds the application logic to enable a REST controller to obtain and update the selected element
+            </summary>
+            <param name="services">the service collection</param>
+        </member>
+        <member name="M:NMF.Models.Services.Forms.PropertyServiceExtensions.AddPropertyService(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds the property service
+            </summary>
+            <param name="services">the service collection</param>
+        </member>
+        <member name="M:NMF.Models.Services.Forms.PropertyServiceExtensions.MapPropertyServiceWebSocket(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String)">
+            <summary>
+            Maps the GLSP server
+            </summary>
+            <param name="app">The endpoint route builder</param>
+            <param name="path">The path under which the GLSP server is called</param>
+        </member>
+        <member name="T:NMF.Models.Services.Forms.Rpc.PropertyServiceRpcUtil">
+            <summary>
+            Helper class to configure Stream JSON RPC for the usage with the GLSP implementation
+            </summary>
+        </member>
+        <member name="M:NMF.Models.Services.Forms.Rpc.PropertyServiceRpcUtil.CreateServer(System.Net.WebSockets.WebSocket,NMF.Models.Services.Forms.IPropertyService,NMF.Models.Services.IModelServer)">
+            <summary>
+            Creates a StreamJSON RPC object for the given transport
+            </summary>
+            <param name="webSocket">The websocket connection</param>
+            <param name="server">The server implementation</param>
+            <param name="modelServer">The model server for which the property service should be created</param>
+            <returns>A JSON RPC object that manages the connection to the client</returns>
+        </member>
+        <member name="M:NMF.Models.Services.Forms.Rpc.PropertyServiceRpcUtil.CreateServer(System.IO.Pipelines.IDuplexPipe,NMF.Models.Services.Forms.IPropertyService,NMF.Models.Services.IModelServer)">
+            <summary>
+            Creates a StreamJSON RPC object for the given transport
+            </summary>
+            <param name="pipe">The pipe used for the connection</param>
+            <param name="server">The server implementation</param>
+            <param name="modelServer">The model server for which the property service should be created</param>
+            <returns>A JSON RPC object that manages the connection to the client</returns>
+        </member>
+        <member name="M:NMF.Models.Services.Forms.Rpc.PropertyServiceRpcUtil.CreateServer(System.IO.Stream,NMF.Models.Services.Forms.IPropertyService,NMF.Models.Services.IModelServer)">
+            <summary>
+            Creates a StreamJSON RPC object for the given transport
+            </summary>
+            <param name="stream">The stream that represents the connection with the client</param>
+            <param name="server">The server implementation</param>
+            <param name="modelServer">The model server for which the property service should be created</param>
+            <returns>A JSON RPC object that manages the connection to the client</returns>
+        </member>
+        <member name="T:NMF.Models.Services.Forms.SchemaConverter">
+            <summary>
+            Denotes a converter that serializes schema elements to JSON
+            </summary>
+        </member>
+        <member name="M:NMF.Models.Services.Forms.SchemaConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:NMF.Models.Services.Forms.SchemaConverter.Write(System.Text.Json.Utf8JsonWriter,NMF.Models.Services.Forms.SchemaElement,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc />
+        </member>
+        <member name="T:NMF.Models.Services.Forms.SchemaElement">
+            <summary>
+            Internal struct that is used to dynamically render the schema 
+            </summary>
+            <param name="ModelElement">The model element for which the schema </param>
+            <param name="Writer">The component used to write the schema</param>
+        </member>
+        <member name="M:NMF.Models.Services.Forms.SchemaElement.#ctor(NMF.Models.IModelElement,NMF.Models.Services.Forms.SchemaWriter)">
+            <summary>
+            Internal struct that is used to dynamically render the schema 
+            </summary>
+            <param name="ModelElement">The model element for which the schema </param>
+            <param name="Writer">The component used to write the schema</param>
+        </member>
+        <member name="P:NMF.Models.Services.Forms.SchemaElement.ModelElement">
+            <summary>The model element for which the schema </summary>
+        </member>
+        <member name="P:NMF.Models.Services.Forms.SchemaElement.Writer">
+            <summary>The component used to write the schema</summary>
+        </member>
+        <member name="T:NMF.Models.Services.Forms.SchemaWriter">
+            <summary>
+            Denotes a class to write schema information for a model element
+            </summary>
+        </member>
+        <member name="F:NMF.Models.Services.Forms.SchemaWriter.Instance">
+            <summary>
+            Denotes the default instance
+            </summary>
+        </member>
+        <member name="M:NMF.Models.Services.Forms.SchemaWriter.WriteSchema(NMF.Models.IModelElement,System.Text.Json.Utf8JsonWriter)">
+            <summary>
+            Writes the schema for the given element
+            </summary>
+            <param name="element">the model element</param>
+            <param name="writer">the Utf8JsonWriter to write the schema to</param>
+        </member>
+        <member name="T:NMF.Models.Services.ShallowModelElementConverter">
+            <summary>
+            Denotes a converter that converts model elements to shallow JSON representation
+            </summary>
+        </member>
+        <member name="M:NMF.Models.Services.ShallowModelElementConverter.#ctor(NMF.Models.Services.JsonModelSerializer,NMF.Models.Services.IModelServer)">
+            <summary>
+            Creates a new instance
+            </summary>
+            <param name="serializer">the serializer to use</param>
+            <param name="modelServer">The model server for which the property service should be created</param>
+        </member>
+        <member name="M:NMF.Models.Services.ShallowModelElementConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:NMF.Models.Services.ShallowModelElementConverter.Write(System.Text.Json.Utf8JsonWriter,NMF.Models.IModelElement,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

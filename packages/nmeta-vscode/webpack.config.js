@@ -43,7 +43,14 @@ const config = {
                     from: path.resolve(__dirname, '..', '..', 'backend', 'NMetaGlspEditor.Server.exe')
                 },
                 {
-                    from: path.resolve(__dirname, '..', 'nmeta-glsp-webview', 'dist', 'webview.js')
+                    from: path.resolve(__dirname, '..', 'nmeta-glsp-webview', 'dist', 'nmetaWebview.js')
+                },
+                {
+                    from: path.resolve(__dirname, '..', 'property-view', 'dist', 'property-view')
+                },
+                {
+                    from: path.resolve(__dirname, '..', 'property-view', 'dist', 'index.html'),
+                    to: path.resolve(__dirname, '..', 'dist', 'property-view')
                 }
             ]
         })

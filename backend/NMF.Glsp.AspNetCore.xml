@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NMF.Glsp.AspNetCore</name>
+    </assembly>
+    <members>
+        <member name="T:NMF.Glsp.Server.Tcp.TcpGlspConnectionHandler">
+            <summary>
+            Helper class to handle plain TCP connections with a GLSP server
+            </summary>
+        </member>
+        <member name="M:NMF.Glsp.Server.Tcp.TcpGlspConnectionHandler.#ctor(NMF.Glsp.Contracts.IGlspServer)">
+            <summary>
+            Creates a new instance
+            </summary>
+            <param name="server">The GLSP server to connect to</param>
+        </member>
+        <member name="M:NMF.Glsp.Server.Tcp.TcpGlspConnectionHandler.OnConnectedAsync(Microsoft.AspNetCore.Connections.ConnectionContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.TcpGlspServerExtensions">
+            <summary>
+            Denotes extension methods to use an ASP.NET Core server to offer plain TCP GLSP connections
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.TcpGlspServerExtensions.UseTcpGlspServer(Microsoft.AspNetCore.Connections.IConnectionBuilder)">
+            <summary>
+            Instructs the connection to use plain TCP for this connection
+            </summary>
+            <param name="builder">The connection builder</param>
+            <returns>The input builder for chaining</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.TcpGlspServerExtensions.MapGlspTcpServer(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)">
+            <summary>
+            Maps the connection builder
+            </summary>
+            <param name="app">The endpoint route builder</param>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.GlspWebSocketServerExtensions">
+            <summary>
+            Denotes extension methods to add GLSP server implementations to an ASP.NET Core dependency injection container
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.GlspWebSocketServerExtensions.AddGlspServer(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Registers the GLSP server itself
+            </summary>
+            <param name="services">The service container the GLSP server should be added to</param>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.GlspWebSocketServerExtensions.AddLanguage``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds a graphical language
+            </summary>
+            <typeparam name="TLanguage">The type of graphical language</typeparam>
+            <param name="services">The service container the graphical language should be added to</param>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.GlspWebSocketServerExtensions.MapGlspWebSocketServer(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String)">
+            <summary>
+            Maps the GLSP server
+            </summary>
+            <param name="app">The endpoint route builder</param>
+            <param name="path">The path under which the GLSP server is called</param>
+        </member>
+    </members>
+</doc>

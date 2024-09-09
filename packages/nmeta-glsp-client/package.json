@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "@eclipse-glsp/client": "^2.1.1",
-    "balloon-css": "^1.2.0"
+    "balloon-css": "^1.2.0",
+    "nmeta-glsp-client": "file:"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.21.0",

@@ -11,14 +11,13 @@ export default defineConfig({
         coverage: {
             provider: 'v8',
             reporter: ['text', 'html'],
-            include: ['packages/nmf/src'],
+            include: ['packages/generator-nmfglsp/src'],
             exclude: ['**/generated', '**/templates'],
         },
         deps: {
             interopDefault: true
         },
         include: ['**/test/**/*.test.ts'],
-        exclude: ['**/node_modules/**', '**/dist/**', '**/generated/**', '**/templates/**', '**/examples/hello*/**'],
-        watchExclude: [ '**/examples/hello*/**' /* populated by the yeoman generator test */],
+        exclude: ['**/node_modules/**', '**/dist/**', '**/generated/**', '**/templates/**'],
     }
 });

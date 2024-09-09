@@ -22,6 +22,7 @@
       "reset:repo": "git clean -f -X -d"
     },
     "devDependencies": {
+      "@types/lodash": "^4.17.5",
       "@types/node": "~16.18.41",
       "@types/vscode": "~1.67.0",
       "@types/ws": "^8.5.10",

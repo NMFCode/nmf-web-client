@@ -228,7 +228,7 @@ namespace <%= LanguageName %>.Metamodel
         
         private static ITypedElement RetrieveNameAttribute()
         {
-            return ((ITypedElement)(((ModelElement)(LanguageName.Metamodel.StateMachine.ClassInstance)).Resolve("name")));
+            return ((ITypedElement)(((ModelElement)(<%= LanguageName %>.Metamodel.StateMachine.ClassInstance)).Resolve("name")));
         }
         
         /// <summary>
@@ -259,7 +259,7 @@ namespace <%= LanguageName %>.Metamodel
         
         private static ITypedElement RetrieveStatesReference()
         {
-            return ((ITypedElement)(((ModelElement)(LanguageName.Metamodel.StateMachine.ClassInstance)).Resolve("states")));
+            return ((ITypedElement)(((ModelElement)(<%= LanguageName %>.Metamodel.StateMachine.ClassInstance)).Resolve("states")));
         }
         
         /// <summary>
@@ -284,7 +284,7 @@ namespace <%= LanguageName %>.Metamodel
         
         private static ITypedElement RetrieveStartStateReference()
         {
-            return ((ITypedElement)(((ModelElement)(LanguageName.Metamodel.StateMachine.ClassInstance)).Resolve("startState")));
+            return ((ITypedElement)(((ModelElement)(<%= LanguageName %>.Metamodel.StateMachine.ClassInstance)).Resolve("startState")));
         }
         
         /// <summary>

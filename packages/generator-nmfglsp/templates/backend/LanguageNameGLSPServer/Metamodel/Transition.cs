@@ -206,7 +206,7 @@ namespace <%= LanguageName %>.Metamodel
         
         private static ITypedElement RetrieveTriggerAttribute()
         {
-            return ((ITypedElement)(((ModelElement)(LanguageName.Metamodel.Transition.ClassInstance)).Resolve("trigger")));
+            return ((ITypedElement)(((ModelElement)(<%= LanguageName %>.Metamodel.Transition.ClassInstance)).Resolve("trigger")));
         }
         
         /// <summary>
@@ -237,7 +237,7 @@ namespace <%= LanguageName %>.Metamodel
         
         private static ITypedElement RetrieveSourceReference()
         {
-            return ((ITypedElement)(((ModelElement)(LanguageName.Metamodel.Transition.ClassInstance)).Resolve("source")));
+            return ((ITypedElement)(((ModelElement)(<%= LanguageName %>.Metamodel.Transition.ClassInstance)).Resolve("source")));
         }
         
         /// <summary>
@@ -305,7 +305,7 @@ namespace <%= LanguageName %>.Metamodel
         
         private static ITypedElement RetrieveTargetReference()
         {
-            return ((ITypedElement)(((ModelElement)(LanguageName.Metamodel.Transition.ClassInstance)).Resolve("target")));
+            return ((ITypedElement)(((ModelElement)(<%= LanguageName %>.Metamodel.Transition.ClassInstance)).Resolve("target")));
         }
         
         /// <summary>

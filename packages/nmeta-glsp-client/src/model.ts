@@ -20,7 +20,8 @@ import {
     WithEditableLabel,
     withEditLabelFeature,
     GLabel,
-    editLabelFeature
+    editLabelFeature,
+    Bounds
 } from '@eclipse-glsp/client';
 
 export class DefaultNode extends RectangularNode implements Nameable, WithEditableLabel {
@@ -53,6 +54,17 @@ export class DefaultNode extends RectangularNode implements Nameable, WithEditab
         const labelText = this.editableLabel?.text;
         return labelText ? labelText : '<unknown>';
     }
+
+    override get bounds() : Bounds {
+        const pos = this.position === undefined ? { x:0, y:0} : this.position;
+        const size = this.size === undefined ? { width: 40, height: 20 } : this.size;
+        return {
+            x: pos.x,
+            y: pos.y,
+            width: size.width,
+            height: size.height
+        };
+    }
 }
 
 export class ElementLabel extends GLabel {
@@ -61,13 +73,6 @@ export class ElementLabel extends GLabel {
         editLabelFeature,
         selectFeature,
         deletableFeature
-    ];
-}
-
-export class AttributeLabel extends GLabel {
-    static override readonly DEFAULT_FEATURES = [
-        ...GLabel.DEFAULT_FEATURES,
-        editLabelFeature
     ];
 }
 

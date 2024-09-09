@@ -1,0 +1,59 @@
+{
+  "name": "property-views-client",
+  "version": "0.0.1-beta",
+  "description": "The protocol definition for client-server communication for property views",
+  "keywords": [
+    "modeling",
+    "visualization",
+    "propertyview",
+    "diagram editor"
+  ],
+  "homepage": "https://github.com/NMFCode/nmf-web-client",
+  "bugs": "https://github.com/NMFCode/nmf-web-client/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NMFCode/nmf-web-client.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Georg Hinkel"
+  },
+  "contributors": [
+    {
+      "name": "Georg Hinkel",
+      "email": "georg.hinkel@hs-rm.de",
+      "url": "https://github.com/NMFCode/nmf-web-client"
+    }
+  ],
+  "main": "lib/index",
+  "types": "lib/index",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rimraf lib tsconfig.tsbuildinfo  coverage .nyc_output ",
+    "lint": "eslint --ext .ts,.tsx ./src",
+    "lint:ci": "yarn lint -o eslint.xml -f checkstyle",
+    "prepare": "yarn clean && yarn build",
+    "test": "mocha --config ../../.mocharc \"./src/**/*.spec.?(ts|tsx)\"",
+    "test:ci": "export JUNIT_REPORT_PATH=./report.xml && yarn test --reporter mocha-jenkins-reporter",
+    "test:coverage": "nyc yarn test",
+    "watch": "tsc -w"
+  },
+  "dependencies": {
+    "property-views-client": "file:",
+    "uuid": "7.0.3",
+    "vscode-jsonrpc": "^8.2.1"
+  },
+  "devDependencies": {
+    "@types/uuid": "3.4.5"
+  },
+  "peerDependencies": {
+    "inversify": "^6.0.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

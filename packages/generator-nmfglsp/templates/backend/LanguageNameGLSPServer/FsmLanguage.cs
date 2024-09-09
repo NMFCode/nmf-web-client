@@ -7,7 +7,7 @@ namespace <%= LanguageName %>
 {
     internal class FsmLanguage : GraphicalLanguage
     {
-        public override string DiagramType => "finiteStateMachines";
+        public override string DiagramType => "<%= language-id %>";
 
         public override DescriptorBase StartRule => Descriptor<StateMachineDescriptor>();
 

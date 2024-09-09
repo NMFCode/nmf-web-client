@@ -7,5 +7,7 @@
         { "path": "./packages/nmeta-vscode/tsconfig.json" },
         { "path": "./packages/generator-nmfglsp/tsconfig.src.json" },
         { "path": "./packages/generator-nmfglsp/tsconfig.test.json" },
+        { "path": "./packages/property-views-client/tsconfig.json" },
+        { "path": "./packages/property-view/tsconfig.json"}
     ]
  }

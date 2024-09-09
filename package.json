@@ -7,8 +7,8 @@
     "npm": ">= 9.5.0"
   },
   "scripts": {
-    "clean": "shx rm -rf packages/*/lib packages/*/out packages/*/*.tsbuildinfo examples/*/*.tsbuildinfo",
-    "build": "tsc -b tsconfig.build.json && npm run build --workspace=nmeta-glsp-webview --workspace=nmeta-glsp-standalone --workspace=nmeta-vscode --workspace=generator-nmfglsp",
+    "clean": "shx rm -rf packages/*/lib packages/*/out packages/*/*.tsbuildinfo",
+    "build": "tsc -b tsconfig.build.json && npm run build --workspace=nmeta-glsp-webview --workspace=nmeta-glsp-standalone --workspace=nmeta-vscode --workspace=generator-nmfglsp --workspace=property-views-client --workspace=property-view",
     "watch": "concurrently -n tsc,vscode -c blue,yellow,green,green,green,green \"tsc -b tsconfig.build.json -w\" \"npm run watch --workspace=nmeta-vscode\"",
     "build:clean": "npm run clean && npm run build",
     "lint": "npm run lint --workspaces",
@@ -17,8 +17,8 @@
     "coverage": "vitest run --coverage",
     "validate-exports": "npm run validate-exports --workspace=nmeta-glsp-client",
     "version:dependencies": "node ./scripts/update-version.js && npm install",
-    "dev-build": "npm run dev-clean && npm install && npm link ./packages/nmeta-glsp-client && npm link ./packages/generator-nmfglsp",
-    "dev-clean": "shx rm -rf packages/**/node_modules && npm uninstall -g nmf-workspaces generator-nmfglsp nmeta-glsp-client && npm unlink nmf-workspaces generator-nmfglsp nmeta-glsp-client",
+    "dev-build": "npm run dev-clean && npm install && npm link ./packages/nmeta-glsp-client && npm link ./packages/generator-nmfglsp && npm link ./packages/property-views-client && npm link ./packages/property-view",
+    "dev-clean": "shx rm -rf packages/**/node_modules && npm uninstall -g nmf-workspaces generator-nmfglsp nmeta-glsp-client property-views-client && npm unlink nmf-workspaces generator-nmfglsp nmeta-glsp-client property-views-client",
     "reset:repo": "git clean -f -X -d"
   },
   "devDependencies": {
@@ -50,6 +50,11 @@
     "packages/nmeta-glsp-client",
     "packages/nmeta-glsp-webview",
     "packages/nmeta-vscode",
-    "packages/nmeta-glsp-standalone"
-  ]
+    "packages/nmeta-glsp-standalone",
+    "packages/property-views-client",
+    "packages/property-view"
+  ],
+  "dependencies": {
+    "nmf-workspaces": "file:"
+  }
 }

@@ -8,10 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="StateMachine.nmeta" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="StateMachine.nmeta" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
     <PackageReference Include="NMF-Basics" Version="2.0.217" />
     <PackageReference Include="NMF-GLSP" Version="2.0.217" />
-    <PackageReference Include="NMF-Ecore2Code" Version="2.0.217" />
   </ItemGroup>
 
 </Project>

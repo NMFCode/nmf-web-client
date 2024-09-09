@@ -9,7 +9,7 @@ const config = {
 
     entry: path.resolve(__dirname, 'src/index.ts'),
     output: {
-        filename: 'webview.js',
+        filename: 'nmetaWebview.js',
         path: outputPath
     },
     devtool: 'eval-source-map',
