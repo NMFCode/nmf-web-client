@@ -7,8 +7,8 @@
     "npm": ">= 9.5.0"
   },
   "scripts": {
-    "clean": "shx rm -rf packages/*/lib packages/*/out packages/*/*.tsbuildinfo",
-    "build": "tsc -b tsconfig.build.json && npm run build --workspace=nmeta-glsp-webview --workspace=nmeta-glsp-standalone --workspace=nmeta-vscode --workspace=generator-nmfglsp --workspace=property-views-client --workspace=property-view",
+    "clean": "shx rm -rf packages/*/lib packages/*/dist packages/*/out packages/*/*.tsbuildinfo",
+    "build": "tsc -b tsconfig.build.json && npm run build --workspace=nmeta-glsp-webview --workspace=nmeta-glsp-standalone --workspace=generator-nmfglsp --workspace=property-views-client --workspace=property-view --workspace=nmeta-vscode",
     "watch": "concurrently -n tsc,vscode -c blue,yellow,green,green,green,green \"tsc -b tsconfig.build.json -w\" \"npm run watch --workspace=nmeta-vscode\"",
     "build:clean": "npm run clean && npm run build",
     "lint": "npm run lint --workspaces",
