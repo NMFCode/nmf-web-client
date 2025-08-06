@@ -4,6 +4,67 @@
         <name>NMF.Serialization</name>
     </assembly>
     <members>
+        <member name="T:NMF.Serialization.AlternativeNamespaceAttribute">
+            <summary>
+            Denotes that a class may also occur under a different namespace
+            </summary>
+        </member>
+        <member name="P:NMF.Serialization.AlternativeNamespaceAttribute.AlternativeNamespace">
+            <summary>
+            Gets the alternative namespace URI
+            </summary>
+        </member>
+        <member name="M:NMF.Serialization.AlternativeNamespaceAttribute.#ctor(System.String)">
+            <summary>
+            Creates a new instance
+            </summary>
+            <param name="alternativeNamespace">the alternative namespace URI</param>
+        </member>
+        <member name="T:NMF.Serialization.ConverterExceptionEventArgs">
+            <summary>
+            Denotes event data if a converter caused an exception
+            </summary>
+        </member>
+        <member name="P:NMF.Serialization.ConverterExceptionEventArgs.TextValue">
+            <summary>
+            Gets or sets the text value
+            </summary>
+        </member>
+        <member name="P:NMF.Serialization.ConverterExceptionEventArgs.Value">
+            <summary>
+            Gets or sets the object value
+            </summary>
+        </member>
+        <member name="P:NMF.Serialization.ConverterExceptionEventArgs.Exception">
+            <summary>
+            Gets the exception
+            </summary>
+        </member>
+        <member name="P:NMF.Serialization.ConverterExceptionEventArgs.Context">
+            <summary>
+            Gets the element for which the exception occured
+            </summary>
+        </member>
+        <member name="P:NMF.Serialization.ConverterExceptionEventArgs.Type">
+            <summary>
+            Gets the type that was attempted to (de-)serialize
+            </summary>
+        </member>
+        <member name="P:NMF.Serialization.ConverterExceptionEventArgs.Handled">
+            <summary>
+            Gets or sets a flag indicating that the exception has been handled
+            </summary>
+        </member>
+        <member name="M:NMF.Serialization.ConverterExceptionEventArgs.#ctor(System.String,System.Object,System.Exception,NMF.Serialization.XmlSerializationContext,NMF.Serialization.ITypeSerializationInfo)">
+            <summary>
+            Creates a new instance
+            </summary>
+            <param name="textValue">the text value</param>
+            <param name="value">the object value</param>
+            <param name="exception">the exception</param>
+            <param name="context">the element for which the exception occured</param>
+            <param name="type">the type that was attempted to (de-)serialize</param>
+        </member>
         <member name="T:NMF.Serialization.Serializer">
             <summary>
             Denotes the base class for a serializer
@@ -81,11 +142,12 @@
             The set of types that are known to the serializer
             </summary>
         </member>
-        <member name="M:NMF.Serialization.Serializer.RegisterNamespace(NMF.Serialization.ITypeSerializationInfo)">
+        <member name="M:NMF.Serialization.Serializer.RegisterNamespace(NMF.Serialization.ITypeSerializationInfo,System.String)">
             <summary>
             Registers the given type serialization info for a namespace lookup
             </summary>
             <param name="info">the type serialization info</param>
+            <param name="ns">the namespace for which the type should be registered</param>
         </member>
         <member name="M:NMF.Serialization.Serializer.GetTypeInfo(System.String,System.String)">
             <summary>
@@ -109,6 +171,15 @@
             <param name="type">the system type</param>
             <param name="serializationInfo">the serialization information object</param>
         </member>
+        <member name="M:NMF.Serialization.Serializer.ConvertString(System.String,NMF.Serialization.IPropertySerializationInfo,NMF.Serialization.XmlSerializationContext)">
+            <summary>
+            Converts the given string to a value
+            </summary>
+            <param name="text">the string that needs to be parsed</param>
+            <param name="info">the property for which the string is parsed</param>
+            <param name="context">the context in which the string is parsed</param>
+            <returns>the parsed object</returns>
+        </member>
         <member name="M:NMF.Serialization.Serializer.GetAttributeValue(System.Object,NMF.Serialization.ITypeSerializationInfo,System.Boolean,NMF.Serialization.XmlSerializationContext)">
             <summary>
             Gets the serialization of the given attribute value
@@ -118,6 +189,12 @@
             <param name="isCollection">True, if the value is added to a collection, otherwise false</param>
             <param name="context">The serialization context</param>
             <returns>The serialized value of the attribute</returns>
+        </member>
+        <member name="M:NMF.Serialization.Serializer.OnConverterException(NMF.Serialization.ConverterExceptionEventArgs)">
+            <summary>
+            Gets called when the <see cref="E:NMF.Serialization.Serializer.ConverterException"/> event should be raised
+            </summary>
+            <param name="eventArgs">The event data</param>
         </member>
         <member name="M:NMF.Serialization.Serializer.HandleUnknownType(NMF.Serialization.IPropertySerializationInfo,System.String,System.String)">
             <summary>
@@ -159,6 +236,11 @@
         <member name="E:NMF.Serialization.Serializer.UnknownType">
             <summary>
             Gets raised when the serializer finds a type that is not known
+            </summary>
+        </member>
+        <member name="E:NMF.Serialization.Serializer.ConverterException">
+            <summary>
+            Gets raised when a converter used by the serializer ran into an exception
             </summary>
         </member>
         <member name="M:NMF.Serialization.Serializer.GetSerializationInfoForInstance(System.Object,System.Boolean)">

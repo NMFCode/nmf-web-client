@@ -1,0 +1,20 @@
+
+namespace Test ( test )
+{
+    class Demo
+    {
+        namespace : nmeta.String 
+
+        test : nmeta.Integer
+
+        test2 : nmeta.Byte
+
+        reference test3 : Demo
+    }
+
+    class Test 
+    {
+        Demo : nmeta.Attribute
+    }
+
+}

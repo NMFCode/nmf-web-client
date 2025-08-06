@@ -11,10 +11,10 @@ import type { MessageConnection } from 'vscode-jsonrpc';
 import { Grid, Typography } from '@mui/material';
 import deepEqual from 'deep-equal';
 
-const port = 7052;
+const port = 5052;
 const id = 'prop';
 
-const webSocketUrl = `wss://localhost:${port}/${id}`;
+const webSocketUrl = `ws://localhost:${port}/${id}`;
 
 const classes = {
     container: {

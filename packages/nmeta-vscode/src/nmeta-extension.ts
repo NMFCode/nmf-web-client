@@ -17,7 +17,6 @@ import 'reflect-metadata';
 
 import {
     GlspVscodeConnector,
-    NavigateAction,
     SocketGlspVscodeServer,
     configureDefaultCommands
 } from '@eclipse-glsp/vscode-integration/node';
@@ -81,16 +80,4 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     nmetaServer.start();
 
     configureDefaultCommands({ extensionContext: context, connector: glspVscodeConnector, diagramPrefix: 'nmeta' });
-
-    context.subscriptions.push(
-        vscode.commands.registerCommand('nmeta.goToNextNode', () => {
-            glspVscodeConnector.dispatchAction(NavigateAction.create('next'));
-        }),
-        vscode.commands.registerCommand('nmeta.goToPreviousNode', () => {
-            glspVscodeConnector.dispatchAction(NavigateAction.create('previous'));
-        }),
-        vscode.commands.registerCommand('nmeta.showDocumentation', () => {
-            glspVscodeConnector.dispatchAction(NavigateAction.create('documentation'));
-        })
-    );
 }

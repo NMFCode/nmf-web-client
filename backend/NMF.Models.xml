@@ -6568,6 +6568,13 @@
             <param name="sender">The original sender</param>
             <param name="e">The original event args</param>
         </member>
+        <member name="M:NMF.Models.Collections.ReferenceCollection.PropagateValueChanges(System.Object,NMF.Models.BubbledChangeEventArgs)">
+            <summary>
+            Propagates a bubbled change
+            </summary>
+            <param name="sender">The original sender</param>
+            <param name="e">The original event args</param>
+        </member>
         <member name="M:NMF.Models.Collections.ReferenceCollection.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
             <inheritdoc />
         </member>
@@ -6867,25 +6874,25 @@
             Gets the Class model for this type
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.AnnotationEntry.SourceChanging">
-            <summary>
-            Gets fired before the Source property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.AnnotationEntry.SourceChanged">
             <summary>
             Gets fired when the Source property changed its value
             </summary>
         </member>
-        <member name="M:NMF.Models.Meta.AnnotationEntry.OnSourceChanging(NMF.Expressions.ValueChangedEventArgs)">
+        <member name="E:NMF.Models.Meta.AnnotationEntry.SourceChanging">
             <summary>
-            Raises the SourceChanging event
+            Gets fired before the Source property changes its value
             </summary>
-            <param name="eventArgs">The event data</param>
         </member>
         <member name="M:NMF.Models.Meta.AnnotationEntry.OnSourceChanged(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
             Raises the SourceChanged event
+            </summary>
+            <param name="eventArgs">The event data</param>
+        </member>
+        <member name="M:NMF.Models.Meta.AnnotationEntry.OnSourceChanging(NMF.Expressions.ValueChangedEventArgs)">
+            <summary>
+            Raises the SourceChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
@@ -6989,10 +6996,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.AnnotationEntry.AnnotationEntryChildrenCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.AnnotationEntry.AnnotationEntryChildrenCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.AnnotationEntry.AnnotationEntryChildrenCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -7048,10 +7059,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.AnnotationEntry.AnnotationEntryReferencedElementsCollection.AttachCore">
-            <inheritdoc/>
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.AnnotationEntry.AnnotationEntryReferencedElementsCollection.DetachCore">
-            <inheritdoc/>
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.AnnotationEntry.AnnotationEntryReferencedElementsCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -7109,7 +7124,7 @@
         </member>
         <member name="T:NMF.Models.Meta.AnnotationSet">
             <summary>
-            The Annotation extension
+            The AnnotationSet extension
             </summary>
         </member>
         <member name="F:NMF.Models.Meta.AnnotationSet._annotations">
@@ -7127,13 +7142,6 @@
             The Annotations property
             </summary>
         </member>
-        <member name="M:NMF.Models.Meta.AnnotationSet.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)">
-            <summary>
-            Gets the relative URI fragment for the given child model element
-            </summary>
-            <returns>A fragment of the relative URI</returns>
-            <param name="element">The element that should be looked for</param>
-        </member>
         <member name="M:NMF.Models.Meta.AnnotationSet.AnnotationsCollectionChanging(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
             <summary>
             Forwards CollectionChanging notifications for the Annotations property to the parent model element
@@ -7150,7 +7158,7 @@
         </member>
         <member name="M:NMF.Models.Meta.AnnotationSet.FromModelElement(NMF.Models.IModelElement)">
             <summary>
-            Gets the Annotation extension from the given model element
+            Gets the AnnotationSet extension from the given model element
             </summary>
             <returns>The extension object or null, if the model element does not have this extension</returns>
             <param name="parent">The parent model element that may hold the extension</param>
@@ -7200,14 +7208,14 @@
             Gets the Class model for this type
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.Attribute.DefaultValueChanging">
-            <summary>
-            Gets fired before the DefaultValue property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.Attribute.DefaultValueChanged">
             <summary>
             Gets fired when the DefaultValue property changed its value
+            </summary>
+        </member>
+        <member name="E:NMF.Models.Meta.Attribute.DefaultValueChanging">
+            <summary>
+            Gets fired before the DefaultValue property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.Attribute.DeclaringTypeChanging">
@@ -7230,15 +7238,15 @@
             Gets fired when the Refines property changed its value
             </summary>
         </member>
-        <member name="M:NMF.Models.Meta.Attribute.OnDefaultValueChanging(NMF.Expressions.ValueChangedEventArgs)">
-            <summary>
-            Raises the DefaultValueChanging event
-            </summary>
-            <param name="eventArgs">The event data</param>
-        </member>
         <member name="M:NMF.Models.Meta.Attribute.OnDefaultValueChanged(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
             Raises the DefaultValueChanged event
+            </summary>
+            <param name="eventArgs">The event data</param>
+        </member>
+        <member name="M:NMF.Models.Meta.Attribute.OnDefaultValueChanging(NMF.Expressions.ValueChangedEventArgs)">
+            <summary>
+            Raises the DefaultValueChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
@@ -7345,10 +7353,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.Attribute.AttributeReferencedElementsCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Attribute.AttributeReferencedElementsCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Attribute.AttributeReferencedElementsCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -7618,10 +7630,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.AttributeConstraint.AttributeConstraintReferencedElementsCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.AttributeConstraint.AttributeConstraintReferencedElementsCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.AttributeConstraint.AttributeConstraintReferencedElementsCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -7789,24 +7805,24 @@
             Gets the Class model for this type
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.Class.IsAbstractChanging">
-            <summary>
-            Gets fired before the IsAbstract property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.Class.IsAbstractChanged">
             <summary>
             Gets fired when the IsAbstract property changed its value
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.Class.IdentifierScopeChanging">
+        <member name="E:NMF.Models.Meta.Class.IsAbstractChanging">
             <summary>
-            Gets fired before the IdentifierScope property changes its value
+            Gets fired before the IsAbstract property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.Class.IdentifierScopeChanged">
             <summary>
             Gets fired when the IdentifierScope property changed its value
+            </summary>
+        </member>
+        <member name="E:NMF.Models.Meta.Class.IdentifierScopeChanging">
+            <summary>
+            Gets fired before the IdentifierScope property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.Class.InstanceOfChanging">
@@ -7829,27 +7845,27 @@
             Gets fired when the Identifier property changed its value
             </summary>
         </member>
-        <member name="M:NMF.Models.Meta.Class.OnIsAbstractChanging(NMF.Expressions.ValueChangedEventArgs)">
-            <summary>
-            Raises the IsAbstractChanging event
-            </summary>
-            <param name="eventArgs">The event data</param>
-        </member>
         <member name="M:NMF.Models.Meta.Class.OnIsAbstractChanged(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
             Raises the IsAbstractChanged event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
-        <member name="M:NMF.Models.Meta.Class.OnIdentifierScopeChanging(NMF.Expressions.ValueChangedEventArgs)">
+        <member name="M:NMF.Models.Meta.Class.OnIsAbstractChanging(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
-            Raises the IdentifierScopeChanging event
+            Raises the IsAbstractChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
         <member name="M:NMF.Models.Meta.Class.OnIdentifierScopeChanged(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
             Raises the IdentifierScopeChanged event
+            </summary>
+            <param name="eventArgs">The event data</param>
+        </member>
+        <member name="M:NMF.Models.Meta.Class.OnIdentifierScopeChanging(NMF.Expressions.ValueChangedEventArgs)">
+            <summary>
+            Raises the IdentifierScopeChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
@@ -8005,10 +8021,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.Class.ClassChildrenCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Class.ClassChildrenCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Class.ClassChildrenCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -8064,10 +8084,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.Class.ClassReferencedElementsCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Class.ClassReferencedElementsCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Class.ClassReferencedElementsCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -8173,17 +8197,21 @@
         </member>
         <member name="T:NMF.Models.Meta.ClassAttributeConstraintsCollection">
             <summary>
-            Denotes a collection type for attribute constraints of classes
+            Denotes a class to implement the AttributeConstraints reference
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.ClassAttributeConstraintsCollection.#ctor(NMF.Models.Meta.IClass)">
             <summary>
             Creates a new instance
             </summary>
-            <param name="parent">the parent element</param>
+            <param name="parent">the parent Class</param>
         </member>
         <member name="M:NMF.Models.Meta.ClassAttributeConstraintsCollection.SetOpposite(NMF.Models.Meta.IAttributeConstraint,NMF.Models.Meta.IClass)">
-            <inheritdoc />
+            <summary>
+            Sets the opposite of the given item
+            </summary>
+            <param name="item">the item</param>
+            <param name="newParent">the new parent or null, if the item is removed from the collection</param>
         </member>
         <member name="T:NMF.Models.Meta.ClassExtensions">
             <summary>
@@ -8254,17 +8282,21 @@
         </member>
         <member name="T:NMF.Models.Meta.ClassReferenceConstraintsCollection">
             <summary>
-            Denotes a collection type for reference constraints of classes
+            Denotes a class to implement the ReferenceConstraints reference
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.ClassReferenceConstraintsCollection.#ctor(NMF.Models.Meta.IClass)">
             <summary>
             Creates a new instance
             </summary>
-            <param name="parent">the parent element</param>
+            <param name="parent">the parent Class</param>
         </member>
         <member name="M:NMF.Models.Meta.ClassReferenceConstraintsCollection.SetOpposite(NMF.Models.Meta.IReferenceConstraint,NMF.Models.Meta.IClass)">
-            <inheritdoc />
+            <summary>
+            Sets the opposite of the given item
+            </summary>
+            <param name="item">the item</param>
+            <param name="newParent">the new parent or null, if the item is removed from the collection</param>
         </member>
         <member name="T:NMF.Models.Meta.DataType">
             <summary>
@@ -8287,17 +8319,17 @@
             </summary>
         </member>
         <member name="F:NMF.Models.Meta.Direction.In">
-            <summary>
+             <summary>
             Denotes that the parameter is used as an input parameter
             </summary>
         </member>
         <member name="F:NMF.Models.Meta.Direction.Out">
-            <summary>
+             <summary>
             Denotes that the parameter is used as an output parameter
             </summary>
         </member>
         <member name="F:NMF.Models.Meta.Direction.InOut">
-            <summary>
+             <summary>
             Denotes that the parameter is used both as input and output parameter
             </summary>
         </member>
@@ -8346,25 +8378,25 @@
             Gets the Class model for this type
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.Enumeration.IsFlaggedChanging">
-            <summary>
-            Gets fired before the IsFlagged property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.Enumeration.IsFlaggedChanged">
             <summary>
             Gets fired when the IsFlagged property changed its value
             </summary>
         </member>
-        <member name="M:NMF.Models.Meta.Enumeration.OnIsFlaggedChanging(NMF.Expressions.ValueChangedEventArgs)">
+        <member name="E:NMF.Models.Meta.Enumeration.IsFlaggedChanging">
             <summary>
-            Raises the IsFlaggedChanging event
+            Gets fired before the IsFlagged property changes its value
             </summary>
-            <param name="eventArgs">The event data</param>
         </member>
         <member name="M:NMF.Models.Meta.Enumeration.OnIsFlaggedChanged(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
             Raises the IsFlaggedChanged event
+            </summary>
+            <param name="eventArgs">The event data</param>
+        </member>
+        <member name="M:NMF.Models.Meta.Enumeration.OnIsFlaggedChanging(NMF.Expressions.ValueChangedEventArgs)">
+            <summary>
+            Raises the IsFlaggedChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
@@ -8439,10 +8471,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.Enumeration.EnumerationChildrenCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Enumeration.EnumerationChildrenCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Enumeration.EnumerationChildrenCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -8498,10 +8534,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.Enumeration.EnumerationReferencedElementsCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Enumeration.EnumerationReferencedElementsCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Enumeration.EnumerationReferencedElementsCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -8559,17 +8599,21 @@
         </member>
         <member name="T:NMF.Models.Meta.EnumerationLiteralsCollection">
             <summary>
-            Denotes a collection type for literals of enumerations
+            Denotes a class to implement the Literals reference
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.EnumerationLiteralsCollection.#ctor(NMF.Models.Meta.IEnumeration)">
             <summary>
             Creates a new instance
             </summary>
-            <param name="parent">the parent element</param>
+            <param name="parent">the parent Enumeration</param>
         </member>
         <member name="M:NMF.Models.Meta.EnumerationLiteralsCollection.SetOpposite(NMF.Models.Meta.ILiteral,NMF.Models.Meta.IEnumeration)">
-            <inheritdoc />
+            <summary>
+            Sets the opposite of the given item
+            </summary>
+            <param name="item">the item</param>
+            <param name="newParent">the new parent or null, if the item is removed from the collection</param>
         </member>
         <member name="T:NMF.Models.Meta.Event">
             <summary>
@@ -8709,10 +8753,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.Event.EventReferencedElementsCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Event.EventReferencedElementsCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Event.EventReferencedElementsCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -8881,10 +8929,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.Extension.ExtensionReferencedElementsCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Extension.ExtensionReferencedElementsCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Extension.ExtensionReferencedElementsCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -8960,14 +9012,14 @@
             The Annotations property
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.IAnnotationEntry.SourceChanging">
-            <summary>
-            Gets fired before the Source property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.IAnnotationEntry.SourceChanged">
             <summary>
             Gets fired when the Source property changed its value
+            </summary>
+        </member>
+        <member name="E:NMF.Models.Meta.IAnnotationEntry.SourceChanging">
+            <summary>
+            Gets fired before the Source property changes its value
             </summary>
         </member>
         <member name="T:NMF.Models.Meta.IAttribute">
@@ -8990,14 +9042,14 @@
             Gets or sets the attribute that is implemented by the current attribute
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.IAttribute.DefaultValueChanging">
-            <summary>
-            Gets fired before the DefaultValue property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.IAttribute.DefaultValueChanged">
             <summary>
             Gets fired when the DefaultValue property changed its value
+            </summary>
+        </member>
+        <member name="E:NMF.Models.Meta.IAttribute.DefaultValueChanging">
+            <summary>
+            Gets fired before the DefaultValue property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.IAttribute.DeclaringTypeChanging">
@@ -9101,24 +9153,24 @@
             The ReferenceConstraints property
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.IClass.IsAbstractChanging">
-            <summary>
-            Gets fired before the IsAbstract property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.IClass.IsAbstractChanged">
             <summary>
             Gets fired when the IsAbstract property changed its value
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.IClass.IdentifierScopeChanging">
+        <member name="E:NMF.Models.Meta.IClass.IsAbstractChanging">
             <summary>
-            Gets fired before the IdentifierScope property changes its value
+            Gets fired before the IsAbstract property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.IClass.IdentifierScopeChanged">
             <summary>
             Gets fired when the IdentifierScope property changed its value
+            </summary>
+        </member>
+        <member name="E:NMF.Models.Meta.IClass.IdentifierScopeChanging">
+            <summary>
+            Gets fired before the IdentifierScope property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.IClass.InstanceOfChanging">
@@ -9146,23 +9198,18 @@
             The public interface for DataType
             </summary>
         </member>
-        <member name="T:NMF.Models.Meta.IdentifierScope">
-            <summary>
-            Denotes the scope of an identifier
-            </summary>
-        </member>
         <member name="F:NMF.Models.Meta.IdentifierScope.Inherit">
-            <summary>
+             <summary>
             The identifier scope is inherited from the (first) base class that defines an identifier
             </summary>
         </member>
         <member name="F:NMF.Models.Meta.IdentifierScope.Local">
-            <summary>
+             <summary>
             The identifier has a local scope, i.e., the identifier identifies an element only in the scope of the parent element
             </summary>
         </member>
         <member name="F:NMF.Models.Meta.IdentifierScope.Global">
-            <summary>
+             <summary>
             The identifier has a global scope, i.e., there is no other model element with the same identifier
             </summary>
         </member>
@@ -9194,14 +9241,14 @@
             The Literals property
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.IEnumeration.IsFlaggedChanging">
-            <summary>
-            Gets fired before the IsFlagged property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.IEnumeration.IsFlaggedChanged">
             <summary>
             Gets fired when the IsFlagged property changed its value
+            </summary>
+        </member>
+        <member name="E:NMF.Models.Meta.IEnumeration.IsFlaggedChanging">
+            <summary>
+            Gets fired before the IsFlagged property changes its value
             </summary>
         </member>
         <member name="T:NMF.Models.Meta.IEvent">
@@ -9274,14 +9321,14 @@
             The Enumeration property
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.ILiteral.ValueChanging">
-            <summary>
-            Gets fired before the Value property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.ILiteral.ValueChanged">
             <summary>
             Gets fired when the Value property changed its value
+            </summary>
+        </member>
+        <member name="E:NMF.Models.Meta.ILiteral.ValueChanging">
+            <summary>
+            Gets fired before the Value property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.ILiteral.EnumerationChanging">
@@ -9314,19 +9361,14 @@
             The Remarks property
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.IMetaElement.NameChanging">
-            <summary>
-            Gets fired before the Name property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.IMetaElement.NameChanged">
             <summary>
             Gets fired when the Name property changed its value
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.IMetaElement.SummaryChanging">
+        <member name="E:NMF.Models.Meta.IMetaElement.NameChanging">
             <summary>
-            Gets fired before the Summary property changes its value
+            Gets fired before the Name property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.IMetaElement.SummaryChanged">
@@ -9334,14 +9376,19 @@
             Gets fired when the Summary property changed its value
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.IMetaElement.RemarksChanging">
+        <member name="E:NMF.Models.Meta.IMetaElement.SummaryChanging">
             <summary>
-            Gets fired before the Remarks property changes its value
+            Gets fired before the Summary property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.IMetaElement.RemarksChanged">
             <summary>
             Gets fired when the Remarks property changed its value
+            </summary>
+        </member>
+        <member name="E:NMF.Models.Meta.IMetaElement.RemarksChanging">
+            <summary>
+            Gets fired before the Remarks property changes its value
             </summary>
         </member>
         <member name="T:NMF.Models.Meta.IModel">
@@ -9359,14 +9406,14 @@
             The RootElements property
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.IModel.ModelUriChanging">
-            <summary>
-            Gets fired before the ModelUri property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.IModel.ModelUriChanged">
             <summary>
             Gets fired when the ModelUri property changed its value
+            </summary>
+        </member>
+        <member name="E:NMF.Models.Meta.IModel.ModelUriChanging">
+            <summary>
+            Gets fired before the ModelUri property changes its value
             </summary>
         </member>
         <member name="T:NMF.Models.Meta.INamespace">
@@ -9399,24 +9446,24 @@
             The Types property
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.INamespace.UriChanging">
-            <summary>
-            Gets fired before the Uri property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.INamespace.UriChanged">
             <summary>
             Gets fired when the Uri property changed its value
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.INamespace.PrefixChanging">
+        <member name="E:NMF.Models.Meta.INamespace.UriChanging">
             <summary>
-            Gets fired before the Prefix property changes its value
+            Gets fired before the Uri property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.INamespace.PrefixChanged">
             <summary>
             Gets fired when the Prefix property changed its value
+            </summary>
+        </member>
+        <member name="E:NMF.Models.Meta.INamespace.PrefixChanging">
+            <summary>
+            Gets fired before the Prefix property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.INamespace.ParentNamespaceChanging">
@@ -9484,14 +9531,14 @@
             The Operation property
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.IParameter.DirectionChanging">
-            <summary>
-            Gets fired before the Direction property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.IParameter.DirectionChanged">
             <summary>
             Gets fired when the Direction property changed its value
+            </summary>
+        </member>
+        <member name="E:NMF.Models.Meta.IParameter.DirectionChanging">
+            <summary>
+            Gets fired before the Direction property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.IParameter.OperationChanging">
@@ -9514,14 +9561,14 @@
             The SystemType property
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.IPrimitiveType.SystemTypeChanging">
-            <summary>
-            Gets fired before the SystemType property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.IPrimitiveType.SystemTypeChanged">
             <summary>
             Gets fired when the SystemType property changed its value
+            </summary>
+        </member>
+        <member name="E:NMF.Models.Meta.IPrimitiveType.SystemTypeChanging">
+            <summary>
+            Gets fired before the SystemType property changes its value
             </summary>
         </member>
         <member name="T:NMF.Models.Meta.IReference">
@@ -9559,14 +9606,14 @@
             The least common anchestor of an instance and its referenced element, if statically known
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.IReference.IsContainmentChanging">
-            <summary>
-            Gets fired before the IsContainment property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.IReference.IsContainmentChanged">
             <summary>
             Gets fired when the IsContainment property changed its value
+            </summary>
+        </member>
+        <member name="E:NMF.Models.Meta.IReference.IsContainmentChanging">
+            <summary>
+            Gets fired before the IsContainment property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.IReference.DeclaringTypeChanging">
@@ -9739,19 +9786,14 @@
             The Type property
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.ITypedElement.IsOrderedChanging">
-            <summary>
-            Gets fired before the IsOrdered property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.ITypedElement.IsOrderedChanged">
             <summary>
             Gets fired when the IsOrdered property changed its value
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.ITypedElement.IsUniqueChanging">
+        <member name="E:NMF.Models.Meta.ITypedElement.IsOrderedChanging">
             <summary>
-            Gets fired before the IsUnique property changes its value
+            Gets fired before the IsOrdered property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.ITypedElement.IsUniqueChanged">
@@ -9759,9 +9801,9 @@
             Gets fired when the IsUnique property changed its value
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.ITypedElement.LowerBoundChanging">
+        <member name="E:NMF.Models.Meta.ITypedElement.IsUniqueChanging">
             <summary>
-            Gets fired before the LowerBound property changes its value
+            Gets fired before the IsUnique property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.ITypedElement.LowerBoundChanged">
@@ -9769,14 +9811,19 @@
             Gets fired when the LowerBound property changed its value
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.ITypedElement.UpperBoundChanging">
+        <member name="E:NMF.Models.Meta.ITypedElement.LowerBoundChanging">
             <summary>
-            Gets fired before the UpperBound property changes its value
+            Gets fired before the LowerBound property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.ITypedElement.UpperBoundChanged">
             <summary>
             Gets fired when the UpperBound property changed its value
+            </summary>
+        </member>
+        <member name="E:NMF.Models.Meta.ITypedElement.UpperBoundChanging">
+            <summary>
+            Gets fired before the UpperBound property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.ITypedElement.TypeChanging">
@@ -9819,14 +9866,14 @@
             Gets the Class model for this type
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.Literal.ValueChanging">
-            <summary>
-            Gets fired before the Value property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.Literal.ValueChanged">
             <summary>
             Gets fired when the Value property changed its value
+            </summary>
+        </member>
+        <member name="E:NMF.Models.Meta.Literal.ValueChanging">
+            <summary>
+            Gets fired before the Value property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.Literal.EnumerationChanging">
@@ -9839,15 +9886,15 @@
             Gets fired when the Enumeration property changed its value
             </summary>
         </member>
-        <member name="M:NMF.Models.Meta.Literal.OnValueChanging(NMF.Expressions.ValueChangedEventArgs)">
-            <summary>
-            Raises the ValueChanging event
-            </summary>
-            <param name="eventArgs">The event data</param>
-        </member>
         <member name="M:NMF.Models.Meta.Literal.OnValueChanged(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
             Raises the ValueChanged event
+            </summary>
+            <param name="eventArgs">The event data</param>
+        </member>
+        <member name="M:NMF.Models.Meta.Literal.OnValueChanging(NMF.Expressions.ValueChangedEventArgs)">
+            <summary>
+            Raises the ValueChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
@@ -9935,10 +9982,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.Literal.LiteralReferencedElementsCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Literal.LiteralReferencedElementsCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Literal.LiteralReferencedElementsCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -10025,25 +10076,25 @@
             The SystemType property
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.MappedType.SystemTypeChanging">
-            <summary>
-            Gets fired before the SystemType property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.MappedType.SystemTypeChanged">
             <summary>
             Gets fired when the SystemType property changed its value
             </summary>
         </member>
-        <member name="M:NMF.Models.Meta.MappedType.OnSystemTypeChanging(NMF.Expressions.ValueChangedEventArgs)">
+        <member name="E:NMF.Models.Meta.MappedType.SystemTypeChanging">
             <summary>
-            Raises the SystemTypeChanging event
+            Gets fired before the SystemType property changes its value
             </summary>
-            <param name="eventArgs">The event data</param>
         </member>
         <member name="M:NMF.Models.Meta.MappedType.OnSystemTypeChanged(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
             Raises the SystemTypeChanged event
+            </summary>
+            <param name="eventArgs">The event data</param>
+        </member>
+        <member name="M:NMF.Models.Meta.MappedType.OnSystemTypeChanging(NMF.Expressions.ValueChangedEventArgs)">
+            <summary>
+            Raises the SystemTypeChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
@@ -10104,19 +10155,14 @@
             Gets a value indicating whether the current model element can be identified by an attribute value
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.MetaElement.NameChanging">
-            <summary>
-            Gets fired before the Name property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.MetaElement.NameChanged">
             <summary>
             Gets fired when the Name property changed its value
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.MetaElement.SummaryChanging">
+        <member name="E:NMF.Models.Meta.MetaElement.NameChanging">
             <summary>
-            Gets fired before the Summary property changes its value
+            Gets fired before the Name property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.MetaElement.SummaryChanged">
@@ -10124,9 +10170,9 @@
             Gets fired when the Summary property changed its value
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.MetaElement.RemarksChanging">
+        <member name="E:NMF.Models.Meta.MetaElement.SummaryChanging">
             <summary>
-            Gets fired before the Remarks property changes its value
+            Gets fired before the Summary property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.MetaElement.RemarksChanged">
@@ -10134,11 +10180,10 @@
             Gets fired when the Remarks property changed its value
             </summary>
         </member>
-        <member name="M:NMF.Models.Meta.MetaElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)">
+        <member name="E:NMF.Models.Meta.MetaElement.RemarksChanging">
             <summary>
-            Raises the NameChanging event
+            Gets fired before the Remarks property changes its value
             </summary>
-            <param name="eventArgs">The event data</param>
         </member>
         <member name="M:NMF.Models.Meta.MetaElement.OnNameChanged(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
@@ -10146,9 +10191,9 @@
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
-        <member name="M:NMF.Models.Meta.MetaElement.OnSummaryChanging(NMF.Expressions.ValueChangedEventArgs)">
+        <member name="M:NMF.Models.Meta.MetaElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
-            Raises the SummaryChanging event
+            Raises the NameChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
@@ -10158,15 +10203,21 @@
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
-        <member name="M:NMF.Models.Meta.MetaElement.OnRemarksChanging(NMF.Expressions.ValueChangedEventArgs)">
+        <member name="M:NMF.Models.Meta.MetaElement.OnSummaryChanging(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
-            Raises the RemarksChanging event
+            Raises the SummaryChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
         <member name="M:NMF.Models.Meta.MetaElement.OnRemarksChanged(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
             Raises the RemarksChanged event
+            </summary>
+            <param name="eventArgs">The event data</param>
+        </member>
+        <member name="M:NMF.Models.Meta.MetaElement.OnRemarksChanging(NMF.Expressions.ValueChangedEventArgs)">
+            <summary>
+            Raises the RemarksChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
@@ -10335,24 +10386,24 @@
             Gets the Class model for this type
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.Namespace.UriChanging">
-            <summary>
-            Gets fired before the Uri property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.Namespace.UriChanged">
             <summary>
             Gets fired when the Uri property changed its value
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.Namespace.PrefixChanging">
+        <member name="E:NMF.Models.Meta.Namespace.UriChanging">
             <summary>
-            Gets fired before the Prefix property changes its value
+            Gets fired before the Uri property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.Namespace.PrefixChanged">
             <summary>
             Gets fired when the Prefix property changed its value
+            </summary>
+        </member>
+        <member name="E:NMF.Models.Meta.Namespace.PrefixChanging">
+            <summary>
+            Gets fired before the Prefix property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.Namespace.ParentNamespaceChanging">
@@ -10365,27 +10416,27 @@
             Gets fired when the ParentNamespace property changed its value
             </summary>
         </member>
-        <member name="M:NMF.Models.Meta.Namespace.OnUriChanging(NMF.Expressions.ValueChangedEventArgs)">
-            <summary>
-            Raises the UriChanging event
-            </summary>
-            <param name="eventArgs">The event data</param>
-        </member>
         <member name="M:NMF.Models.Meta.Namespace.OnUriChanged(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
             Raises the UriChanged event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
-        <member name="M:NMF.Models.Meta.Namespace.OnPrefixChanging(NMF.Expressions.ValueChangedEventArgs)">
+        <member name="M:NMF.Models.Meta.Namespace.OnUriChanging(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
-            Raises the PrefixChanging event
+            Raises the UriChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
         <member name="M:NMF.Models.Meta.Namespace.OnPrefixChanged(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
             Raises the PrefixChanged event
+            </summary>
+            <param name="eventArgs">The event data</param>
+        </member>
+        <member name="M:NMF.Models.Meta.Namespace.OnPrefixChanging(NMF.Expressions.ValueChangedEventArgs)">
+            <summary>
+            Raises the PrefixChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
@@ -10515,10 +10566,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.Namespace.NamespaceChildrenCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Namespace.NamespaceChildrenCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Namespace.NamespaceChildrenCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -10574,10 +10629,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.Namespace.NamespaceReferencedElementsCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Namespace.NamespaceReferencedElementsCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Namespace.NamespaceReferencedElementsCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -10667,31 +10726,39 @@
         </member>
         <member name="T:NMF.Models.Meta.NamespaceChildNamespacesCollection">
             <summary>
-            Denotes a collection type for child namespaces of namespaces
+            Denotes a class to implement the ChildNamespaces reference
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.NamespaceChildNamespacesCollection.#ctor(NMF.Models.Meta.INamespace)">
             <summary>
             Creates a new instance
             </summary>
-            <param name="parent">the parent element</param>
+            <param name="parent">the parent Namespace</param>
         </member>
         <member name="M:NMF.Models.Meta.NamespaceChildNamespacesCollection.SetOpposite(NMF.Models.Meta.INamespace,NMF.Models.Meta.INamespace)">
-            <inheritdoc />
+            <summary>
+            Sets the opposite of the given item
+            </summary>
+            <param name="item">the item</param>
+            <param name="newParent">the new parent or null, if the item is removed from the collection</param>
         </member>
         <member name="T:NMF.Models.Meta.NamespaceTypesCollection">
             <summary>
-            Denotes a collection type for types of namespaces
+            Denotes a class to implement the Types reference
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.NamespaceTypesCollection.#ctor(NMF.Models.Meta.INamespace)">
             <summary>
             Creates a new instance
             </summary>
-            <param name="parent">the parent element</param>
+            <param name="parent">the parent Namespace</param>
         </member>
         <member name="M:NMF.Models.Meta.NamespaceTypesCollection.SetOpposite(NMF.Models.Meta.IType,NMF.Models.Meta.INamespace)">
-            <inheritdoc />
+            <summary>
+            Sets the opposite of the given item
+            </summary>
+            <param name="item">the item</param>
+            <param name="newParent">the new parent or null, if the item is removed from the collection</param>
         </member>
         <member name="T:NMF.Models.Meta.Operation">
             <summary>
@@ -10822,6 +10889,13 @@
             <param name="sender">The object that sent this reset request</param>
             <param name="eventArgs">The event data for the reset event</param>
         </member>
+        <member name="M:NMF.Models.Meta.Operation.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)">
+            <summary>
+            Gets the relative URI fragment for the given child model element
+            </summary>
+            <returns>A fragment of the relative URI</returns>
+            <param name="element">The element that should be looked for</param>
+        </member>
         <member name="M:NMF.Models.Meta.Operation.GetModelElementForReference(System.String,System.Int32)">
             <summary>
             Resolves the given URI to a child model element
@@ -10879,10 +10953,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.Operation.OperationChildrenCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Operation.OperationChildrenCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Operation.OperationChildrenCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -10938,10 +11016,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.Operation.OperationReferencedElementsCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Operation.OperationReferencedElementsCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Operation.OperationReferencedElementsCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -11015,17 +11097,21 @@
         </member>
         <member name="T:NMF.Models.Meta.OperationParametersCollection">
             <summary>
-            Denotes a collection type for parameters of operations
+            Denotes a class to implement the Parameters reference
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.OperationParametersCollection.#ctor(NMF.Models.Meta.IOperation)">
             <summary>
             Creates a new instance
             </summary>
-            <param name="parent">the parent element</param>
+            <param name="parent">the parent Operation</param>
         </member>
         <member name="M:NMF.Models.Meta.OperationParametersCollection.SetOpposite(NMF.Models.Meta.IParameter,NMF.Models.Meta.IOperation)">
-            <inheritdoc />
+            <summary>
+            Sets the opposite of the given item
+            </summary>
+            <param name="item">the item</param>
+            <param name="newParent">the new parent or null, if the item is removed from the collection</param>
         </member>
         <member name="T:NMF.Models.Meta.Parameter">
             <summary>
@@ -11057,14 +11143,14 @@
             Gets the Class model for this type
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.Parameter.DirectionChanging">
-            <summary>
-            Gets fired before the Direction property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.Parameter.DirectionChanged">
             <summary>
             Gets fired when the Direction property changed its value
+            </summary>
+        </member>
+        <member name="E:NMF.Models.Meta.Parameter.DirectionChanging">
+            <summary>
+            Gets fired before the Direction property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.Parameter.OperationChanging">
@@ -11077,15 +11163,15 @@
             Gets fired when the Operation property changed its value
             </summary>
         </member>
-        <member name="M:NMF.Models.Meta.Parameter.OnDirectionChanging(NMF.Expressions.ValueChangedEventArgs)">
-            <summary>
-            Raises the DirectionChanging event
-            </summary>
-            <param name="eventArgs">The event data</param>
-        </member>
         <member name="M:NMF.Models.Meta.Parameter.OnDirectionChanged(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
             Raises the DirectionChanged event
+            </summary>
+            <param name="eventArgs">The event data</param>
+        </member>
+        <member name="M:NMF.Models.Meta.Parameter.OnDirectionChanging(NMF.Expressions.ValueChangedEventArgs)">
+            <summary>
+            Raises the DirectionChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
@@ -11173,10 +11259,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.Parameter.ParameterReferencedElementsCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Parameter.ParameterReferencedElementsCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Parameter.ParameterReferencedElementsCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -11268,25 +11358,25 @@
             Gets the Class model for this type
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.PrimitiveType.SystemTypeChanging">
-            <summary>
-            Gets fired before the SystemType property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.PrimitiveType.SystemTypeChanged">
             <summary>
             Gets fired when the SystemType property changed its value
             </summary>
         </member>
-        <member name="M:NMF.Models.Meta.PrimitiveType.OnSystemTypeChanging(NMF.Expressions.ValueChangedEventArgs)">
+        <member name="E:NMF.Models.Meta.PrimitiveType.SystemTypeChanging">
             <summary>
-            Raises the SystemTypeChanging event
+            Gets fired before the SystemType property changes its value
             </summary>
-            <param name="eventArgs">The event data</param>
         </member>
         <member name="M:NMF.Models.Meta.PrimitiveType.OnSystemTypeChanged(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
             Raises the SystemTypeChanged event
+            </summary>
+            <param name="eventArgs">The event data</param>
+        </member>
+        <member name="M:NMF.Models.Meta.PrimitiveType.OnSystemTypeChanging(NMF.Expressions.ValueChangedEventArgs)">
+            <summary>
+            Raises the SystemTypeChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
@@ -11443,14 +11533,14 @@
             Gets the Class model for this type
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.Reference.IsContainmentChanging">
-            <summary>
-            Gets fired before the IsContainment property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.Reference.IsContainmentChanged">
             <summary>
             Gets fired when the IsContainment property changed its value
+            </summary>
+        </member>
+        <member name="E:NMF.Models.Meta.Reference.IsContainmentChanging">
+            <summary>
+            Gets fired before the IsContainment property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.Reference.DeclaringTypeChanging">
@@ -11503,19 +11593,14 @@
             Gets fired when the Anchor property changed its value
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.Reference.IsOrderedChanging">
-            <summary>
-            Gets fired before the IsOrdered property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.Reference.IsOrderedChanged">
             <summary>
             Gets fired when the IsOrdered property changed its value
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.Reference.IsUniqueChanging">
+        <member name="E:NMF.Models.Meta.Reference.IsOrderedChanging">
             <summary>
-            Gets fired before the IsUnique property changes its value
+            Gets fired before the IsOrdered property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.Reference.IsUniqueChanged">
@@ -11523,9 +11608,9 @@
             Gets fired when the IsUnique property changed its value
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.Reference.LowerBoundChanging">
+        <member name="E:NMF.Models.Meta.Reference.IsUniqueChanging">
             <summary>
-            Gets fired before the LowerBound property changes its value
+            Gets fired before the IsUnique property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.Reference.LowerBoundChanged">
@@ -11533,9 +11618,9 @@
             Gets fired when the LowerBound property changed its value
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.Reference.UpperBoundChanging">
+        <member name="E:NMF.Models.Meta.Reference.LowerBoundChanging">
             <summary>
-            Gets fired before the UpperBound property changes its value
+            Gets fired before the LowerBound property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.Reference.UpperBoundChanged">
@@ -11543,15 +11628,20 @@
             Gets fired when the UpperBound property changed its value
             </summary>
         </member>
-        <member name="M:NMF.Models.Meta.Reference.OnIsContainmentChanging(NMF.Expressions.ValueChangedEventArgs)">
+        <member name="E:NMF.Models.Meta.Reference.UpperBoundChanging">
             <summary>
-            Raises the IsContainmentChanging event
+            Gets fired before the UpperBound property changes its value
             </summary>
-            <param name="eventArgs">The event data</param>
         </member>
         <member name="M:NMF.Models.Meta.Reference.OnIsContainmentChanged(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
             Raises the IsContainmentChanged event
+            </summary>
+            <param name="eventArgs">The event data</param>
+        </member>
+        <member name="M:NMF.Models.Meta.Reference.OnIsContainmentChanging(NMF.Expressions.ValueChangedEventArgs)">
+            <summary>
+            Raises the IsContainmentChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
@@ -11657,21 +11747,15 @@
             <param name="sender">The object that sent this reset request</param>
             <param name="eventArgs">The event data for the reset event</param>
         </member>
-        <member name="M:NMF.Models.Meta.Reference.OnIsOrderedChanging(NMF.Expressions.ValueChangedEventArgs)">
-            <summary>
-            Raises the IsOrderedChanging event
-            </summary>
-            <param name="eventArgs">The event data</param>
-        </member>
         <member name="M:NMF.Models.Meta.Reference.OnIsOrderedChanged(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
             Raises the IsOrderedChanged event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
-        <member name="M:NMF.Models.Meta.Reference.OnIsUniqueChanging(NMF.Expressions.ValueChangedEventArgs)">
+        <member name="M:NMF.Models.Meta.Reference.OnIsOrderedChanging(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
-            Raises the IsUniqueChanging event
+            Raises the IsOrderedChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
@@ -11681,9 +11765,9 @@
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
-        <member name="M:NMF.Models.Meta.Reference.OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)">
+        <member name="M:NMF.Models.Meta.Reference.OnIsUniqueChanging(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
-            Raises the LowerBoundChanging event
+            Raises the IsUniqueChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
@@ -11693,15 +11777,21 @@
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
-        <member name="M:NMF.Models.Meta.Reference.OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)">
+        <member name="M:NMF.Models.Meta.Reference.OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
-            Raises the UpperBoundChanging event
+            Raises the LowerBoundChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
         <member name="M:NMF.Models.Meta.Reference.OnUpperBoundChanged(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
             Raises the UpperBoundChanged event
+            </summary>
+            <param name="eventArgs">The event data</param>
+        </member>
+        <member name="M:NMF.Models.Meta.Reference.OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)">
+            <summary>
+            Raises the UpperBoundChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
@@ -11763,10 +11853,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.Reference.ReferenceReferencedElementsCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Reference.ReferenceReferencedElementsCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Reference.ReferenceReferencedElementsCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -12156,10 +12250,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.ReferenceConstraint.ReferenceConstraintReferencedElementsCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.ReferenceConstraint.ReferenceConstraintReferencedElementsCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.ReferenceConstraint.ReferenceConstraintReferencedElementsCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -12339,10 +12437,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.ReferenceType.ReferenceTypeChildrenCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.ReferenceType.ReferenceTypeChildrenCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.ReferenceType.ReferenceTypeChildrenCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -12398,10 +12500,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.ReferenceType.ReferenceTypeReferencedElementsCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.ReferenceType.ReferenceTypeReferencedElementsCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.ReferenceType.ReferenceTypeReferencedElementsCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -12443,31 +12549,39 @@
         </member>
         <member name="T:NMF.Models.Meta.ReferenceTypeEventsCollection">
             <summary>
-            Denotes a collection type for events of reference types
+            Denotes a class to implement the Events reference
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.ReferenceTypeEventsCollection.#ctor(NMF.Models.Meta.IReferenceType)">
             <summary>
             Creates a new instance
             </summary>
-            <param name="parent">the parent element</param>
+            <param name="parent">the parent ReferenceType</param>
         </member>
         <member name="M:NMF.Models.Meta.ReferenceTypeEventsCollection.SetOpposite(NMF.Models.Meta.IEvent,NMF.Models.Meta.IReferenceType)">
-            <inheritdoc />
+            <summary>
+            Sets the opposite of the given item
+            </summary>
+            <param name="item">the item</param>
+            <param name="newParent">the new parent or null, if the item is removed from the collection</param>
         </member>
         <member name="T:NMF.Models.Meta.ReferenceTypeReferencesCollection">
             <summary>
-            Denotes a collection type for references of reference types
+            Denotes a class to implement the References reference
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.ReferenceTypeReferencesCollection.#ctor(NMF.Models.Meta.IReferenceType)">
             <summary>
             Creates a new instance
             </summary>
-            <param name="parent">the parent element</param>
+            <param name="parent">the parent ReferenceType</param>
         </member>
         <member name="M:NMF.Models.Meta.ReferenceTypeReferencesCollection.SetOpposite(NMF.Models.Meta.IReference,NMF.Models.Meta.IReferenceType)">
-            <inheritdoc />
+            <summary>
+            Sets the opposite of the given item
+            </summary>
+            <param name="item">the item</param>
+            <param name="newParent">the new parent or null, if the item is removed from the collection</param>
         </member>
         <member name="T:NMF.Models.Meta.SerializationInformation">
             <summary>
@@ -12494,19 +12608,14 @@
             The IsDefault property
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.SerializationInformation.SerializationNameChanging">
-            <summary>
-            Gets fired before the SerializationName property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.SerializationInformation.SerializationNameChanged">
             <summary>
             Gets fired when the SerializationName property changed its value
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.SerializationInformation.IsDefaultChanging">
+        <member name="E:NMF.Models.Meta.SerializationInformation.SerializationNameChanging">
             <summary>
-            Gets fired before the IsDefault property changes its value
+            Gets fired before the SerializationName property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.SerializationInformation.IsDefaultChanged">
@@ -12514,11 +12623,10 @@
             Gets fired when the IsDefault property changed its value
             </summary>
         </member>
-        <member name="M:NMF.Models.Meta.SerializationInformation.OnSerializationNameChanging(NMF.Expressions.ValueChangedEventArgs)">
+        <member name="E:NMF.Models.Meta.SerializationInformation.IsDefaultChanging">
             <summary>
-            Raises the SerializationNameChanging event
+            Gets fired before the IsDefault property changes its value
             </summary>
-            <param name="eventArgs">The event data</param>
         </member>
         <member name="M:NMF.Models.Meta.SerializationInformation.OnSerializationNameChanged(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
@@ -12526,15 +12634,21 @@
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
-        <member name="M:NMF.Models.Meta.SerializationInformation.OnIsDefaultChanging(NMF.Expressions.ValueChangedEventArgs)">
+        <member name="M:NMF.Models.Meta.SerializationInformation.OnSerializationNameChanging(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
-            Raises the IsDefaultChanging event
+            Raises the SerializationNameChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
         <member name="M:NMF.Models.Meta.SerializationInformation.OnIsDefaultChanged(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
             Raises the IsDefaultChanged event
+            </summary>
+            <param name="eventArgs">The event data</param>
+        </member>
+        <member name="M:NMF.Models.Meta.SerializationInformation.OnIsDefaultChanging(NMF.Expressions.ValueChangedEventArgs)">
+            <summary>
+            Raises the IsDefaultChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
@@ -12658,10 +12772,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.StructuredType.StructuredTypeChildrenCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.StructuredType.StructuredTypeChildrenCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.StructuredType.StructuredTypeChildrenCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -12717,10 +12835,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.StructuredType.StructuredTypeReferencedElementsCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.StructuredType.StructuredTypeReferencedElementsCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.StructuredType.StructuredTypeReferencedElementsCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -12762,31 +12884,39 @@
         </member>
         <member name="T:NMF.Models.Meta.StructuredTypeAttributesCollection">
             <summary>
-            Denotes a collection type for attributes of structured types
+            Denotes a class to implement the Attributes reference
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.StructuredTypeAttributesCollection.#ctor(NMF.Models.Meta.IStructuredType)">
             <summary>
             Creates a new instance
             </summary>
-            <param name="parent">the parent element</param>
+            <param name="parent">the parent StructuredType</param>
         </member>
         <member name="M:NMF.Models.Meta.StructuredTypeAttributesCollection.SetOpposite(NMF.Models.Meta.IAttribute,NMF.Models.Meta.IStructuredType)">
-            <inheritdoc />
+            <summary>
+            Sets the opposite of the given item
+            </summary>
+            <param name="item">the item</param>
+            <param name="newParent">the new parent or null, if the item is removed from the collection</param>
         </member>
         <member name="T:NMF.Models.Meta.StructuredTypeOperationsCollection">
             <summary>
-            Denotes a collection type for operations of structured types
+            Denotes a class to implement the Operations reference
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.StructuredTypeOperationsCollection.#ctor(NMF.Models.Meta.IStructuredType)">
             <summary>
             Creates a new instance
             </summary>
-            <param name="parent">the parent element</param>
+            <param name="parent">the parent StructuredType</param>
         </member>
         <member name="M:NMF.Models.Meta.StructuredTypeOperationsCollection.SetOpposite(NMF.Models.Meta.IOperation,NMF.Models.Meta.IStructuredType)">
-            <inheritdoc />
+            <summary>
+            Sets the opposite of the given item
+            </summary>
+            <param name="item">the item</param>
+            <param name="newParent">the new parent or null, if the item is removed from the collection</param>
         </member>
         <member name="T:NMF.Models.Meta.Type">
             <summary>
@@ -12887,10 +13017,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.Type.TypeReferencedElementsCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Type.TypeReferencedElementsCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.Type.TypeReferencedElementsCollection.Add(NMF.Models.IModelElement)">
             <summary>
@@ -13011,19 +13145,14 @@
             Gets the Class model for this type
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.TypedElement.IsOrderedChanging">
-            <summary>
-            Gets fired before the IsOrdered property changes its value
-            </summary>
-        </member>
         <member name="E:NMF.Models.Meta.TypedElement.IsOrderedChanged">
             <summary>
             Gets fired when the IsOrdered property changed its value
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.TypedElement.IsUniqueChanging">
+        <member name="E:NMF.Models.Meta.TypedElement.IsOrderedChanging">
             <summary>
-            Gets fired before the IsUnique property changes its value
+            Gets fired before the IsOrdered property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.TypedElement.IsUniqueChanged">
@@ -13031,9 +13160,9 @@
             Gets fired when the IsUnique property changed its value
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.TypedElement.LowerBoundChanging">
+        <member name="E:NMF.Models.Meta.TypedElement.IsUniqueChanging">
             <summary>
-            Gets fired before the LowerBound property changes its value
+            Gets fired before the IsUnique property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.TypedElement.LowerBoundChanged">
@@ -13041,14 +13170,19 @@
             Gets fired when the LowerBound property changed its value
             </summary>
         </member>
-        <member name="E:NMF.Models.Meta.TypedElement.UpperBoundChanging">
+        <member name="E:NMF.Models.Meta.TypedElement.LowerBoundChanging">
             <summary>
-            Gets fired before the UpperBound property changes its value
+            Gets fired before the LowerBound property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.TypedElement.UpperBoundChanged">
             <summary>
             Gets fired when the UpperBound property changed its value
+            </summary>
+        </member>
+        <member name="E:NMF.Models.Meta.TypedElement.UpperBoundChanging">
+            <summary>
+            Gets fired before the UpperBound property changes its value
             </summary>
         </member>
         <member name="E:NMF.Models.Meta.TypedElement.TypeChanging">
@@ -13061,21 +13195,15 @@
             Gets fired when the Type property changed its value
             </summary>
         </member>
-        <member name="M:NMF.Models.Meta.TypedElement.OnIsOrderedChanging(NMF.Expressions.ValueChangedEventArgs)">
-            <summary>
-            Raises the IsOrderedChanging event
-            </summary>
-            <param name="eventArgs">The event data</param>
-        </member>
         <member name="M:NMF.Models.Meta.TypedElement.OnIsOrderedChanged(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
             Raises the IsOrderedChanged event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
-        <member name="M:NMF.Models.Meta.TypedElement.OnIsUniqueChanging(NMF.Expressions.ValueChangedEventArgs)">
+        <member name="M:NMF.Models.Meta.TypedElement.OnIsOrderedChanging(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
-            Raises the IsUniqueChanging event
+            Raises the IsOrderedChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
@@ -13085,9 +13213,9 @@
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
-        <member name="M:NMF.Models.Meta.TypedElement.OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)">
+        <member name="M:NMF.Models.Meta.TypedElement.OnIsUniqueChanging(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
-            Raises the LowerBoundChanging event
+            Raises the IsUniqueChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
@@ -13097,15 +13225,21 @@
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
-        <member name="M:NMF.Models.Meta.TypedElement.OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)">
+        <member name="M:NMF.Models.Meta.TypedElement.OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
-            Raises the UpperBoundChanging event
+            Raises the LowerBoundChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
         <member name="M:NMF.Models.Meta.TypedElement.OnUpperBoundChanged(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
             Raises the UpperBoundChanged event
+            </summary>
+            <param name="eventArgs">The event data</param>
+        </member>
+        <member name="M:NMF.Models.Meta.TypedElement.OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)">
+            <summary>
+            Raises the UpperBoundChanging event
             </summary>
             <param name="eventArgs">The event data</param>
         </member>
@@ -13186,10 +13320,14 @@
             </summary>
         </member>
         <member name="M:NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.AttachCore">
-            <inheritdoc />
+            <summary>
+            Registers event hooks to keep the collection up to date
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.DetachCore">
-            <inheritdoc />
+            <summary>
+            Unregisters all event hooks registered by AttachCore
+            </summary>
         </member>
         <member name="M:NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.Add(NMF.Models.IModelElement)">
             <summary>
