@@ -46,7 +46,7 @@ function setDataWrapper(dat: unknown) {
 
 async function initialize(connectionProvider: MessageConnection, isReconnecting = false): Promise<void> {
     propViewClient = new BaseJsonrpcPropViewClient(setDataWrapper, { id, connectionProvider });
-    propViewClient.start();
+    await propViewClient.start();
 
     setDataWrapper(propViewClient.selectedElements());
 
@@ -77,6 +77,8 @@ const App = () => {
 
     const [data, setData] = useState<PropertyViewObject[]>([]);
     handler = setData;
+
+    console.log(data.map);
 
     const forms = data.map(po =>
         <Grid item

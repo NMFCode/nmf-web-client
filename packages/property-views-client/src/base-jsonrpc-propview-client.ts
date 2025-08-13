@@ -35,7 +35,7 @@ export class BaseJsonrpcPropViewClient implements PropViewClient {
     }
 
     selectedElements(): Promise<PropertyViewObject[]> {
-        return this.checkedConnection.sendRequest(JsonrpcPropViewClient.SelectedElementsRequest, null);
+        return this.checkedConnection.sendRequest(JsonrpcPropViewClient.SelectedElementsRequest);
     }
 
     shutdownServer(): void {

@@ -252,6 +252,11 @@
         <member name="M:NMF.Models.Services.ModelServerSession.OnModelChanged">
             <inheritdoc />
         </member>
+        <member name="P:NMF.Models.Services.ModelServerSession.Path">
+            <summary>
+            Gets the path of the model
+            </summary>
+        </member>
         <member name="M:NMF.Models.Services.ModelServerSession.Save(System.Uri)">
             <inheritdoc />
         </member>

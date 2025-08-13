@@ -1,5 +1,5 @@
 import type { MessageConnection} from 'vscode-jsonrpc';
-import { NotificationType, NotificationType0, RequestType } from 'vscode-jsonrpc';
+import { NotificationType, NotificationType0, RequestType, RequestType0 } from 'vscode-jsonrpc';
 import type { MaybePromise } from './maybepromise';
 import { PropViewClient } from './propview-client';
 import type { PropertyViewObject } from './types';
@@ -27,7 +27,7 @@ export namespace JsonrpcPropViewClient {
     export const SelectionChangedNotification = new NotificationType<PropertyViewObject[]>('selectedelementschanged');
     export const ObserveUriRequest = new RequestType<ObserveUriRequest, void, void>('observeUri');
     export const UpdateRequest = new RequestType<UpdateRequest, void, void>('update');
-    export const SelectedElementsRequest = new RequestType<void, PropertyViewObject[], void>('selectedElements');
+    export const SelectedElementsRequest = new RequestType0<PropertyViewObject[], void>('selectedElements');
 
     export const ShutdownNotification = new NotificationType0('shutdown');
     export const ClientNotReadyMsg = 'JsonrpcPropViewClient is not ready yet';

@@ -5657,6 +5657,12 @@
             </summary>
             <param name="element"></param>
         </member>
+        <member name="M:NMF.Models.Changes.ModelChangeRecorder.Start">
+            <summary>
+            Starts recording
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Thrown if the recorder is already recording</exception>
+        </member>
         <member name="M:NMF.Models.Changes.ModelChangeRecorder.Attach(NMF.Models.IModelElement)">
             <summary>
             Attaches the recorder to the given model element. The recorder will track all
@@ -5697,12 +5703,6 @@
             Detaches from all attached model elements
             </summary>
             <param name="serializable">True, if the recoirder should support serialization, otherwise false</param>
-        </member>
-        <member name="M:NMF.Models.Changes.ModelChangeRecorder.Start">
-            <summary>
-            Starts recording
-            </summary>
-            <exception cref="T:System.InvalidOperationException">Thrown if the recorder is already recording</exception>
         </member>
         <member name="M:NMF.Models.Changes.ModelChangeRecorder.Reset">
             <summary>
@@ -6440,6 +6440,9 @@
         <member name="M:NMF.Models.Collections.CompositionOrderedSet`1.Add(`0)">
             <inheritdoc />
         </member>
+        <member name="M:NMF.Models.Collections.CompositionOrderedSet`1.Replace(System.Int32,`0,`0)">
+            <inheritdoc />
+        </member>
         <member name="M:NMF.Models.Collections.CompositionOrderedSet`1.Insert(System.Int32,`0)">
             <inheritdoc />
         </member>
@@ -6471,6 +6474,9 @@
             <inheritdoc />
         </member>
         <member name="M:NMF.Models.Collections.ObservableCompositionOrderedSet`1.Add(`0)">
+            <inheritdoc />
+        </member>
+        <member name="M:NMF.Models.Collections.ObservableCompositionOrderedSet`1.Replace(System.Int32,`0,`0)">
             <inheritdoc />
         </member>
         <member name="M:NMF.Models.Collections.ObservableCompositionOrderedSet`1.Insert(System.Int32,`0)">
@@ -6688,6 +6694,16 @@
             Gets the class of the model element
             </summary>
             <returns>The class of the model element</returns>
+        </member>
+        <member name="P:NMF.Models.IModelElement.IdentifierString">
+            <summary>
+            Gets the string representation of the identifier
+            </summary>
+        </member>
+        <member name="P:NMF.Models.IModelElement.ClassName">
+            <summary>
+            Gets the name of the class
+            </summary>
         </member>
         <member name="M:NMF.Models.IModelElement.GetAttributeValue(NMF.Models.Meta.IAttribute,System.Int32)">
             <summary>
@@ -13947,16 +13963,23 @@
             </summary>
             <returns>A string representation of the current model element</returns>
         </member>
-        <member name="E:NMF.Models.ModelElement.KeyChanged">
-            <summary>
-            Gets fired when the identifier of the current model element changes
-            </summary>
+        <member name="P:NMF.Models.ModelElement.IdentifierString">
+            <inheritdoc/>
         </member>
-        <member name="M:NMF.Models.ModelElement.OnKeyChanged(System.EventArgs)">
+        <member name="P:NMF.Models.ModelElement.ClassName">
+            <inheritdoc/>
+        </member>
+        <member name="M:NMF.Models.ModelElement.OnKeyChanged(NMF.Expressions.ValueChangedEventArgs)">
             <summary>
-            Fires the <see cref="E:NMF.Models.ModelElement.KeyChanged"/> event
+            Notifies clients that the identifier changed
             </summary>
             <param name="e">The event data</param>
+        </member>
+        <member name="M:NMF.Models.ModelElement.UpdateRegisteredIdentifier(NMF.Expressions.ValueChangedEventArgs)">
+            <summary>
+            Updates the registered identifier at the model when the key of this element changes
+            </summary>
+            <param name="keyChange">the event data when changing keys</param>
         </member>
         <member name="M:NMF.Models.ModelElement.Resolve(System.Uri)">
             <summary>
@@ -14656,6 +14679,51 @@
             Gets or sets the result of the call
             </summary>
         </member>
+        <member name="T:NMF.Models.Repository.ExtensionBasedSerializer">
+            <summary>
+            Denotes a model serializer that chooses the actual serialization process based on the file extension
+            </summary>
+        </member>
+        <member name="M:NMF.Models.Repository.ExtensionBasedSerializer.#ctor(NMF.Models.Repository.IModelSerializer,System.Collections.Generic.Dictionary{System.String,NMF.Models.Repository.IModelSerializer})">
+            <summary>
+            Create a new instance
+            </summary>
+            <param name="defaultSerializer">the default serializer</param>
+            <param name="serializerByExtension"></param>
+        </member>
+        <member name="M:NMF.Models.Repository.ExtensionBasedSerializer.#ctor(NMF.Models.Repository.IModelSerializer)">
+            <summary>
+            Create a new instance
+            </summary>
+            <param name="defaultSerializer">the default serializer</param>
+        </member>
+        <member name="M:NMF.Models.Repository.ExtensionBasedSerializer.#ctor">
+            <summary>
+            Create a new instance
+            </summary>
+        </member>
+        <member name="M:NMF.Models.Repository.ExtensionBasedSerializer.Add(System.String,NMF.Models.Repository.IModelSerializer)">
+            <summary>
+            Registers the given serializer for the given extension
+            </summary>
+            <param name="extension">the extension (including the leading period)</param>
+            <param name="serializer">the serializer</param>
+        </member>
+        <member name="M:NMF.Models.Repository.ExtensionBasedSerializer.Deserialize(System.IO.Stream,System.Uri,NMF.Models.Repository.IModelRepository,System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:NMF.Models.Repository.ExtensionBasedSerializer.Serialize(NMF.Models.Model,System.IO.Stream)">
+            <inheritdoc />
+        </member>
+        <member name="M:NMF.Models.Repository.ExtensionBasedSerializer.SerializeFragment(NMF.Models.ModelElement,System.IO.Stream)">
+            <inheritdoc />
+        </member>
+        <member name="M:NMF.Models.Repository.ExtensionBasedSerializer.GetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="M:NMF.Models.Repository.ExtensionBasedSerializer.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc />
+        </member>
         <member name="T:NMF.Models.Repository.FileLocator">
             <summary>
             Denotes a locator based on the file system
@@ -14807,6 +14875,11 @@
             Denotes the repository with the metamodels contained in the loaded assemblies
             </summary>
         </member>
+        <member name="M:NMF.Models.Repository.MetaRepository.#cctor">
+            <summary>
+            Initializes the type
+            </summary>
+        </member>
         <member name="P:NMF.Models.Repository.MetaRepository.Instance">
             <summary>
             Gets the instance
@@ -14844,6 +14917,11 @@
         <member name="T:NMF.Models.Repository.ModelCollection">
             <summary>
             Denotes a collection of models
+            </summary>
+        </member>
+        <member name="P:NMF.Models.Repository.ModelCollection.AllowOverride">
+            <summary>
+            true, if elements in the model collection may be overridden, otherwise false
             </summary>
         </member>
         <member name="M:NMF.Models.Repository.ModelCollection.#ctor(NMF.Models.Repository.IModelRepository)">
@@ -14976,6 +15054,14 @@
             <param name="element">The model element</param>
             <param name="path">The path where to save the model element</param>
         </member>
+        <member name="M:NMF.Models.Repository.ModelRepository.Save(NMF.Models.IModelElement,System.String,System.Boolean)">
+            <summary>
+            Saves the given model element to the specified stream
+            </summary>
+            <param name="element">The model element</param>
+            <param name="path">The path where to save the model element</param>
+            <param name="overrideIfExists">Overrides the existing model, if already exists</param>
+        </member>
         <member name="M:NMF.Models.Repository.ModelRepository.Save(NMF.Models.IModelElement,System.String,System.Uri)">
             <summary>
             Saves the given model element to the specified stream
@@ -14984,6 +15070,15 @@
             <param name="path">The path where to save the model element</param>
             <param name="uri">The uri under which the model element can be retrieved</param>
         </member>
+        <member name="M:NMF.Models.Repository.ModelRepository.Save(NMF.Models.IModelElement,System.String,System.Uri,System.Boolean)">
+            <summary>
+            Saves the given model element to the specified stream
+            </summary>
+            <param name="element">The model element</param>
+            <param name="path">The path where to save the model element</param>
+            <param name="uri">The uri under which the model element can be retrieved</param>
+            <param name="overrideIfExists">Overrides the existing model, if already exists</param>
+        </member>
         <member name="M:NMF.Models.Repository.ModelRepository.Save(NMF.Models.IModelElement,System.IO.Stream,System.Uri)">
             <summary>
             Saves the given model element to the specified stream
@@ -14991,6 +15086,15 @@
             <param name="element">The model element</param>
             <param name="stream">The stream to save the model element to</param>
             <param name="uri">The uri under which the model element shall be retrievable</param>
+        </member>
+        <member name="M:NMF.Models.Repository.ModelRepository.Save(NMF.Models.IModelElement,System.IO.Stream,System.Uri,System.Boolean)">
+            <summary>
+            Saves the given model element to the specified stream
+            </summary>
+            <param name="element">The model element</param>
+            <param name="stream">The stream to save the model element to</param>
+            <param name="uri">The uri under which the model element shall be retrievable</param>
+            <param name="overrideIfExists">Overrides the existing model, if already exists</param>
         </member>
         <member name="M:NMF.Models.Repository.ModelRepository.OnUnresolvedModelElement(NMF.Models.Repository.UnresolvedModelElementEventArgs)">
             <summary>
@@ -15029,6 +15133,9 @@
             Creates a new instance
             </summary>
             <param name="repo">the parent repository</param>
+        </member>
+        <member name="P:NMF.Models.Repository.ModelRepository.ModelRepositoryModelCollection.AllowOverride">
+            <inheritdoc />
         </member>
         <member name="M:NMF.Models.Repository.ModelRepository.ModelRepositoryModelCollection.Add(System.Uri,NMF.Models.Model)">
             <inheritdoc />

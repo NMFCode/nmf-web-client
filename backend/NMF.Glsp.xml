@@ -1140,6 +1140,28 @@
             <param name="y">The y coordinate of the new label position</param>
             <returns>A label syntax element for chaining purposes</returns>
         </member>
+        <member name="M:NMF.Glsp.Language.INodeLabelSyntax`1.WithCss(System.String)">
+            <summary>
+            Overrides the styling of the label to a fixed class
+            </summary>
+            <param name="css">The CSS class to use</param>
+            <returns>A label syntax element for chaining purposes</returns>
+        </member>
+        <member name="M:NMF.Glsp.Language.INodeLabelSyntax`1.WithConditionalCss(System.Linq.Expressions.Expression{System.Func{`0,System.String}})">
+            <summary>
+            Overrides the styling of the label to a custom class
+            </summary>
+            <param name="css">The CSS class to use</param>
+            <returns>A label syntax element for chaining purposes</returns>
+        </member>
+        <member name="M:NMF.Glsp.Language.INodeLabelSyntax`1.WithConditionalCss(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Overrides the styling of the label to a fixed class
+            </summary>
+            <param name="css">The CSS class to use</param>
+            <param name="condition">A condition when to apply the CSS class</param>
+            <returns>A label syntax element for chaining purposes</returns>
+        </member>
         <member name="T:NMF.Glsp.Language.LabelDescriptor`1">
             <summary>
             Denotes a descriptor for elements shown as labels
@@ -1155,6 +1177,29 @@
             <param name="labelSelector">An expression calculating the text of the label</param>
             <param name="canEdit">True, if the label can be added, otherwise False</param>
             <remarks>This method is intended to be used inside of <see cref="M:NMF.Glsp.Language.DescriptorBase.DefineLayout" /></remarks>
+        </member>
+        <member name="T:NMF.Glsp.Language.Layouting.EdgeLayoutStrategy">
+            <summary>
+            A custom layout strategy that sticks child elements to the edges of their element.
+            Each child element can define a desired edge by setting the "edge" detail property 
+            (with expected values "top", "bottom", "left", or "right"). If the detail is not provided,
+            the element defaults to the top edge.
+            </summary>
+        </member>
+        <member name="P:NMF.Glsp.Language.Layouting.EdgeLayoutStrategy.NeedsLayout">
+            <inheritdoc/>
+            <remarks>Indicates that this layout strategy requires layout recalculation.</remarks>
+        </member>
+        <member name="M:NMF.Glsp.Language.Layouting.EdgeLayoutStrategy.Apply(NMF.Glsp.Graph.GElement)">
+            <inheritdoc/>
+            <remarks>Marks the element with the "edge-stick" layout.</remarks>
+        </member>
+        <member name="M:NMF.Glsp.Language.Layouting.EdgeLayoutStrategy.SetPosition(NMF.Glsp.Graph.GElement,NMF.Glsp.Protocol.Types.Point)">
+            <inheritdoc/>
+            <remarks>Directly sets the position of a child element.</remarks>
+        </member>
+        <member name="M:NMF.Glsp.Language.Layouting.EdgeLayoutStrategy.Update(NMF.Glsp.Graph.GElement)">
+            <inheritdoc/>
         </member>
         <member name="T:NMF.Glsp.Language.Layouting.LayoutStrategy">
             <summary>
@@ -1174,6 +1219,11 @@
         <member name="P:NMF.Glsp.Language.Layouting.LayoutStrategy.FreeForm">
             <summary>
             Gets the implementation of the free form layout strategy
+            </summary>
+        </member>
+        <member name="P:NMF.Glsp.Language.Layouting.LayoutStrategy.Edge">
+            <summary>
+            Gets the implementation of the edge layout strategy
             </summary>
         </member>
         <member name="M:NMF.Glsp.Language.Layouting.LayoutStrategy.SetPosition(NMF.Glsp.Graph.GElement,NMF.Glsp.Protocol.Types.Point)">
@@ -2978,6 +3028,22 @@
         <member name="F:NMF.Glsp.Processing.Layouting.LayeredLayoutService.Instance">
             <summary>
             The default instance
+            </summary>
+        </member>
+        <member name="M:NMF.Glsp.Processing.Layouting.LayeredLayoutService.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:NMF.Glsp.Processing.Layouting.LayeredLayoutService.#ctor(Microsoft.Msagl.Layout.Layered.SugiyamaLayoutSettings)">
+            <summary>
+            Creates a new instance
+            </summary>
+            <param name="settings">layout settings</param>
+        </member>
+        <member name="P:NMF.Glsp.Processing.Layouting.LayeredLayoutService.Settings">
+            <summary>
+            Gets the layout settings for this layout service
             </summary>
         </member>
         <member name="M:NMF.Glsp.Processing.Layouting.LayeredLayoutService.ProcessLayout(Microsoft.Msagl.Core.Layout.GeometryGraph)">

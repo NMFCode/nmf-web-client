@@ -1,4 +1,4 @@
-import { WebviewViewProvider, WebviewView, window, WebviewViewResolveContext, CancellationToken, ExtensionContext } from "vscode";
+import { WebviewViewProvider, WebviewView, window, WebviewViewResolveContext, CancellationToken, ExtensionContext, Uri } from "vscode";
 
 export class PropertyViewProvider implements WebviewViewProvider
 {
@@ -25,6 +25,8 @@ export class PropertyViewProvider implements WebviewViewProvider
 		const webview = this.view.webview;
 
         const extensionUri = this.extensionContext.extensionUri;
+        const webviewScriptSourceUri = webview.asWebviewUri(Uri.joinPath(extensionUri, 'dist', 'index-BFzZPLoV.js'));
+        const webviewCssSourceUri = webview.asWebviewUri(Uri.joinPath(extensionUri, 'dist', 'index-BYtM6D31.css'));
 
 		webview.options = {
 			enableScripts: true,
@@ -43,8 +45,8 @@ export class PropertyViewProvider implements WebviewViewProvider
                       rel="stylesheet"
                       href="https://fonts.googleapis.com/icon?family=Material+Icons" />
                     <title>Properties</title>
-                    <script type="module" crossorigin src="/property-view/index-By2q0aEp.js"></script>
-                    <link rel="stylesheet" crossorigin href="/property-view/index-BYtM6D31.css">
+                    <script type="module" src="${webviewScriptSourceUri}"></script>
+                    <link rel="stylesheet" href="${webviewCssSourceUri}">
                   </head>
                   <body>
                     <div id="root"></div>

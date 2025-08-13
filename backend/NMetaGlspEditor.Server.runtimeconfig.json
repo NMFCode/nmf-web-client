@@ -15,7 +15,6 @@
       "System.GC.Server": true,
       "System.Globalization.Invariant": true,
       "System.Globalization.PredefinedCulturesOnly": true,
-      "System.Reflection.Metadata.MetadataUpdater.IsSupported": false,
       "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": false
     }
   }

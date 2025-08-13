@@ -1192,6 +1192,15 @@
             Gets or sets a global flag indicating whether projections and filters should maintain the element order
             </summary>
         </member>
+        <member name="M:NMF.Expressions.Linq.ObservableExtensions.RestoreIndices``1(NMF.Expressions.INotifyEnumerable{``0})">
+            <summary>
+            Restores the indices of the given collection
+            </summary>
+            <typeparam name="T">The type of elements</typeparam>
+            <param name="source">the source incremental collection</param>
+            <returns>A collection that mirrors the given incremental collection but restores change indices</returns>
+            <remarks>Some frameworks (like Avalonia) require that indices of elements are always set</remarks>
+        </member>
         <member name="M:NMF.Expressions.Linq.ObservableExtensions.All``1(NMF.Expressions.INotifyEnumerable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             Gets a value indicating whether all items in the given collection match the given predicate
@@ -2409,6 +2418,15 @@
             <param name="source">The current collection</param>
             <returns>The same collection as INotifyEnumerable</returns>
         </member>
+        <member name="M:NMF.Expressions.Linq.ObservableExtensions.WithUpdates``1(System.Collections.Generic.IEnumerable{``0},System.Boolean)">
+            <summary>
+            Fetches updates of the given collection
+            </summary>
+            <typeparam name="T">The element type</typeparam>
+            <param name="source">The current collection</param>
+            <param name="failIfNoOnCollectionChanged">If true, an exception is thrown if no collection changes can be obtained for the given collection, otherwise null is returned in this case.</param>
+            <returns>The same collection as INotifyEnumerable</returns>
+        </member>
         <member name="M:NMF.Expressions.Linq.ObservableExtensions.WithUpdates``1(System.Collections.Generic.ICollection{``0})">
             <summary>
             Fetches updates of the given collection
@@ -2616,6 +2634,18 @@
             <inheritdoc />
         </member>
         <member name="P:NMF.Expressions.Linq.ObservableEnumerable`1.AllSuccessors">
+            <inheritdoc />
+        </member>
+        <member name="P:NMF.Expressions.Linq.ObservableEnumerable`1.IsFixedSize">
+            <inheritdoc />
+        </member>
+        <member name="P:NMF.Expressions.Linq.ObservableEnumerable`1.IsSynchronized">
+            <inheritdoc />
+        </member>
+        <member name="P:NMF.Expressions.Linq.ObservableEnumerable`1.SyncRoot">
+            <inheritdoc />
+        </member>
+        <member name="P:NMF.Expressions.Linq.ObservableEnumerable`1.Item(System.Int32)">
             <inheritdoc />
         </member>
         <member name="M:NMF.Expressions.Linq.ObservableEnumerable`1.Set(NMF.Expressions.INotifiable)">
