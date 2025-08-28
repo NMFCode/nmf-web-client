@@ -40,7 +40,7 @@ const config = {
         new CopyPlugin({
             patterns: [
                 {
-                    from: path.resolve(__dirname, '..', '..', 'backend', 'NMetaGlspEditor.Server.exe')
+                    from: path.resolve(__dirname, 'dist', 'NMetaGlspEditor.Server.exe')
                 },
                 {
                     from: path.resolve(__dirname, '..', 'nmeta-glsp-webview', 'dist', 'nmetaWebview.js')

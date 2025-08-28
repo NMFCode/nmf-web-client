@@ -4,8 +4,15 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
     plugins: [react()],
     build: {
-        outDir: 'dist',
-        assetsDir: 'property-view'
+        outDir: '../nmeta-vscode/dist',
+        assetsDir: 'property-view',
+        rollupOptions: {
+            output: {
+                entryFileNames: 'property.js',
+                assetFileNames: 'property.css',
+            }
+        },
+        sourcemap: true,
     },
     test: {
         environment: 'jsdom',

@@ -31,7 +31,7 @@ export default class NMetaEditorProvider extends GlspEditorProvider {
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, height=device-height">
-					<meta http-equiv="Content-Security-Policy" content="
+                    <meta http-equiv="Content-Security-Policy" content="
                 default-src http://*.fontawesome.com  ${webview.cspSource} 'unsafe-inline' 'unsafe-eval';
                 ">
 

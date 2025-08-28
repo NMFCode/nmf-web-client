@@ -17,39 +17,40 @@ import 'reflect-metadata';
 
 import {
     GlspVscodeConnector,
+    SelectAction,
     SocketGlspVscodeServer,
     configureDefaultCommands
 } from '@eclipse-glsp/vscode-integration/node';
 import * as process from 'process';
 import * as vscode from 'vscode';
 import NMetaEditorProvider from './nmeta-editor-provider';
-import { DotnetGlspSocketServerLauncher } from './dotnet-glsp-socket-server-launcher';
+// import { DotnetGlspSocketServerLauncher } from './dotnet-glsp-socket-server-launcher';
 import path = require('path');
 import { PropertyViewProvider } from './property-view-provider';
 
-const DEFAULT_SERVER_PORT = '0';
+const DEFAULT_SERVER_PORT = '5052';
 const DOTNET_EXECUTABLE = path.join(__dirname, '..', 'dist', 'NMetaGlspEditor.Server.exe');
 
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
-    const serverProcess = new DotnetGlspSocketServerLauncher({
-        executable: DOTNET_EXECUTABLE,
-        socketConnectionOptions: { host: 'localhost', port: JSON.parse(process.env.GLSP_SERVER_PORT || DEFAULT_SERVER_PORT) },
-        logging: true
-    });
+    // const serverProcess = new DotnetGlspSocketServerLauncher({
+    //     executable: DOTNET_EXECUTABLE,
+    //     socketConnectionOptions: { host: 'localhost', port: JSON.parse(process.env.GLSP_SERVER_PORT || DEFAULT_SERVER_PORT) },
+    //     logging: true
+    // });
 
-    context.subscriptions.push(serverProcess);
+    // context.subscriptions.push(serverProcess);
 
-    await serverProcess.start();
+    // await serverProcess.start();
     
     // Wrap server with quickstart component
     const nmetaServer =  new SocketGlspVscodeServer({
-              clientId: 'vscode',
-              clientName: 'vscode',
-              connectionOptions: {
-                  port: serverProcess?.getPort() || JSON.parse(process.env.GLSP_SERVER_PORT || DEFAULT_SERVER_PORT),
-                  path: process.env.GLSP_WEBSOCKET_PATH
-              }
-          });
+            clientId: 'vscode',
+            clientName: 'vscode',
+            connectionOptions: {
+                port: JSON.parse(  process.env.GLSP_SERVER_PORT || DOTNET_EXECUTABLE || DEFAULT_SERVER_PORT),
+                path: process.env.GLSP_WEBSOCKET_PATH
+            }
+        });    
 
     // Initialize GLSP-VSCode connector with server wrapper
     const glspVscodeConnector = new GlspVscodeConnector({
@@ -57,16 +58,24 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
         logging: true
     });
 
+
+    glspVscodeConnector.onSelectionUpdate(e => {
+            nmetaServer.glspClient.then(client => {
+                var action = SelectAction.create(e);
+                client.sendActionMessage({ clientId: 'nmeta_0', action });
+            });
+        });
+
     const customEditorProvider = vscode.window.registerCustomEditorProvider(
         'nmeta.glspDiagram',
         new NMetaEditorProvider(context, glspVscodeConnector),
         {
             webviewOptions: { retainContextWhenHidden: true },
-            supportsMultipleEditorsPerDocument: false
+            supportsMultipleEditorsPerDocument: true
         }
     );
 
-    vscode.window.registerWebviewViewProvider(
+    const propertyProvider = vscode.window.registerWebviewViewProvider(
         'nmeta.propertyView',
         new PropertyViewProvider(context),
         {
@@ -76,7 +85,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
         }
     );
 
-    context.subscriptions.push(nmetaServer, glspVscodeConnector, customEditorProvider);
+    context.subscriptions.push(nmetaServer, glspVscodeConnector, customEditorProvider, propertyProvider);
     nmetaServer.start();
 
     configureDefaultCommands({ extensionContext: context, connector: glspVscodeConnector, diagramPrefix: 'nmeta' });

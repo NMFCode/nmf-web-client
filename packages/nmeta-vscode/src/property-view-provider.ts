@@ -6,7 +6,8 @@ export class PropertyViewProvider implements WebviewViewProvider
 
 	private view?: WebviewView;
 
-	constructor(protected readonly extensionContext: ExtensionContext)
+	constructor(protected readonly extensionContext: ExtensionContext,
+    )
 	{
 	}
 
@@ -25,8 +26,8 @@ export class PropertyViewProvider implements WebviewViewProvider
 		const webview = this.view.webview;
 
         const extensionUri = this.extensionContext.extensionUri;
-        const webviewScriptSourceUri = webview.asWebviewUri(Uri.joinPath(extensionUri, 'dist', 'index-BFzZPLoV.js'));
-        const webviewCssSourceUri = webview.asWebviewUri(Uri.joinPath(extensionUri, 'dist', 'index-BYtM6D31.css'));
+        const webviewScriptSourceUri = webview.asWebviewUri(Uri.joinPath(extensionUri, 'dist', 'property.js'));
+        const webviewCssSourceUri = webview.asWebviewUri(Uri.joinPath(extensionUri, 'dist', 'property.css'));
 
 		webview.options = {
 			enableScripts: true,
@@ -36,21 +37,21 @@ export class PropertyViewProvider implements WebviewViewProvider
         webview.html = `
             <!doctype html>
                 <html lang="en">
-                  <head>
-                    <meta charset="UTF-8" />
-                    <meta name="theme-color" content="#000000" />
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                    <link rel="shortcut icon" href="/favicon.ico" />
-                    <link
-                      rel="stylesheet"
-                      href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-                    <title>Properties</title>
-                    <script type="module" src="${webviewScriptSourceUri}"></script>
-                    <link rel="stylesheet" href="${webviewCssSourceUri}">
-                  </head>
-                  <body>
-                    <div id="root"></div>
-                  </body>
+                    <head>
+                        <meta charset="UTF-8" />
+                        <meta name="theme-color" content="#000000" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                        <link rel="shortcut icon" href="/favicon.ico" />
+                        <link
+                        rel="stylesheet"
+                        href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+                        <title>Properties</title>
+                        <script type="module" src="${webviewScriptSourceUri}"></script>
+                        <link rel="stylesheet" href="${webviewCssSourceUri}">
+                    </head>
+                    <body>
+                        <div id="root"></div>
+                    </body>
                 </html>`;
 	}
 }

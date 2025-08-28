@@ -179,15 +179,22 @@
         "label": "Diagram"
       }
     ],
+    "viewsContainers": {
+    "panel": [
+        {
+        "id": "propertyPanel",
+        "title": "PropertyPanel",
+        "icon": "images/edit.min.svg"
+        }
+    ]
+    },
     "views": {
-        "explorer": [
+        "propertyPanel": [
             {
                 "type": "webview",
                 "id": "nmeta.propertyView",
-                "name": "Properties",
-                "contextualTitle": "Properties View",
-                "icon": "images/edit.min.svg"
-            }
+                "name": "Propertieeeees",
+                "contextualTitle": "Properties View"            }
         ]
     }
   },
@@ -198,11 +205,11 @@
     "@eclipse-glsp/vscode-integration": "2.1.1",
     "@vscode/vsce": "^2.19.0",
     "copy-webpack-plugin": "^11.0.0",
+    "nmeta-glsp-webview": "1.0.0",
     "ts-loader": "^9.4.4",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
-    "webpack-merge": "^5.9.0",
-    "nmeta-glsp-webview": "1.0.0"
+    "webpack-merge": "^5.9.0"
   },
   "engines": {
     "vscode": "^1.54.0"
