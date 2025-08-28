@@ -12,7 +12,6 @@ export default defineConfig({
                 assetFileNames: 'property.css',
             }
         },
-        sourcemap: true,
     },
     test: {
         environment: 'jsdom',

@@ -24,7 +24,7 @@ import {
 import * as process from 'process';
 import * as vscode from 'vscode';
 import NMetaEditorProvider from './nmeta-editor-provider';
-// import { DotnetGlspSocketServerLauncher } from './dotnet-glsp-socket-server-launcher';
+import { DotnetGlspSocketServerLauncher } from './dotnet-glsp-socket-server-launcher';
 import path = require('path');
 import { PropertyViewProvider } from './property-view-provider';
 
@@ -32,22 +32,22 @@ const DEFAULT_SERVER_PORT = '5052';
 const DOTNET_EXECUTABLE = path.join(__dirname, '..', 'dist', 'NMetaGlspEditor.Server.exe');
 
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
-    // const serverProcess = new DotnetGlspSocketServerLauncher({
-    //     executable: DOTNET_EXECUTABLE,
-    //     socketConnectionOptions: { host: 'localhost', port: JSON.parse(process.env.GLSP_SERVER_PORT || DEFAULT_SERVER_PORT) },
-    //     logging: true
-    // });
+    const serverProcess = new DotnetGlspSocketServerLauncher({
+        executable: DOTNET_EXECUTABLE,
+        socketConnectionOptions: { host: 'localhost', port: JSON.parse(process.env.GLSP_SERVER_PORT || DEFAULT_SERVER_PORT) },
+        logging: true
+    });
 
-    // context.subscriptions.push(serverProcess);
+    context.subscriptions.push(serverProcess);
 
-    // await serverProcess.start();
+    await serverProcess.start();
     
     // Wrap server with quickstart component
     const nmetaServer =  new SocketGlspVscodeServer({
             clientId: 'vscode',
             clientName: 'vscode',
             connectionOptions: {
-                port: JSON.parse(  process.env.GLSP_SERVER_PORT || DOTNET_EXECUTABLE || DEFAULT_SERVER_PORT),
+                port: JSON.parse(  process.env.GLSP_SERVER_PORT || DEFAULT_SERVER_PORT),
                 path: process.env.GLSP_WEBSOCKET_PATH
             }
         });    

@@ -1,6 +1,6 @@
 import './App.css';
 import { PropertyViewObject, PropViewClient } from 'property-views-client';
-import { BaseJsonrpcPropViewClient, PropViewWebSocketProvider, MultiTransportConnection } from 'property-views-client';
+import { BaseJsonrpcPropViewClient, PropViewWebSocketProvider } from 'property-views-client';
 import { useEffect, useRef, useState } from 'react';
 import { JsonForms } from '@jsonforms/react';
 import { materialCells, materialRenderers } from '@jsonforms/material-renderers';
@@ -34,7 +34,7 @@ const App = () => {
     const propViewClient = useRef<PropViewClient | null>(null);
 
     // MultiTransportConnection erstellen
-    const multiConnRef = useRef<MultiTransportConnection>(new MultiTransportConnection(console));
+    // const multiConnRef = useRef<MultiTransportConnection>(new MultiTransportConnection(console));
 
     useEffect(() => {
         const wsProvider = new PropViewWebSocketProvider(webSocketUrl);
@@ -45,7 +45,7 @@ const App = () => {
             onConnection: initialize,
             onReconnect: reconnect,
             logger: console
-        }, multiConnRef.current);
+        });
 
     }, []);
 
