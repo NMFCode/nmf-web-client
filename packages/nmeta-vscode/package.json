@@ -180,22 +180,23 @@
       }
     ],
     "viewsContainers": {
-    "panel": [
+      "panel": [
         {
-        "id": "propertyPanel",
-        "title": "PropertyPanel",
-        "icon": "images/edit.min.svg"
+          "id": "propertyPanel",
+          "title": "PropertyPanel",
+          "icon": "images/edit.min.svg"
         }
-    ]
+      ]
     },
     "views": {
-        "propertyPanel": [
-            {
-                "type": "webview",
-                "id": "nmeta.propertyView",
-                "name": "Propertieeeees",
-                "contextualTitle": "Properties View"            }
-        ]
+      "propertyPanel": [
+        {
+          "type": "webview",
+          "id": "nmeta.propertyView",
+          "name": "Properties",
+          "contextualTitle": "Properties View"
+        }
+      ]
     }
   },
   "activationEvents": [
@@ -226,5 +227,8 @@
   "author": {
     "name": ".Net Modeling Framework",
     "url": "https://nmfcode.github.io/NMFdocs/index.html"
+  },
+  "dependencies": {
+    "symbol-observable": "^4.0.0"
   }
 }

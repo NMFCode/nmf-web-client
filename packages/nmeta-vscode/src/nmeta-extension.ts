@@ -14,9 +14,8 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 import 'reflect-metadata';
-
+import 'symbol-observable';
 import {
-    GlspVscodeConnector,
     SelectAction,
     SocketGlspVscodeServer,
     configureDefaultCommands
@@ -27,6 +26,7 @@ import NMetaEditorProvider from './nmeta-editor-provider';
 import { DotnetGlspSocketServerLauncher } from './dotnet-glsp-socket-server-launcher';
 import path = require('path');
 import { PropertyViewProvider } from './property-view-provider';
+import { ExtendedGlspVsCodeConnector } from './clientSelectionMapExtension';
 
 const DEFAULT_SERVER_PORT = '5052';
 const DOTNET_EXECUTABLE = path.join(__dirname, '..', 'dist', 'NMetaGlspEditor.Server.exe');
@@ -47,22 +47,24 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
             clientId: 'vscode',
             clientName: 'vscode',
             connectionOptions: {
-                port: JSON.parse(  process.env.GLSP_SERVER_PORT || DEFAULT_SERVER_PORT),
+                // serverProcess.getPort() ||
+                port:  JSON.parse(  process.env.GLSP_SERVER_PORT || DEFAULT_SERVER_PORT),
                 path: process.env.GLSP_WEBSOCKET_PATH
             }
         });    
 
     // Initialize GLSP-VSCode connector with server wrapper
-    const glspVscodeConnector = new GlspVscodeConnector({
+    const glspVscodeConnector = new ExtendedGlspVsCodeConnector({
         server: nmetaServer,
         logging: true
     });
 
+    
 
     glspVscodeConnector.onSelectionUpdate(e => {
             nmetaServer.glspClient.then(client => {
                 var action = SelectAction.create(e);
-                client.sendActionMessage({ clientId: 'nmeta_0', action });
+                client.sendActionMessage({ clientId: glspVscodeConnector.getClientID(e), action });
             });
         });
 

@@ -7,26 +7,43 @@ import { materialCells, materialRenderers } from '@jsonforms/material-renderers'
 import type { MessageConnection } from 'vscode-jsonrpc';
 import { Grid, Typography } from '@mui/material';
 import deepEqual from 'deep-equal';
+import classControlTester from './renderer/textFieldControlTester';
+import classControl from './renderer/textFieldControl';
+import selectControlTester from './renderer/selectControlTester';
+import selectControl from './renderer/selectControl';
+import counterControlTester from './renderer/counterControlTester';
+import counterControl from './renderer/counterControl';
+import arraySelectControlTest from './renderer/arraySelectControlTest';
+import arraySelectController from './renderer/arraySelectController';
+
 
 const port = 5052;
 const id = 'prop';
 const webSocketUrl = `ws://localhost:${port}/${id}`;
 
-const classes = {
-    
+const classes = {  
     container: {
-        padding: '1em',
         width: '100%',
         backgroundColor: 'var(--vscode-editor-background)',
+        color: 'var(--vscode-editor-foreground)',
     },
     dataContent: {
+        width: '100%',
         display: 'flex',
         justifyContent: 'center',
-        borderRadius: '0.25em',
         marginBottom: '1rem',
-        backgroundColor: 'white',
+        backgroundColor: 'var(--vscode-editor-background)',
+        color: 'var(--vscode-editor-foreground)',
     }
 };
+
+const renderers = [
+    ...materialRenderers,
+    {tester: arraySelectControlTest, renderer: arraySelectController},
+    {tester: classControlTester, renderer: classControl},
+    {tester: selectControlTester, renderer: selectControl},
+    {tester: counterControlTester, renderer: counterControl},
+]
 
 const App = () => {
     const [data, setData] = useState<PropertyViewObject[]>([]);
@@ -116,29 +133,28 @@ const App = () => {
     }
 
     const forms = Array.isArray(data) ? data.map((po) => (
-        <Grid
-            key={po.identifier}
-            item
-            justifyContent="center"
-            spacing={5}
-            sm={12}
-            padding={3}
-            style={classes.dataContent}
-            direction="column"
-        >
-            <Typography variant="h4" align="left">
-                {po.identifier}
-            </Typography>
-            <JsonForms
-                schema={po.schema}
-                uischema={po.uischema}
-                data={po.data}
-                renderers={materialRenderers}
-                cells={materialCells}
-                onChange={(updated) => sendUpdate(po, updated.data)}
-            />
-        </Grid>
-    )) : null;
+            <Grid
+                item
+                key={po.identifier}
+                justifyContent="center"
+                xs={12}
+                padding={3}
+                style={{ ...classes.dataContent}}
+                direction="row"
+            >
+                <Typography variant="h4" align="left">
+                    {po.identifier}
+                </Typography>
+                <JsonForms
+                    schema={po.schema}
+                    uischema={po.uischema}
+                    data={po.data}
+                    renderers={renderers}
+                    cells={materialCells}
+                    onChange={(updated) => sendUpdate(po, updated.data)}
+                />
+            </Grid>
+    )) : <div style={classes.container}/>;
 
     return <Grid container style={classes.container}>{forms}</Grid>;
 };

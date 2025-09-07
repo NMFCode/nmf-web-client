@@ -1,9 +1,13 @@
 import { GlspEditorProvider, GlspVscodeConnector } from '@eclipse-glsp/vscode-integration';
 import * as vscode from 'vscode';
 
+declare interface SymbolConstructor {
+    readonly observable: symbol;
+}
 export default class NMetaEditorProvider extends GlspEditorProvider {
     diagramType = 'nmeta';
 
+    
     constructor(
         protected readonly extensionContext: vscode.ExtensionContext,
         protected override readonly glspVscodeConnector: GlspVscodeConnector

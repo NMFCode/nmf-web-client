@@ -30,7 +30,7 @@
   "include": [
       "src/**/*.ts",
       "src/**/*.tsx"
-  ],
+, "../property-view/src/classControl.ts", "../property-view/src/renderer/textFieldControlTester.ts", "../property-view/src/class.ts"  ],
   "exclude": [
       "lib/**/*",
       "node_modules/**/*"

@@ -10,7 +10,7 @@ export default defineConfig({
             output: {
                 entryFileNames: 'property.js',
                 assetFileNames: 'property.css',
-            }
+            },
         },
     },
     test: {
