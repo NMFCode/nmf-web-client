@@ -1,3 +1,3 @@
 import { rankWith, schemaTypeIs } from '@jsonforms/core';
 
-export default rankWith(3, schemaTypeIs('array'));
+export default rankWith(10, schemaTypeIs('array'));

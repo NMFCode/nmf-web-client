@@ -5,7 +5,7 @@ import { Checkbox, FormControlLabel, FormGroup } from "@mui/material"
 
 interface BoolControlProps{
     schema: JsonSchema,
-    data: any,
+    data: boolean,
     handleChange(path: string, value: any):void
     path: string
 }

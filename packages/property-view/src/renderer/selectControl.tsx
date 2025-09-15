@@ -32,7 +32,7 @@ const SelectControl = ({ data, handleChange, path, schema}: SelectControlProps)=
                 enumOptions.map((option: string) => (
                     <MenuItem key={option} value={option}>{option}</MenuItem>
                 ))}
-        </Select>
+            </Select>
         </FormControl>
     );
 };

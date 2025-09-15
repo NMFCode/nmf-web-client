@@ -14,11 +14,13 @@ import selectControl from './renderer/selectControl';
 import counterControlTester from './renderer/counterControlTester';
 import counterControl from './renderer/counterControl';
 import arraySelectControlTest from './renderer/arraySelectControlTest';
-import arraySelectController from './renderer/arraySelectController';
+import arraySelectController from './renderer/arraySelectControl';
 import boolControl from './renderer/boolControl';
 import boolControlTester from './renderer/boolControlTester';
 import { useMediaQuery } from '@mui/material';
 import { theme } from './theme';
+import baseTypeControlTester from './renderer/baseTypeControlTester';
+import baseTypeControl from './renderer/baseTypeControl';
 
 
 const port = 5052;
@@ -49,7 +51,8 @@ const renderers = [
     {tester: classControlTester, renderer: classControl},
     {tester: selectControlTester, renderer: selectControl},
     {tester: counterControlTester, renderer: counterControl},
-    {tester: boolControlTester, renderer: boolControl}
+    {tester: boolControlTester, renderer: boolControl},
+    {tester: baseTypeControlTester, renderer: baseTypeControl}
 ]
 
 const App = () => {
