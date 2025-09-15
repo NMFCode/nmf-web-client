@@ -1,6 +1,7 @@
 import { JsonSchema } from '@jsonforms/core';
 import { withJsonFormsControlProps } from '@jsonforms/react';
-import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { Height } from '@mui/icons-material';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 interface SelectControlProps {
   data: any;
@@ -12,12 +13,12 @@ interface SelectControlProps {
 const SelectControl = ({ data, handleChange, path, schema}: SelectControlProps)=>{
     const value = data  || '';
 
-    const enumOptions = schema?.enum ?? schema?.oneOf ?? [];
+    const enumOptions = schema?.enum?? [];
 
     return (    
-        <FormControl size='small' fullWidth={true}>
+        <FormControl size='small' sx={{width: '60%'}}>
             <InputLabel>{path}</InputLabel>
-                <Select
+                <Select 
                     value={value}
                     label={path}
                     onChange={

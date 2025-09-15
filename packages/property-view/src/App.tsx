@@ -15,6 +15,10 @@ import counterControlTester from './renderer/counterControlTester';
 import counterControl from './renderer/counterControl';
 import arraySelectControlTest from './renderer/arraySelectControlTest';
 import arraySelectController from './renderer/arraySelectController';
+import boolControl from './renderer/boolControl';
+import boolControlTester from './renderer/boolControlTester';
+import { useMediaQuery } from '@mui/material';
+import { theme } from './theme';
 
 
 const port = 5052;
@@ -24,11 +28,13 @@ const webSocketUrl = `ws://localhost:${port}/${id}`;
 const classes = {  
     container: {
         width: '100%',
+        height: '100%',
         backgroundColor: 'var(--vscode-editor-background)',
         color: 'var(--vscode-editor-foreground)',
     },
     dataContent: {
         width: '100%',
+        height: '100%',
         display: 'flex',
         justifyContent: 'center',
         marginBottom: '1rem',
@@ -43,12 +49,14 @@ const renderers = [
     {tester: classControlTester, renderer: classControl},
     {tester: selectControlTester, renderer: selectControl},
     {tester: counterControlTester, renderer: counterControl},
+    {tester: boolControlTester, renderer: boolControl}
 ]
 
 const App = () => {
     const [data, setData] = useState<PropertyViewObject[]>([]);
     const updating = useRef(false);
     const propViewClient = useRef<PropViewClient | null>(null);
+
 
     // MultiTransportConnection erstellen
     // const multiConnRef = useRef<MultiTransportConnection>(new MultiTransportConnection(console));
@@ -63,12 +71,7 @@ const App = () => {
             onReconnect: reconnect,
             logger: console
         });
-
     }, []);
-
-    useEffect(() => {
-        console.log("data updated:", data, "isArray:", Array.isArray(data));
-    }, [data]);
 
     function setDataWrapper(dat: Promise<PropertyViewObject[]> | PropertyViewObject[] | PropertyViewObject | null): void {
         updating.current = true;
@@ -133,16 +136,17 @@ const App = () => {
     }
 
     const forms = Array.isArray(data) ? data.map((po) => (
+
             <Grid
                 item
                 key={po.identifier}
-                justifyContent="center"
-                xs={12}
-                padding={3}
+                sm={12}
+                md={6}
                 style={{ ...classes.dataContent}}
-                direction="row"
+                sx={{paddingBottom:'0px'}} 
+                direction={'column'}
             >
-                <Typography variant="h4" align="left">
+                <Typography variant="h6" align="left" sx={{maxWidth:'50%'}}>
                     {po.identifier}
                 </Typography>
                 <JsonForms
@@ -154,9 +158,9 @@ const App = () => {
                     onChange={(updated) => sendUpdate(po, updated.data)}
                 />
             </Grid>
-    )) : <div style={classes.container}/>;
+    )) : null;
 
-    return <Grid container style={classes.container}>{forms}</Grid>;
+    return data.length !== 0 ? <Grid container direction= 'row' style={classes.container}>{forms}</Grid> : <div style={classes.container}/>;
 };
 
 export default App;

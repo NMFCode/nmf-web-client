@@ -1,8 +1,9 @@
 import { JsonSchema } from "@jsonforms/core";
-import { Stack, IconButton, TextField } from "@mui/material";
+import { Stack, IconButton, TextField, colors, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { withJsonFormsControlProps } from "@jsonforms/react";
+import { Label } from "@mui/icons-material";
 
 interface CounterControlProps {
     data: any;
@@ -35,19 +36,22 @@ const CounterControl = ({ data, handleChange, path, schema}: CounterControlProps
     }
 
     return(
+    <>
+    <Typography sx={{color: 'var(--vscode-editor-foreground)'}}>{path}</Typography>
     <Stack direction="row" spacing={1} alignItems="center">
       <IconButton onClick={decrement}>
-        <RemoveIcon />
+        <RemoveIcon sx={{color: 'var(--vscode-statusBarItem-remoteBackground)'}}/>
       </IconButton>
       <TextField
-        type="number"
         value={value}
-        inputProps={{ style: { textAlign: "center", width: 60 } }}
+        inputProps={{ style: { textAlign: "center", width: 80 } }}
+        InputProps={{ readOnly: true }}
       />
       <IconButton onClick={increment}>
-        <AddIcon />
+        <AddIcon sx={{color: 'var(--vscode-statusBarItem-remoteBackground)'}}/>
       </IconButton>
     </Stack>
+    </>
     )    
 }
 

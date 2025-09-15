@@ -1,6 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <nmeta:Namespace xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:nmeta="http://nmf.codeplex.com/nmeta/">
-  <Types xsi:type="nmeta:Class" Name="Tester" />
-  <Types xsi:type="nmeta:Class" Name="NewClasss" />
-  <Types xsi:type="nmeta:Class" Name="NewClass" />
+  <Types xsi:type="nmeta:Class" Name="NewClas" />
 </nmeta:Namespace>

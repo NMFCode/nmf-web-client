@@ -16,9 +16,11 @@ const TextFieldControl = ({ data, handleChange, path }: TextFieldControlProps)=>
     <form onSubmit={(e) => {
         e.preventDefault()
         handleChange(path, value);
+        }
     }
-    }>
-    <TextField id="outlined-basic" label={path} value={value} sx={{color: "--vscode-editor-foreground"}} onBlur={()=>handleChange(path, value) } onChange={(e) => setValue(e.target.value)}
+    style={{minWidth:'100px', width:'60%'}}
+    >
+    <TextField id="outlined-basic" label={path} value={value} sx={{color: "--vscode-editor-foreground", minWidth:'100px', width:'100%'}} onBlur={()=>handleChange(path, value) } onChange={(e) => setValue(e.target.value)}
   variant="outlined"/>
     </form>
 );

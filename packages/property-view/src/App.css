@@ -1,9 +1,14 @@
 html,header, body {
-margin: 0;
+    margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--vscode-editor-background);
+}
+
+#root, #root > div {
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--vscode-editor-background);
 }
 
 .App {

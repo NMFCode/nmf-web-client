@@ -12,10 +12,10 @@ interface ArraySelectControlProps {
 const ArraySelectControl = ({ data, handleChange, path, schema}: ArraySelectControlProps)=>{
     const value = data  || '';
 
-    const enumOptions = schema?.oneOf ?? [];
+    const arrayOptions = schema?.oneOf ?? [];
 
     return (    
-        <FormControl size='small' fullWidth={true}>
+        <FormControl size='small' sx={{width: '60%'}}>
             <InputLabel>{path}</InputLabel>
                 <Select
                     value={value}
@@ -28,8 +28,8 @@ const ArraySelectControl = ({ data, handleChange, path, schema}: ArraySelectCont
                     }
                 >
                 {
-                enumOptions.map((option) => (
-                    <MenuItem key={option.title} value={option.title}>{option.title}</MenuItem>
+                arrayOptions.map((option) => (
+                    <MenuItem key={option.const} value={option.const}>{option.title}</MenuItem>
                 ))}
         </Select>
         </FormControl>

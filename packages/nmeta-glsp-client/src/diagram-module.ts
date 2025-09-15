@@ -18,9 +18,7 @@ import {
     RectangularNodeView,
     GLabel,
 } from '@eclipse-glsp/client';
-import 'balloon-css/balloon.min.css';
 import { Container, ContainerModule } from 'inversify';
-import 'sprotty/css/edit-label.css';
 import '../css/diagram.css';
 import { DefaultNode, ElementLabel } from './model';
 import { DividerView, InheritanceEdgeView, ReferenceEdgeView } from './views';
