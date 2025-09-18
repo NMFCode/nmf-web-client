@@ -3,11 +3,11 @@
   <Types xsi:type="nmeta:Class" Identifier="#//PetriNet/name" Name="PetriNet">
     <References IsContainment="true" IsOrdered="true" IsUnique="true" UpperBound="-1" Name="places" />
     <References IsContainment="true" IsOrdered="true" IsUnique="true" UpperBound="-1" Name="transitionsss" />
-    <References Opposite="#//Testerrr/NewReference" ReferenceType="nmeta:Class #//Testerrr" Name="Opposite" />
+    <References Opposite="#//Testerr/NewReference" ReferenceType="nmeta:Class #//Testerr" Name="Opposite" />
     <References IsContainment="true" ReferenceType="nmeta:Class #//Transition" Name="NewReference" />
     <Attributes DefaultValue="Da" IsOrdered="true" IsUnique="true" LowerBound="1" Type="nmeta:PrimitiveType http://nmf.codeplex.com/nmeta/#//String" Name="name" />
   </Types>
-  <Types xsi:type="nmeta:Class" IdentifierScope="Local" Identifier="#//Testerrr/name" Name="Testerrr" Summary="Summary" Remarks="lk">
+  <Types xsi:type="nmeta:Class" IdentifierScope="Global" BaseTypes="http://nmf.codeplex.com/nmeta/#//Namespace http://nmf.codeplex.com/nmeta/#//StructuredType http://nmf.codeplex.com/nmeta/#//ReferenceType" Identifier="#//Testerr/name" Name="Testerr" Summary="Summary" Remarks="lk">
     <References Opposite="#//Transition/from" ReferenceType="nmeta:Class #//Transition" IsOrdered="true" IsUnique="true" UpperBound="-1" Name="outgoing" />
     <References Opposite="#//Transition/to" ReferenceType="nmeta:Class #//Transition" IsOrdered="true" IsUnique="true" UpperBound="-1" Name="incoming" />
     <References Opposite="#//PetriNet/Opposite" ReferenceType="nmeta:Class #//PetriNet" Name="NewReference" />
@@ -15,9 +15,11 @@
     <Attributes DefaultValue="" Type="nmeta:PrimitiveType http://nmf.codeplex.com/nmeta/#//String" Name="NewAttributeee" />
   </Types>
   <Types xsi:type="nmeta:Class" Name="Transition">
-    <References Opposite="#//Testerrr/outgoing" ReferenceType="nmeta:Class #//Testerrr" IsOrdered="true" IsUnique="true" UpperBound="-1" Name="from" />
-    <References Opposite="#//Testerrr/incoming" ReferenceType="nmeta:Class #//Testerrr" IsOrdered="true" IsUnique="true" UpperBound="-1" Name="to" />
+    <References Opposite="#//Testerr/outgoing" ReferenceType="nmeta:Class #//Testerr" IsOrdered="true" IsUnique="true" UpperBound="-1" Name="from" />
+    <References Opposite="#//Testerr/incoming" ReferenceType="nmeta:Class #//Testerr" IsOrdered="true" IsUnique="true" UpperBound="-1" Name="to" />
     <Attributes IsOrdered="true" IsUnique="true" Type="nmeta:PrimitiveType http://nmf.codeplex.com/nmeta/#//String" Name="input" />
   </Types>
   <Types xsi:type="nmeta:Class" Name="Test" />
+  <Types xsi:type="nmeta:Class" Name="NewClass" />
+  <Types xsi:type="nmeta:Class" Name="NewClass1" />
 </nmeta:Namespace>

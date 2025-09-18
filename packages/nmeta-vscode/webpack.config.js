@@ -44,7 +44,7 @@ const config = {
                 },
                 { from: path.resolve(__dirname, 'dist','property.js')},
                 {
-                    from: path.resolve(__dirname, '..', 'nmeta-glsp-webview', 'dist', 'nmetaWebview.js')
+                    from: path.resolve(__dirname, 'dist', 'nmetaWebview.js')
                 },
       
             ]

@@ -17,17 +17,21 @@ import {
     initializeDiagramContainer,
     RectangularNodeView,
     GLabel,
+    deletableFeature,
+    editLabelFeature,
+    selectFeature,
+    DefaultTypes,
 } from '@eclipse-glsp/client';
+import 'balloon-css/balloon.min.css';
 import { Container, ContainerModule } from 'inversify';
-import '../css/diagram.css';
-import { DefaultNode, ElementLabel } from './model';
+import { DefaultNode } from './model';
 import { DividerView, InheritanceEdgeView, ReferenceEdgeView } from './views';
 import { ContextMenuService } from './menu';
 import { validatedEditor } from './validated-text';
+import '../css/diagram.css'
 
 export const nmetaDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) => {
     const context = { bind, unbind, isBound, rebind };
-
     bindOrRebind(context, TYPES.ILogger).to(ConsoleLogger).inSingletonScope();
     bindOrRebind(context, TYPES.LogLevel).toConstantValue(LogLevel.warn);
     bind(TYPES.ISnapper).to(GridSnapper);
@@ -36,7 +40,7 @@ export const nmetaDiagramModule = new ContainerModule((bind, unbind, isBound, re
     bindOrRebind(context, TYPES.IContextMenuService).to(ContextMenuService);
 
     configureDefaultModelElements(context);
-    configureModelElement(context, 'label', ElementLabel, GLabelView);
+    configureModelElement(context, DefaultTypes.LABEL, GLabel, GLabelView, {enable: [editLabelFeature, selectFeature, deletableFeature]});
     configureModelElement(context, 'label:static', GLabel, GLabelView);
     configureModelElement(context, 'comp:header', GCompartment, GCompartmentView);
     configureModelElement(context, 'comp:attributes', GCompartment, GCompartmentView);
@@ -45,15 +49,15 @@ export const nmetaDiagramModule = new ContainerModule((bind, unbind, isBound, re
     configureModelElement(context, 'Class', DefaultNode, RectangularNodeView);
     configureModelElement(context, 'Enumeration', DefaultNode, RectangularNodeView);
     configureModelElement(context, 'Namespace', DefaultNode, RectangularNodeView);
-    configureModelElement(context, 'Literal', ElementLabel, GLabelView);
-    configureModelElement(context, 'Attribute', ElementLabel, GLabelView);
-    configureModelElement(context, 'Operation', ElementLabel, GLabelView);
+    configureModelElement(context, 'Literal', GLabel, GLabelView, {enable: [editLabelFeature, selectFeature, deletableFeature]});
+    configureModelElement(context, 'Attribute', GLabel, GLabelView, {enable: [editLabelFeature, selectFeature, deletableFeature]});
+    configureModelElement(context, 'Operation', GLabel, GLabelView, {enable: [editLabelFeature, selectFeature, deletableFeature]});
     configureModelElement(context, 'Reference', GEdge, ReferenceEdgeView);
     configureModelElement(context, 'comp:divider', GCompartment, DividerView);
 
     configureModelElement(context, 'edge:inheritance', GEdge, InheritanceEdgeView);
 });
 
-export function createNMetaDiagramContainer(...containerConfiguration: ContainerConfiguration): Container {
-    return initializeDiagramContainer(new Container(), nmetaDiagramModule, validatedEditor, ...containerConfiguration);
+export function createNMetaDiagramContainer(container: Container, ...containerConfiguration: ContainerConfiguration): Container {
+    return initializeDiagramContainer( container, nmetaDiagramModule, validatedEditor, ...containerConfiguration);
 }

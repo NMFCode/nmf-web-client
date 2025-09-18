@@ -33,7 +33,7 @@ export const theme = createTheme({
         MuiInputLabel: {
             styleOverrides: {
                 root: {
-                    color: 'var(--vscode-textLink-foreground)',
+                    color: 'var(--vscode-statusBarItem-remoteBackground)',
                     '&.MuiInputLabel-shrink':{
                     color:'var(--vscode-statusBarItem-remoteBackground)', 
                 }
@@ -55,7 +55,8 @@ export const theme = createTheme({
                 borderRadius: '4px',}
             },
         },
-    MuiInputBase: {
+   
+        MuiInputBase: {
         styleOverrides: {
             root: {
                 color: 'var(--vscode-editor-foreground)',
@@ -70,7 +71,6 @@ export const theme = createTheme({
                         },
                         '&.Mui-focused .MuiOutlinedInput-notchedOutline':{
                             borderColor:'var(--vscode-statusBarItem-remoteBackground)',
-                            
                         }    
                     }
                 }
