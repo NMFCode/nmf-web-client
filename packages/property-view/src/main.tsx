@@ -1,22 +1,13 @@
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import { createRoot } from 'react-dom/client';
 import App from './App';
+import { theme } from './theme';
 import { StrictMode } from 'react';
 
 /**
  * Customize form so each control has more space
  */
-const theme = createTheme({
-    components: {
-        MuiFormControl: {
-            styleOverrides: {
-                root: {
-                    margin: '0.8em 0',
-                },
-            },
-        },
-    },
-});
+
 
 const rootEl = document.getElementById('root');
 

@@ -190,7 +190,6 @@ export function listen(
     });
 }
 
-
 export class PropViewWebSocketProvider {
     protected webSocket: WebSocket;
     protected reconnectTimer: NodeJS.Timer;
@@ -223,7 +222,7 @@ export class PropViewWebSocketProvider {
         };
 
         return new Promise(resolve => {
-            this.webSocket.onopen = (): void => {
+            this.webSocket.onopen = async (): Promise<void> =>  {
                 clearInterval(this.reconnectTimer);
                 const wrappedSocket = wrap(this.webSocket);
                 const wsConnection = createWebSocketConnection(wrappedSocket, handler.logger);
@@ -250,7 +249,7 @@ export class PropViewWebSocketProvider {
 
                 if (isReconnecting) {
                     handler.logger?.warn('PropViewWebSocketProvider Reconnecting!');
-                    handler.onReconnect?.(wsConnection);
+                    await handler.onReconnect?.(wsConnection);
                 } else {
                     handler.logger?.warn('PropViewWebSocketProvider Initializing!');
                     handler.onConnection?.(wsConnection);

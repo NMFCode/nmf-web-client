@@ -22,6 +22,7 @@ import {
     GLabel,
     editLabelFeature
 } from '@eclipse-glsp/client';
+import '../css/diagram.css'
 
 export class DefaultNode extends RectangularNode implements Nameable, WithEditableLabel {
     static override readonly DEFAULT_FEATURES = [

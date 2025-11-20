@@ -3,19 +3,23 @@
   "version": "0.1.1",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@jsonforms/core": "3.3.0",
     "@jsonforms/material-renderers": "3.3.0",
     "@jsonforms/react": "3.3.0",
     "@mui/icons-material": "^5.15.19",
     "@mui/lab": "5.0.0-alpha.170",
-    "@mui/material": "^5.15.19",
+    "@mui/material": "^5.18.0",
     "@mui/x-date-pickers": "^6.x",
     "deep-equal": "^2.2.3",
     "property-view": "file:",
     "property-views-client": "^0.0.1-beta",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "vscode-jsonrpc": "^8.2.1"
+    "symbol-observable": "^4.0.0",
+    "vscode-jsonrpc": "^8.2.1",
+    "yarn": "^1.22.22"
   },
   "devDependencies": {
     "@testing-library/react": "^16.0.0",
@@ -35,7 +39,7 @@
     "prettier": "^3.3.1",
     "start-server-and-test": "^2.0.4",
     "typescript": "~5.4.5",
-    "vite": "^5.1.0",
+    "vite": "^5.4.19",
     "vitest": "^1.6.0"
   },
   "scripts": {

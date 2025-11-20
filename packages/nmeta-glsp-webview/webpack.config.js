@@ -1,7 +1,7 @@
 // @ts-check
 const path = require('path');
 
-const outputPath = path.resolve(__dirname, './dist/');
+const outputPath = path.resolve(__dirname, '../nmeta-vscode/dist');
 
 /**@type {import('webpack').Configuration}*/
 const config = {

@@ -3,13 +3,15 @@
 import { createNMetaDiagramContainer } from 'nmeta-glsp-client';
 import { ContainerConfiguration } from '@eclipse-glsp/client';
 import { GLSPStarter } from '@eclipse-glsp/vscode-integration-webview';
-import '@eclipse-glsp/vscode-integration-webview/css/glsp-vscode.css';
-import '@vscode/codicons/dist/codicon.css';
 import { Container } from 'inversify';
+import 'reflect-metadata';
+import '@eclipse-glsp/vscode-integration-webview/css/glsp-vscode.css';
+import '../css/diagram.css';
 
 class NMetaGLSPStarter extends GLSPStarter {
+
     createContainer(...containerConfiguration: ContainerConfiguration): Container {
-        return createNMetaDiagramContainer(...containerConfiguration);
+        return createNMetaDiagramContainer(new Container(),...containerConfiguration);
     }
 }
 

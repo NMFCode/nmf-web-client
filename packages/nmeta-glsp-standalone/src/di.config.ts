@@ -14,7 +14,7 @@ import { Container } from 'inversify';
 import '../css/diagram.css';
 
 export default function createContainer(options: IDiagramOptions): Container {
-    const container = createNMetaDiagramContainer(
+    const container = createNMetaDiagramContainer(new Container(),
         createDiagramOptionsModule(options),
         {
             add: accessibilityModule,

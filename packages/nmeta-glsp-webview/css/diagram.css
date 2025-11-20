@@ -1,50 +1,53 @@
 :root {
-    --glsp-info-foreground: blue;
+    stroke: var(--vscode-statusBarItem-remoteBackground);
 }
 
 .sprotty-graph {
-    background: rgb(179, 196, 202);
+    background: var(--vscode-editor-background);
 }
 
-.sprotty svg{
-    color:rgb(213, 233, 59);
-}
 .sprotty-node {
-    fill: white;
-    stroke: rgb(255, 255, 255);
+    fill: var(--vscode-textBlockQuote-background);
+    stroke: var(--vscode-editor-foreground);
     stroke-width: 1;
+    border-radius: '5px';
 }
 
-.r
+.sprotty-resize-handle.selected{
+    fill: var(--vscode-statusBarItem-remoteBackground);
+}
+
+.label.sprotty-label, .Attribute.sprotty-label{
+    fill: var(--vscode-editor-foreground);
+}
 
 .sprotty-edge {
-    stroke: var('--vscode-editor-foreground');
+    stroke: var(--vscode-editor-foreground);
 }
 
 .sprotty-edge.arrow {
-    fill: rgb(18, 204, 21);
+    fill: var(--vscode-editor-foreground);
 }
 
 .sprotty-edge.selected {
-    stroke: #844;
+    stroke: var(--vscode-statusBarItem-remoteBackground);
 }
 
 .sprotty-edge.selected > .arrow {
-    fill: #844;
-    stroke: #844;
+    stroke: var(--vscode-statusBarItem-remoteBackground);
 }
 
 .sprotty-node:not(.selected) {
-    stroke: black;
+    stroke: var(--vscode-editor-foreground);
     stroke-width: 1;
 }
 
 polygon.sprotty-node {
-    stroke: black;
+    stroke: var(--vscode-editor-foreground);
 }
 
 .sprotty-node.selected {
-    stroke: rgb(87, 87, 214);
+    stroke: var(--vscode-statusBarItem-remoteBackground);
 }
 
 .bordered-projection-bar {

@@ -1,9 +1,13 @@
 import { GlspEditorProvider, GlspVscodeConnector } from '@eclipse-glsp/vscode-integration';
 import * as vscode from 'vscode';
 
+declare interface SymbolConstructor {
+    readonly observable: symbol;
+}
 export default class NMetaEditorProvider extends GlspEditorProvider {
     diagramType = 'nmeta';
 
+    
     constructor(
         protected readonly extensionContext: vscode.ExtensionContext,
         protected override readonly glspVscodeConnector: GlspVscodeConnector
@@ -31,7 +35,7 @@ export default class NMetaEditorProvider extends GlspEditorProvider {
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, height=device-height">
-					<meta http-equiv="Content-Security-Policy" content="
+                    <meta http-equiv="Content-Security-Policy" content="
                 default-src http://*.fontawesome.com  ${webview.cspSource} 'unsafe-inline' 'unsafe-eval';
                 ">
 
