@@ -36,8 +36,8 @@
     "eslint-plugin-header": "~3.1.1",
     "shx": "~0.3.4",
     "typescript": "~5.1.6",
-    "vitest": "~1.5.0"  
-},
+    "vitest": "~1.5.0"
+  },
   "overrides": {
     "@types/node": "~16.18.41"
   },
@@ -53,8 +53,5 @@
     "packages/nmeta-glsp-standalone",
     "packages/property-views-client",
     "packages/property-view"
-  ],
-  "dependencies": {
-    "nmf-workspaces": "file:"
-  }
+  ]
 }
