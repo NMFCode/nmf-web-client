@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/glsp/notation">
-  <elements xsi:type="notation:Shape" id="b4697554-1550-49f5-bc65-f8853aa3a555" semanticElement="nmeta:Class bla.nmeta#//NewClas">
-    <position x="230" y="130" />
-    <size width="68.28468704223633" height="31.84415626525879" />
-  </elements>
-</notation:Diagram>

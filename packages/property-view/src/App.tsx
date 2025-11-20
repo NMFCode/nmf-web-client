@@ -29,17 +29,15 @@ const webSocketUrl = `ws://localhost:${port}/${id}`;
 
 const classes = {  
     container: {
+        margin: '1rem',
         width: '100%',
         height: '100%',
         backgroundColor: 'var(--vscode-editor-background)',
         color: 'var(--vscode-editor-foreground)',
     },
     dataContent: {
-        width: '100%',
-        height: '100%',
         display: 'flex',
         justifyContent: 'center',
-        marginBottom: '1rem',
         backgroundColor: 'var(--vscode-editor-background)',
         color: 'var(--vscode-editor-foreground)',
     }

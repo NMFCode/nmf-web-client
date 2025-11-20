@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/glsp/notation">
+  <elements xsi:type="notation:Shape" id="e0843e3a-11b7-4981-9c19-4decde4f361a" semanticElement="nmeta:Class about:petriNet#//PetriNet">
+    <position x="-767.1140289306641" y="-187.49999999999994" />
+    <size width="108.17304992675781" height="55" />
+  </elements>
+  <elements xsi:type="notation:Shape" id="b6f66673-acbe-4246-abc4-4a6420e023b5" semanticElement="nmeta:Class about:petriNet#//Place">
+    <position x="-937.4569702148438" y="-47.49999999999996" />
+    <size width="108.17304992675781" height="55" />
+  </elements>
+  <elements xsi:type="notation:Shape" id="2876812b-93d6-4558-9c83-f9ee5f05cd3f" semanticElement="nmeta:Class about:petriNet#//Transition">
+    <position x="-596.5517578125" y="-58.499999999999964" />
+    <size width="106.5517578125" height="55" />
+  </elements>
+  <elements xsi:type="notation:Edge" source="notation:Shape #//@elements.0" target="notation:Shape #//@elements.1" id="cae5f3b8-1760-4ae1-bc56-a64c747b28d5" semanticElement="nmeta:Reference about:petriNet#//PetriNet/places" />
+  <elements xsi:type="notation:Edge" source="notation:Shape #//@elements.0" target="notation:Shape #//@elements.2" id="25f6a27a-d6ff-4700-9c43-62c6918faba8" semanticElement="nmeta:Reference about:petriNet#//PetriNet/transitions" />
+  <elements xsi:type="notation:Edge" source="notation:Shape #//@elements.1" target="notation:Shape #//@elements.2" id="ae8f806a-8e38-4b6c-89f4-4d0a18b37f69" semanticElement="nmeta:Reference about:petriNet#//Place/outgoing">
+    <bendPoints x="-750" y="30" />
+    <bendPoints x="-660" y="30" />
+  </elements>
+  <elements xsi:type="notation:Edge" source="notation:Shape #//@elements.1" target="notation:Shape #//@elements.2" id="96b0c313-aaa3-4b17-8b5c-a2fef138e0f6" semanticElement="nmeta:Reference about:petriNet#//Place/incoming">
+    <bendPoints x="-740" y="-40" />
+    <bendPoints x="-660" y="-40" />
+  </elements>
+  <elements xsi:type="notation:Shape" id="d33a14b2-85ab-4d37-a6fb-d96947370199">
+    <position x="-420" y="-140" />
+    <size width="68.65034484863281" height="32" />
+  </elements>
+  <elements xsi:type="notation:Shape" id="213cef23-3539-42a6-83a0-076d7aeb329d">
+    <position x="-180" y="-160" />
+    <size width="68.65034484863281" height="32" />
+  </elements>
+</notation:Diagram>

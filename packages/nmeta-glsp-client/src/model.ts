@@ -65,6 +65,19 @@ export class DefaultNode extends RectangularNode implements Nameable, WithEditab
             height: size.height
         };
     }
+
+    
+
+    override set bounds(newBounds: Bounds) {
+        this.position = {
+            x: newBounds.x,
+            y: newBounds.y
+        };
+        this.size = {
+            width: newBounds.width,
+            height: newBounds.height
+        };
+    }
 }
 
 export class ElementLabel extends GLabel {

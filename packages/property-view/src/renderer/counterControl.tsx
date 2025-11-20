@@ -16,21 +16,19 @@ const INT32_MIN = -2147483648;
 const INT32_MAX = 2147483647;
 
 const clampToInt32 = (value: number) => {
-  return Math.max(INT32_MIN, Math.min(INT32_MAX, Math.floor(value)));
+  return Math.max(INT32_MIN, Math.min(INT32_MAX, Math.floor(value))) || 0;
 };
 
 const CounterControl = ({ data, handleChange, path, schema}: CounterControlProps)=>{
     
-    const value = schema?.default|| 0;
-
-
+    const value = data || schema?.default || 0;
 
     const increment = () => {
-        const newValue = value+1;
+        const newValue = (+value)+1;
         handleChange(path, clampToInt32(newValue));
     }
     const decrement = () => {
-         const newValue = value-1;
+         const newValue = (+value)-1;
         handleChange(path, clampToInt32(newValue));
     }
 

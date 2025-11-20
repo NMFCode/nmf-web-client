@@ -1,25 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<nmeta:Namespace xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Uri="about:petriNet" Prefix="pn" Name="petriNets" Summary="Test" xmlns:xmi="http://www.omg.org/XMI" xmlns:nmeta="http://nmf.codeplex.com/nmeta/">
+<nmeta:Namespace xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Uri="about:petriNet" Prefix="pn" Name="petriNets" Summary="" xmlns:xmi="http://www.omg.org/XMI" xmlns:nmeta="http://nmf.codeplex.com/nmeta/">
   <Types xsi:type="nmeta:Class" Identifier="#//PetriNet/name" Name="PetriNet">
-    <References IsContainment="true" IsOrdered="true" IsUnique="true" UpperBound="-1" Name="places" />
-    <References IsContainment="true" IsOrdered="true" IsUnique="true" UpperBound="-1" Name="transitionsss" />
-    <References Opposite="#//Testerr/NewReference" ReferenceType="nmeta:Class #//Testerr" Name="Opposite" />
-    <References IsContainment="true" ReferenceType="nmeta:Class #//Transition" Name="NewReference" />
-    <Attributes DefaultValue="Da" IsOrdered="true" IsUnique="true" LowerBound="1" Type="nmeta:PrimitiveType http://nmf.codeplex.com/nmeta/#//String" Name="name" />
+    <References IsContainment="true" ReferenceType="nmeta:Class #//Place" IsOrdered="true" IsUnique="true" UpperBound="-1" Name="places" />
+    <References IsContainment="true" ReferenceType="nmeta:Class #//Transition" UpperBound="-1" Name="transitions" />
+    <Attributes DefaultValue="" IsOrdered="true" IsUnique="true" LowerBound="1" Type="nmeta:PrimitiveType http://nmf.codeplex.com/nmeta/#//String" Name="name" />
   </Types>
-  <Types xsi:type="nmeta:Class" IdentifierScope="Global" BaseTypes="http://nmf.codeplex.com/nmeta/#//Namespace http://nmf.codeplex.com/nmeta/#//StructuredType http://nmf.codeplex.com/nmeta/#//ReferenceType" Identifier="#//Testerr/name" Name="Testerr" Summary="Summary" Remarks="lk">
+  <Types xsi:type="nmeta:Class" IdentifierScope="Global" Identifier="#//Place/name" Name="Place" Summary="" Remarks="">
     <References Opposite="#//Transition/from" ReferenceType="nmeta:Class #//Transition" IsOrdered="true" IsUnique="true" UpperBound="-1" Name="outgoing" />
     <References Opposite="#//Transition/to" ReferenceType="nmeta:Class #//Transition" IsOrdered="true" IsUnique="true" UpperBound="-1" Name="incoming" />
-    <References Opposite="#//PetriNet/Opposite" ReferenceType="nmeta:Class #//PetriNet" Name="NewReference" />
     <Attributes DefaultValue="" IsOrdered="true" IsUnique="true" LowerBound="1" Type="nmeta:PrimitiveType http://nmf.codeplex.com/nmeta/#//String" Name="name" />
-    <Attributes DefaultValue="" Type="nmeta:PrimitiveType http://nmf.codeplex.com/nmeta/#//String" Name="NewAttributeee" />
   </Types>
   <Types xsi:type="nmeta:Class" Name="Transition">
-    <References Opposite="#//Testerr/outgoing" ReferenceType="nmeta:Class #//Testerr" IsOrdered="true" IsUnique="true" UpperBound="-1" Name="from" />
-    <References Opposite="#//Testerr/incoming" ReferenceType="nmeta:Class #//Testerr" IsOrdered="true" IsUnique="true" UpperBound="-1" Name="to" />
+    <References Opposite="#//Place/outgoing" ReferenceType="nmeta:Class #//Place" IsOrdered="true" IsUnique="true" UpperBound="-1" Name="from" />
+    <References Opposite="#//Place/incoming" ReferenceType="nmeta:Class #//Place" IsOrdered="true" IsUnique="true" UpperBound="-1" Name="to" />
     <Attributes IsOrdered="true" IsUnique="true" Type="nmeta:PrimitiveType http://nmf.codeplex.com/nmeta/#//String" Name="input" />
   </Types>
-  <Types xsi:type="nmeta:Class" Name="Test" />
-  <Types xsi:type="nmeta:Class" Name="NewClass" />
-  <Types xsi:type="nmeta:Class" Name="NewClass1" />
 </nmeta:Namespace>

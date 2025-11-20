@@ -50,18 +50,6 @@
         "enablement": "activeCustomEditorId == 'nmeta.glspDiagram'"
       },
       {
-        "command": "nmeta.goToNextNode",
-        "title": "Go to next Node",
-        "category": "nmeta Navigation",
-        "enablement": "activeCustomEditorId == 'nmeta.glspDiagram' && nmeta.editorSelectedElementsAmount == 1"
-      },
-      {
-        "command": "nmeta.goToPreviousNode",
-        "title": "Go to previous Node",
-        "category": "nmeta Navigation",
-        "enablement": "activeCustomEditorId == 'nmeta.glspDiagram' && nmeta.editorSelectedElementsAmount == 1"
-      },
-      {
         "command": "nmeta.showDocumentation",
         "title": "Show documentation...",
         "category": "nmeta Diagram",
@@ -115,18 +103,6 @@
         "mac": "alt+e",
         "command": "nmeta.exportAsSVG",
         "when": "activeCustomEditorId == 'nmeta.glspDiagram'"
-      },
-      {
-        "key": "Ctrl+4",
-        "mac": "cmd+4",
-        "command": "nmeta.goToNextNode",
-        "when": "activeCustomEditorId == 'nmeta.glspDiagram' && nmeta.editorSelectedElementsAmount == 1"
-      },
-      {
-        "key": "Ctrl+3",
-        "mac": "cmd+3",
-        "command": "nmeta.goToPreviousNode",
-        "when": "activeCustomEditorId == 'nmeta.glspDiagram' && nmeta.editorSelectedElementsAmount == 1"
       }
     ],
     "menus": {
@@ -134,16 +110,6 @@
         {
           "submenu": "nmeta.editor.title",
           "group": "bookmarks"
-        },
-        {
-          "command": "nmeta.goToNextNode",
-          "group": "navigation",
-          "when": "activeCustomEditorId == 'nmeta.glspDiagram' && nmeta.editorSelectedElementsAmount == 1"
-        },
-        {
-          "command": "nmeta.goToPreviousNode",
-          "group": "navigation",
-          "when": "activeCustomEditorId == 'nmeta.glspDiagram' && nmeta.editorSelectedElementsAmount == 1"
         },
         {
           "command": "nmeta.showDocumentation",
@@ -191,6 +157,7 @@
     "views": {
       "propertyPanel": [
         {
+          "icon": "",
           "type": "webview",
           "id": "nmeta.propertyView",
           "name": "Properties",
