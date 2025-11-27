@@ -33,45 +33,42 @@ namespace <%= LanguageName %>.FiniteStateMachines
     
     
     /// <summary>
-    /// Denotes a class to implement the incoming reference
+    /// The default implementation of the StartState class
     /// </summary>
-    public class StateIncomingCollection : ObservableOppositeOrderedSet<IState, ITransition>
+    [XmlNamespaceAttribute("about:fsm")]
+    [XmlNamespacePrefixAttribute("fsm")]
+    [ModelRepresentationClassAttribute("about:fsm#//StartState")]
+    [DebuggerDisplayAttribute("StartState {Name}")]
+    public partial class StartState : State, IStartState, IModelElement
     {
         
-        /// <summary>
-        /// Creates a new instance
-        /// </summary>
-        /// <param name="parent">the parent State</param>
-        public StateIncomingCollection(IState parent) : 
-                base(parent)
-        {
-        }
-        
-        private void OnItemDeleted(object sender, EventArgs e)
-        {
-            this.Remove(((ITransition)(sender)));
-        }
+        private static IClass _classInstance;
         
         /// <summary>
-        /// Sets the opposite of the given item
+        /// Gets the Class model for this type
         /// </summary>
-        /// <param name="item">the item</param>
-        /// <param name="newParent">the new parent or null, if the item is removed from the collection</param>
-        protected override void SetOpposite(ITransition item, IState newParent)
+        public new static IClass ClassInstance
         {
-            if ((newParent != null))
+            get
             {
-                item.Deleted += this.OnItemDeleted;
-                item.Target = newParent;
-            }
-            else
-            {
-                item.Deleted -= this.OnItemDeleted;
-                if ((item.Target == this.Parent))
+                if ((_classInstance == null))
                 {
-                    item.Target = newParent;
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("about:fsm#//StartState")));
                 }
+                return _classInstance;
             }
+        }
+        
+        /// <summary>
+        /// Gets the Class for this model element
+        /// </summary>
+        public override IClass GetClass()
+        {
+            if ((_classInstance == null))
+            {
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("about:fsm#//StartState")));
+            }
+            return _classInstance;
         }
     }
 }

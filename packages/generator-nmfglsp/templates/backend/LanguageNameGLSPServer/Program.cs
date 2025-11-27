@@ -1,5 +1,7 @@
 using <%= LanguageName %>;
 using Microsoft.AspNetCore.WebSockets;
+using Microsoft.AspNetCore.Hosting.Server.Features;
+using Microsoft.AspNetCore.Hosting.Server;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,4 +17,11 @@ var app = builder.Build();
 app.UseWebSockets();
 app.MapGlspWebSocketServer("/glsp");
 
-await app.RunAsync();
+var server = app.Services.GetRequiredService<IServer>();
+var addressFeature = server.Features.Get<IServerAddressesFeature>();
+
+await app.StartAsync();
+
+Console.WriteLine($"[GLSP-Server]:Startup completed on {addressFeature!.Addresses.First()}");
+
+await app.WaitForShutdownAsync();

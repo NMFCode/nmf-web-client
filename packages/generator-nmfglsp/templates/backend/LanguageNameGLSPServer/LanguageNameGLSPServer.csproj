@@ -17,8 +17,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
-    <PackageReference Include="NMF-Basics" Version="2.0.217" />
-    <PackageReference Include="NMF-GLSP" Version="2.0.217" />
+    <PackageReference Include="NMF-Basics" Version="2.0.457" />
+    <PackageReference Include="NMF-GLSP" Version="2.0.460" />
   </ItemGroup>
 
 </Project>

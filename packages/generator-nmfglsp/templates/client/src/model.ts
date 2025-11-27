@@ -6,8 +6,6 @@ import {
     fadeFeature,
     hoverFeedbackFeature,
     isEditableLabel,
-    layoutableChildFeature,
-    LayoutContainer,
     layoutContainerFeature,
     moveFeature,
     Nameable,
@@ -16,7 +14,6 @@ import {
     RectangularNode,
     GChildElement,
     selectFeature,
-    GShapeElement,
     WithEditableLabel,
     withEditLabelFeature,
     GLabel,
@@ -40,12 +37,9 @@ export class DefaultNode extends RectangularNode implements Nameable, WithEditab
     ];
 
     get editableLabel(): (GChildElement & EditableLabel) | undefined {
-        const headerComp = this.children.find(element => element.type === 'comp:header');
-        if (headerComp) {
-            const label = headerComp.children.find(element => element.type === 'label');
-            if (label && isEditableLabel(label)) {
-                return label;
-            }
+        const label = this.children.find(element => element.type === 'label');
+        if (label && isEditableLabel(label)) {
+            return label;
         }
         return undefined;
     }
@@ -60,15 +54,7 @@ export class ElementLabel extends GLabel {
     static override readonly DEFAULT_FEATURES = [
         ...GLabel.DEFAULT_FEATURES,
         editLabelFeature,
-        selectFeature,
-        deletableFeature
-    ];
-}
-
-export class AttributeLabel extends GLabel {
-    static override readonly DEFAULT_FEATURES = [
-        ...GLabel.DEFAULT_FEATURES,
-        editLabelFeature
+        selectFeature
     ];
 }
 
@@ -78,14 +64,4 @@ export class EdgeLabel extends GLabel {
         editLabelFeature,
         moveFeature,
     ];
-}
-
-export class Icon extends GShapeElement implements LayoutContainer {
-    static readonly DEFAULT_FEATURES = [boundsFeature, layoutContainerFeature, layoutableChildFeature, fadeFeature];
-
-    layout!: string;
-    override size = {
-        width: 32,
-        height: 32
-    };
 }

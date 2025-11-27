@@ -9,7 +9,10 @@
 		<References IsContainment="true" Opposite="#//Transition/source" ReferenceType="nmeta:Class #//Transition" IsOrdered="true" IsUnique="true" UpperBound="-1" Name="outgoing" />
 		<References Opposite="#//Transition/target" ReferenceType="nmeta:Class #//Transition" IsOrdered="true" IsUnique="true" UpperBound="-1" Name="incoming" />
 		<Attributes IsOrdered="true" IsUnique="true" LowerBound="1" Type="nmeta:PrimitiveType http://nmf.codeplex.com/nmeta/#//String" Name="name" />
-		<Attributes IsOrdered="true" IsUnique="true" LowerBound="1" Type="nmeta:PrimitiveType http://nmf.codeplex.com/nmeta/#//Boolean" Name="isFinalState" />
+	</Types>
+	<Types xsi:type="nmeta:Class" BaseTypes="#//State" Name="StartState">
+	</Types>
+	<Types xsi:type="nmeta:Class" BaseTypes="#//State" Name="FinalState">
 	</Types>
 	<Types xsi:type="nmeta:Class" Name="Transition">
 		<References Opposite="#//State/outgoing" ReferenceType="nmeta:Class #//State" IsOrdered="true" IsUnique="true" LowerBound="1" Name="source" />

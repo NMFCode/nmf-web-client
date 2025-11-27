@@ -14,6 +14,7 @@
 
 .sprotty-edge {
     stroke: black;
+    marker-end: var(--svg-def-marker-tent);
 }
 
 .sprotty-edge.arrow {

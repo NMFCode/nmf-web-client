@@ -24,14 +24,36 @@ namespace <%= LanguageName %>
         {
             protected override void DefineLayout()
             {
-                Label(s => s.Name, "label:heading").At(30, 15);
+                Layout(LayoutStrategy.Vbox);
+                Label(s => s.Name, "label:heading");
+            }
 
-                CssClass("task");
-                CssClass("manual", s => s.IsFinalState);
+            public override IState CreateElement(string profile, object parent)
+            {
+                return new State
+                {
+                    Name = "New State"
+                };
+            }
+        }
 
-                Operation("Toggle final state", (s, _) => s.IsFinalState = !s.IsFinalState);
+        public class FinalStateDescriptor : NodeDescriptor<IFinalState>
+        {
+            protected override void DefineLayout()
+            {
+                Refine(D<StateDescriptor>());
 
-                Profile("final state", () => new State { IsFinalState = true });
+                Size(30, 30);
+            }
+        }
+
+        public class StartStateDescriptor : NodeDescriptor<IStartState>
+        {
+            protected override void DefineLayout()
+            {
+                Refine(D<StateDescriptor>());
+
+                Size(20, 20);
             }
         }
 
@@ -42,9 +64,9 @@ namespace <%= LanguageName %>
                 SourceNode(D<StateDescriptor>(), t => t.Source);
                 TargetNode(D<StateDescriptor>(), t => t.Target);
                 Label(t => t.Trigger)
-                    .WithType("label:heading")
+                    .WithType("label:egde")
                     .Validate((t, newTrigger) => !string.IsNullOrEmpty(newTrigger), "trigger must not be empty")
-                    .At(0.5, EdgeSide.Top);
+                    .At(0.5, EdgeSide.Top, offset: 10);
             }
 
             public override ITransition CreateElement(string profile, object parent)

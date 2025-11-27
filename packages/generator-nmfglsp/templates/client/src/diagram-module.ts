@@ -36,21 +36,13 @@ export const <%= language-id %>DiagramModule = new ContainerModule((bind, unbind
     bindOrRebind(context, TYPES.IContextMenuService).to(ContextMenuService);
 
     configureDefaultModelElements(context);
-    configureModelElement(context, 'label', AttributeLabel, GLabelView);
-    configureModelElement(context, 'comp:header', GCompartment, GCompartmentView);
-    configureModelElement(context, 'comp:attributes', GCompartment, GCompartmentView);
-    configureModelElement(context, 'comp:operations', GCompartment, GCompartmentView);
-    configureModelElement(context, 'comp:literals', GCompartment, GCompartmentView);
-    configureModelElement(context, 'Class', DefaultNode, RectangularNodeView);
-    configureModelElement(context, 'Enumeration', DefaultNode, RectangularNodeView);
-    configureModelElement(context, 'Namespace', DefaultNode, RectangularNodeView);
-    configureModelElement(context, 'Literal', ElementLabel, GLabelView);
-    configureModelElement(context, 'Attribute', ElementLabel, GLabelView);
-    configureModelElement(context, 'Operation', ElementLabel, GLabelView);
-    configureModelElement(context, 'Reference', GEdge, ReferenceEdgeView);
-    configureModelElement(context, 'comp:divider', GCompartment, DividerView);
-
-    configureModelElement(context, 'edge:inheritance', GEdge, InheritanceEdgeView);
+    configureModelElement(context, DefaultTypes.GRAPH, GGraph, StateMachineGraph);
+    configureModelElement(context, 'Transition', GEdge, PolylineEdgeViewWithGapsOnIntersections);
+    configureModelElement(context, 'label:heading', ElementLabel, GLabelView);
+    configureModelElement(context, 'label:edge', EdgeLabel, GLabelView);
+    configureModelElement(context, 'State', DefaultNode, StateView);
+    configureModelElement(context, 'FinalState', DefaultNode, FinalStateView);
+    configureModelElement(context, 'StartState', DefaultNode, StartStateView);
 });
 
 export function create<%= LanguageName %>DiagramContainer(...containerConfiguration: ContainerConfiguration): Container {
