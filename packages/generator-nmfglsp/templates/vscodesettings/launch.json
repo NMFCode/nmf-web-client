@@ -1,0 +1,54 @@
+{
+    // Use IntelliSense to learn about possible Node.js debug attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+        "name": "Run Extension",
+        "type": "extensionHost",
+        "request": "launch",
+        "runtimeExecutable": "${execPath}",
+        "args": [
+            "${workspaceFolder}/workspace",
+            "--extensionDevelopmentPath=${workspaceFolder}/packages/<%= language-id %>-vscode"
+        ],
+        "outFiles": [
+            "${workspaceRoot}/packages/<%= language-id %>-vscode/dist/<%= language-id %>-extension.js",
+            "${workspaceRoot}/packages/<%= language-id %>-vscode/lib/**/*.js",
+            "${workspaceRoot}/node_modules/@eclipse-glsp/*/lib/**/*.js"
+        ],
+        "sourceMaps": true,
+        "sourceMapPathOverrides": {
+            "webpack://<%= language-id %>-vscode/(.+)": "${workspaceFolder}/packages/<%= language-id %>-vscode/$1"
+        },
+        "env": {
+            "GLSP_LOG_DIR": "${workspaceFolder}/logs",
+            "GLSP_SERVER_DEBUG": "true",
+            "GLSP_SERVER_PORT": "5052",
+            "GLSP_WEBSOCKET_PATH": "glsp"
+        }
+        },
+        {
+            "name": "Vitest: Run All",
+            "type": "node",
+            "request": "launch",
+            "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
+            "program": "${workspaceRoot}/node_modules/vitest/vitest.mjs",
+            "args": ["run", "--no-color", "--no-coverage", "--no-watch"],
+            "smartStep": true,
+            "console": "integratedTerminal",
+        },
+        {
+            "name": "Vitest: Run Selected File",
+            "type": "node",
+            "request": "launch",
+            "autoAttachChildProcesses": true,
+            "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
+            "program": "${workspaceRoot}/node_modules/vitest/vitest.mjs",
+            "args": ["run", "${relativeFile}"],
+            "smartStep": true,
+            "console": "integratedTerminal",
+        }
+    ]
+}

@@ -1,7 +1,8 @@
 ﻿using NMF.Glsp.Language;
-using <%= LanguageName %>.Metamodel;
+using NMF.Glsp.Language.Layouting;
 using NMF.Collections;
 using NMF.Expressions.Linq;
+using <%= LanguageName %>.FiniteStateMachines;
 
 namespace <%= LanguageName %>
 {

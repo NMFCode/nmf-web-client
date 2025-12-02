@@ -3,8 +3,9 @@
     "private": true,
     "engineStrict": true,
     "engines": {
-      "node": ">= 18.0.0",
-      "npm": ">= 9.5.0"
+      "node": ">= 20",
+      "npm": ">= 9.5.0",
+      "yarn": ">=1.7.0 <2"
     },
     "scripts": {
       "clean": "shx rm -rf packages/*/lib packages/*/out packages/*/*.tsbuildinfo examples/*/*.tsbuildinfo",
@@ -18,7 +19,7 @@
       "validate-exports": "npm run validate-exports --workspace=<%= language-id %>-glsp-client --workspace=<%= language-id %>-glsp-web",
       "version:dependencies": "node ./scripts/update-version.js && npm install",
       "dev-build": "npm run dev-clean && npm install && npm link ./packages/<%= language-id %>-glsp-client",
-      "dev-clean": "shx rm -rf packages/**/node_modules && npm uninstall -g <%= language-id %>-workspaces <%= language-id %>-glsp-client && npm unlink <%= language-id %>-workspaces <%= language-id %>-glsp-client",
+      "dev-clean": "npm uninstall -g <%= language-id %>-workspaces <%= language-id %>-glsp-client && npm unlink <%= language-id %>-workspaces <%= language-id %>-glsp-client",
       "reset:repo": "git clean -f -X -d"
     },
     "devDependencies": {
@@ -36,7 +37,7 @@
       "eslint": "~8.56.0",
       "eslint-plugin-header": "~3.1.1",
       "shx": "~0.3.4",
-      "typescript": "~5.1.6",
+      "typescript": "^5.5.3",
       "vitest": "~1.5.0"
     },
     "overrides": {
@@ -47,8 +48,7 @@
       "npm": "10.2.4"
     },
     "workspaces": [
-      "packages/<%= language-id %>-glsp-client",
-      "packages/<%= language-id %>-glsp-web"
+      "packages/<%= language-id %>-glsp-client"
     ]
   }
   

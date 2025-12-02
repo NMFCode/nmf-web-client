@@ -17,9 +17,10 @@ const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 const TEMPLATE_CORE_DIR = '../templates/client';
 const TEMPLATE_VSCODE_DIR = '../templates/vscode';
-const TEMPLATE_WEB_DIR = '../templates/web';
+const TEMPLATE_VSCODE_WEBVIEW_DIR = '../templates/web';
 const TEMPLATE_STANDALONE_DIR = '../templates/standalone';
 const TEMPLATE_BACKEND_DIR = '../templates/backend';
+const TEMPLATE_DOTVSCODE_DIR = '../templates/vscodesettings';
 const USER_DIR = '.';
 
 const EXTENSION_NAME = /<%= extension-name %>/g;
@@ -29,6 +30,7 @@ const FILE_EXTENSION_GLOB = /<%= file-glob-extension %>/g;
 const TSCONFIG_BASE_NAME = /<%= tsconfig %>/g;
 
 const LANGUAGE_NAME = /<%= LanguageName %>/g;
+const LANGUAGE_NAME_CAMEL = /<%= LanguageNameCamel %>/g;
 const LANGUAGE_ID = /<%= language-id %>/g;
 const LANGUAGE_PATH_ID = /language-id/g;
 const LANGUAGE_PATH_NAME = /LanguageName/g;
@@ -69,7 +71,7 @@ export class NMFGenerator extends Generator {
                 type: 'input',
                 name: 'extensionName',
                 prefix: description(
-                    'Welcome to NMF!',
+                    'Welcome to NMF GLSP!',
                     'This tool generates a VS Code extension with a simple state machine language to get started quickly.',
                     'The extension name is an identifier used in the extension marketplace or package registry.'
                 ),
@@ -142,14 +144,13 @@ export class NMFGenerator extends Generator {
             /(?![\w| |\-|_])./g,
             ''
         );
-        const languageName = _.upperFirst(
-            _.camelCase(this.answers.rawLanguageName)
-        );
+        const languageNameCamel = _.camelCase(this.answers.rawLanguageName);
+        const languageName = _.upperFirst(languageNameCamel);
         const languageId = _.kebabCase(this.answers.rawLanguageName);
 
         const referencedTsconfigBaseName = 'tsconfig.json';
         const templateCopyOptions: CopyOptions = {
-            process: content => this._replaceTemplateWords(fileExtensionGlob, languageName, languageId, referencedTsconfigBaseName, content),
+            process: content => this._replaceTemplateWords(fileExtensionGlob, languageName, languageNameCamel, languageId, referencedTsconfigBaseName, content),
             processDestinationPath: path => this._replaceTemplateNames(languageId, languageName, path)
         };
 
@@ -171,15 +172,6 @@ export class NMFGenerator extends Generator {
             this.fs.copy(
                 this.templatePath(path),
                 this._extensionPath('packages/' + languageId + '-glsp-client/' + path),
-                templateCopyOptions
-            );
-        }
-
-        this.sourceRoot(path.join(__dirname, TEMPLATE_WEB_DIR));
-        for (const path of ['.']) {
-            this.fs.copy(
-                this.templatePath(path),
-                this._extensionPath('packages/' + languageId + '-glsp-web/' + path),
                 templateCopyOptions
             );
         }
@@ -220,6 +212,25 @@ export class NMFGenerator extends Generator {
                     templateCopyOptions
                 );
             }
+            this.sourceRoot(path.join(__dirname, TEMPLATE_DOTVSCODE_DIR));
+            for (const path of ['.']) {
+                this.fs.copy(
+                    this.templatePath(path),
+                    this._extensionPath('.vscode/' + path),
+                    templateCopyOptions
+                );
+            }
+
+            pkgJson.workspaces.push('packages/' + languageId + '-vscode-webview');
+            pkgJson.scripts.build += ' --workspace=' + languageId + '-vscode-webview';
+            this.sourceRoot(path.join(__dirname, TEMPLATE_VSCODE_WEBVIEW_DIR));
+            for (const path of ['.']) {
+                this.fs.copy(
+                    this.templatePath(path),
+                    this._extensionPath('packages/' + languageId + '-vscode-webview/' + path),
+                    templateCopyOptions
+                );
+            }
         }
 
         this.fs.extendJSON(this._extensionPath('package-template.json'), pkgJson, undefined, 4);
@@ -236,8 +247,8 @@ export class NMFGenerator extends Generator {
 
         const opts = { cwd: extensionPath };
         if(!this.args.includes('skip-install')) {
-            this.spawnSync('npm', ['link'], opts);
-            this.spawnSync('npm', ['install'], opts);
+            this.spawnSync('yarn', ['install'], opts);
+            this.spawnSync('yarn', ['build'], opts);
             this.spawnSync('dotnet', ['build', 'backend'], opts);
         }
     }
@@ -271,13 +282,14 @@ export class NMFGenerator extends Generator {
         return this.destinationPath(USER_DIR, this.answers.extensionName, ...path);
     }
 
-    _replaceTemplateWords(fileExtensionGlob: string, languageName: string, languageId: string, tsconfigBaseName: string, content: string | Buffer): string {
+    _replaceTemplateWords(fileExtensionGlob: string, languageName: string, languageNameCamel: string, languageId: string, tsconfigBaseName: string, content: string | Buffer): string {
         return content.toString()
             .replace(EXTENSION_NAME, this.answers.extensionName)
             .replace(RAW_LANGUAGE_NAME, this.answers.rawLanguageName)
             .replace(FILE_EXTENSION, this.answers.fileExtensions)
             .replace(FILE_EXTENSION_GLOB, fileExtensionGlob)
             .replace(LANGUAGE_NAME, languageName)
+            .replace(LANGUAGE_NAME_CAMEL, languageNameCamel)
             .replace(LANGUAGE_ID, languageId)
             .replace(TSCONFIG_BASE_NAME, tsconfigBaseName)
             .replace(NEWLINES, EOL);

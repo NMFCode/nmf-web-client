@@ -25,7 +25,8 @@
     "jsx": "react",
     "lib": ["ES2017", "DOM"],
     "sourceMap": true,
-    "types": ["node", "reflect-metadata"]
+    "types": ["node", "reflect-metadata"],
+    "skipLibCheck": true
   },
   "include": [
       "src/**/*.ts",

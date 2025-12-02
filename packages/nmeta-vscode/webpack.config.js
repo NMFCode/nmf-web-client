@@ -39,9 +39,6 @@ const config = {
     plugins: [
         new CopyPlugin({
             patterns: [
-                {
-                    from: path.resolve(__dirname, 'dist', 'NMetaGlspEditor.Server.exe')
-                },
                 { from: path.resolve(__dirname, 'dist','property.js')},
                 {
                     from: path.resolve(__dirname, 'dist', 'nmetaWebview.js')

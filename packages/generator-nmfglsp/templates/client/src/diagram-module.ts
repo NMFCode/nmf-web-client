@@ -2,12 +2,9 @@ import {
     ConsoleLogger,
     ContainerConfiguration,
     DeleteElementContextMenuItemProvider,
-    GEdge,
     GridSnapper,
     LogLevel,
     RevealNamedElementActionProvider,
-    GCompartment,
-    GCompartmentView,
     GLabelView,
     TYPES,
     bindAsService,
@@ -15,17 +12,20 @@ import {
     configureDefaultModelElements,
     configureModelElement,
     initializeDiagramContainer,
-    RectangularNodeView,
+    GEdge,
+    PolylineEdgeViewWithGapsOnIntersections,
+    DefaultTypes,
+    GGraph,
 } from '@eclipse-glsp/client';
 import 'balloon-css/balloon.min.css';
 import { Container, ContainerModule } from 'inversify';
 import 'sprotty/css/edit-label.css';
 import '../css/diagram.css';
-import { AttributeLabel, DefaultNode, ElementLabel } from './model';
-import { DividerView, InheritanceEdgeView, ReferenceEdgeView } from './views';
+import { ElementLabel, DefaultNode, EdgeLabel } from './model';
 import { ContextMenuService } from './menu';
+import { FinalStateView, StartStateView, StateMachineGraph, StateView } from './views';
 
-export const <%= language-id %>DiagramModule = new ContainerModule((bind, unbind, isBound, rebind) => {
+export const <%= LanguageNameCamel %>DiagramModule = new ContainerModule((bind, unbind, isBound, rebind) => {
     const context = { bind, unbind, isBound, rebind };
 
     bindOrRebind(context, TYPES.ILogger).to(ConsoleLogger).inSingletonScope();
@@ -46,5 +46,5 @@ export const <%= language-id %>DiagramModule = new ContainerModule((bind, unbind
 });
 
 export function create<%= LanguageName %>DiagramContainer(...containerConfiguration: ContainerConfiguration): Container {
-    return initializeDiagramContainer(new Container(), <%= language-id %>DiagramModule, ...containerConfiguration);
+    return initializeDiagramContainer(new Container(), <%= LanguageNameCamel %>DiagramModule, ...containerConfiguration);
 }

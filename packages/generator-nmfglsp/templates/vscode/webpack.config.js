@@ -40,7 +40,7 @@ const config = {
         new CopyPlugin({
             patterns: [
                 {
-                    from: path.resolve(__dirname, '..', '<%= language-id %>-glsp-web', 'dist', 'webview.js')
+                    from: path.resolve(__dirname, '..', '<%= language-id %>-vscode-webview', 'dist', 'webview.js')
                 }
             ]
         })

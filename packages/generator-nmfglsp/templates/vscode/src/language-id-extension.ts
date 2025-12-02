@@ -17,7 +17,6 @@ import 'reflect-metadata';
 
 import {
     GlspVscodeConnector,
-    NavigateAction,
     SocketGlspVscodeServer,
     configureDefaultCommands
 } from '@eclipse-glsp/vscode-integration/node';
@@ -28,7 +27,7 @@ import { DotnetGlspSocketServerLauncher } from './dotnet-glsp-socket-server-laun
 import path = require('path');
 
 const DEFAULT_SERVER_PORT = '0';
-const DOTNET_EXECUTABLE = path.join(__dirname, '..', 'dist', '<%= LanguageName %>GlspEditor.Server.exe');
+const DOTNET_EXECUTABLE = path.join(__dirname, '..', 'dist', '<%= LanguageName %>GlspServer.exe');
 
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
     const serverProcess = new DotnetGlspSocketServerLauncher({
@@ -41,7 +40,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     await serverProcess.start();
     
     // Wrap server with quickstart component
-    const <%= language-id %>Server =  new SocketGlspVscodeServer({
+    const <%= LanguageNameCamel %>Server =  new SocketGlspVscodeServer({
               clientId: 'vscode',
               clientName: 'vscode',
               connectionOptions: {
@@ -52,7 +51,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 
     // Initialize GLSP-VSCode connector with server wrapper
     const glspVscodeConnector = new GlspVscodeConnector({
-        server: <%= language-id %>Server,
+        server: <%= LanguageNameCamel %>Server,
         logging: true
     });
 
@@ -65,20 +64,8 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
         }
     );
 
-    context.subscriptions.push(<%= language-id %>Server, glspVscodeConnector, customEditorProvider);
-    <%= language-id %>Server.start();
+    context.subscriptions.push(<%= LanguageNameCamel %>Server, glspVscodeConnector, customEditorProvider);
+    <%= LanguageNameCamel %>Server.start();
 
     configureDefaultCommands({ extensionContext: context, connector: glspVscodeConnector, diagramPrefix: '<%= language-id %>' });
-
-    context.subscriptions.push(
-        vscode.commands.registerCommand('<%= language-id %>.goToNextNode', () => {
-            glspVscodeConnector.dispatchAction(NavigateAction.create('next'));
-        }),
-        vscode.commands.registerCommand('<%= language-id %>.goToPreviousNode', () => {
-            glspVscodeConnector.dispatchAction(NavigateAction.create('previous'));
-        }),
-        vscode.commands.registerCommand('<%= language-id %>.showDocumentation', () => {
-            glspVscodeConnector.dispatchAction(NavigateAction.create('documentation'));
-        })
-    );
 }

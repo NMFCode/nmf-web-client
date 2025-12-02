@@ -32,38 +32,20 @@
       {
         "command": "<%= language-id %>.fit",
         "title": "Fit to Screen",
-        "category": "<%= language-id %> Diagram",
+        "category": "<%= LanguageName %> Diagram",
         "enablement": "activeCustomEditorId == '<%= language-id %>.glspDiagram'"
       },
       {
         "command": "<%= language-id %>.center",
         "title": "Center selection",
-        "category": "<%= language-id %> Diagram",
+        "category": "<%= LanguageName %> Diagram",
         "enablement": "activeCustomEditorId == '<%= language-id %>.glspDiagram'"
       },
       {
         "command": "<%= language-id %>.layout",
         "title": "Layout diagram",
-        "category": "<%= language-id %> Diagram",
+        "category": "<%= LanguageName %> Diagram",
         "enablement": "activeCustomEditorId == '<%= language-id %>.glspDiagram'"
-      },
-      {
-        "command": "<%= language-id %>.goToNextNode",
-        "title": "Go to next Node",
-        "category": "<%= language-id %> Navigation",
-        "enablement": "activeCustomEditorId == '<%= language-id %>.glspDiagram' && <%= language-id %>.editorSelectedElementsAmount == 1"
-      },
-      {
-        "command": "<%= language-id %>.goToPreviousNode",
-        "title": "Go to previous Node",
-        "category": "<%= language-id %> Navigation",
-        "enablement": "activeCustomEditorId == '<%= language-id %>.glspDiagram' && <%= language-id %>.editorSelectedElementsAmount == 1"
-      },
-      {
-        "command": "<%= language-id %>.showDocumentation",
-        "title": "Show documentation...",
-        "category": "<%= language-id %> Diagram",
-        "enablement": "activeCustomEditorId == '<%= language-id %>.glspDiagram' && <%= language-id %>.editorSelectedElementsAmount == 1"
       },
       {
         "command": "<%= language-id %>.exportAsSVG",
@@ -75,10 +57,10 @@
     "customEditors": [
       {
         "viewType": "<%= language-id %>.glspDiagram",
-        "displayName": "<%= language-id %> Diagram Editor",
+        "displayName": "<%= LanguageName %> Diagram Editor",
         "selector": [
           {
-            "filenamePattern": "*.<%= language-id %>"
+            "filenamePattern": "*.<%= file-glob-extension %>"
           }
         ]
       }
@@ -113,18 +95,6 @@
         "mac": "alt+e",
         "command": "<%= language-id %>.exportAsSVG",
         "when": "activeCustomEditorId == '<%= language-id %>.glspDiagram'"
-      },
-      {
-        "key": "Ctrl+4",
-        "mac": "cmd+4",
-        "command": "<%= language-id %>.goToNextNode",
-        "when": "activeCustomEditorId == '<%= language-id %>.glspDiagram' && <%= language-id %>.editorSelectedElementsAmount == 1"
-      },
-      {
-        "key": "Ctrl+3",
-        "mac": "cmd+3",
-        "command": "<%= language-id %>.goToPreviousNode",
-        "when": "activeCustomEditorId == '<%= language-id %>.glspDiagram' && <%= language-id %>.editorSelectedElementsAmount == 1"
       }
     ],
     "menus": {
@@ -132,21 +102,6 @@
         {
           "submenu": "<%= language-id %>.editor.title",
           "group": "bookmarks"
-        },
-        {
-          "command": "<%= language-id %>.goToNextNode",
-          "group": "navigation",
-          "when": "activeCustomEditorId == '<%= language-id %>.glspDiagram' && <%= language-id %>.editorSelectedElementsAmount == 1"
-        },
-        {
-          "command": "<%= language-id %>.goToPreviousNode",
-          "group": "navigation",
-          "when": "activeCustomEditorId == '<%= language-id %>.glspDiagram' && <%= language-id %>.editorSelectedElementsAmount == 1"
-        },
-        {
-          "command": "<%= language-id %>.showDocumentation",
-          "group": "navigation",
-          "when": "activeCustomEditorId == '<%= language-id %>.glspDiagram' && <%= language-id %>.editorSelectedElementsAmount == 1"
         }
       ],
       "<%= language-id %>.editor.title": [
@@ -182,14 +137,18 @@
     "onStartupFinished"
   ],
   "devDependencies": {
-    "@eclipse-glsp/vscode-integration": "2.1.1",
-    "@vscode/vsce": "^2.19.0",
+    "@eclipse-glsp/vscode-integration": "2.5.0",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.54.0",
+    "@vscode/vsce": "^2.24.0",
     "copy-webpack-plugin": "^11.0.0",
+    "path": "^0.12.7",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^2.6.3",
     "ts-loader": "^9.4.4",
-    "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4",
+    "ts-node": "^9.1.1",
     "webpack-merge": "^5.9.0",
-    "<%= language-id %>-glsp-web": "1.0.0"
+    "<%= language-id %>-vscode-webview": "1.0.0"
   },
   "engines": {
     "vscode": "^1.54.0"
