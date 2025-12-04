@@ -14,7 +14,8 @@
     //  is an implicit composition of class 'BaseGenerator' and interface 'BaseGenerator',
     //  both defined in 'yeoman-generator/dist/generator.d.ts'
     // the following setting instructs TSC to tolerate that.
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
   },
   "include": [
     "src/**/*"

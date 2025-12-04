@@ -26,7 +26,8 @@
     "lib": ["ES2017", "DOM"],
     "sourceMap": true,
     "types": ["node", "reflect-metadata"],
-    "outDir": "lib"
+    "outDir": "lib",
+    "skipLibCheck": true
   },
   "include": [
       "src/**/*.ts",

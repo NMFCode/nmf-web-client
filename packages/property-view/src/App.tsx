@@ -36,6 +36,7 @@ const classes = {
         color: 'var(--vscode-editor-foreground)',
     },
     dataContent: {
+        margin: '1rem',
         display: 'flex',
         justifyContent: 'center',
         backgroundColor: 'var(--vscode-editor-background)',
@@ -58,15 +59,10 @@ const App = () => {
     const updating = useRef(false);
     const propViewClient = useRef<PropViewClient | null>(null);
 
-
-    // MultiTransportConnection erstellen
-    // const multiConnRef = useRef<MultiTransportConnection>(new MultiTransportConnection(console));
-
     useEffect(() => {
         const wsProvider = new PropViewWebSocketProvider(webSocketUrl);
         console.warn("Provider initialized");
 
-        // WebSocket mit MultiTransportConnection verbinden
         wsProvider.listen({
             onConnection: initialize,
             onReconnect: reconnect,
@@ -161,7 +157,7 @@ const App = () => {
             </Grid>
     )) : null;
 
-    return data.length !== 0 ? <Grid container direction= 'row' style={classes.container}>{forms}</Grid> : <div style={classes.container}/>;
+    return data.length !== 0 ? <Grid container direction='row' style={classes.container}>{forms}</Grid> : <div style={classes.container}/>;
 };
 
 export default App;

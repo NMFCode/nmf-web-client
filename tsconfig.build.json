@@ -5,8 +5,7 @@
         { "path": "./packages/nmeta-glsp-webview/tsconfig.json" },
         { "path": "./packages/nmeta-glsp-standalone/tsconfig.json" },
         { "path": "./packages/nmeta-vscode/tsconfig.json" },
-        { "path": "./packages/generator-nmfglsp/tsconfig.src.json" },
-        { "path": "./packages/generator-nmfglsp/tsconfig.test.json" },
+        { "path": "./packages/generator-nmfglsp/tsconfig.json" },
         { "path": "./packages/property-views-client/tsconfig.json" },
         { "path": "./packages/property-view/tsconfig.json"}
     ]

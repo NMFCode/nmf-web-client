@@ -192,7 +192,7 @@ export function listen(
 
 export class PropViewWebSocketProvider {
     protected webSocket: WebSocket;
-    protected reconnectTimer: NodeJS.Timer;
+    protected reconnectTimer: NodeJS.Timeout;
     protected reconnectAttempts = 0;
     protected url: string;
 

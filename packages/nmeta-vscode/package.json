@@ -170,14 +170,10 @@
     "onStartupFinished"
   ],
   "devDependencies": {
-    "@eclipse-glsp/vscode-integration": "2.1.1",
+    "@eclipse-glsp/vscode-integration": "2.5.0",
     "@vscode/vsce": "^2.19.0",
     "copy-webpack-plugin": "^11.0.0",
-    "nmeta-glsp-webview": "1.0.0",
-    "ts-loader": "^9.4.4",
-    "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4",
-    "webpack-merge": "^5.9.0"
+    "nmeta-glsp-webview": "file:"
   },
   "engines": {
     "vscode": "^1.54.0"

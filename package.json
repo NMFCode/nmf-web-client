@@ -16,33 +16,44 @@
     "test-ui": "vitest --ui",
     "coverage": "vitest run --coverage",
     "validate-exports": "npm run validate-exports --workspace=nmeta-glsp-client",
-    "version:dependencies": "node ./scripts/update-version.js && npm install",
     "dev-build": "npm run dev-clean && npm install && npm link ./packages/nmeta-glsp-client && npm link ./packages/generator-nmfglsp && npm link ./packages/property-views-client && npm link ./packages/property-view",
     "dev-clean": "shx rm -rf packages/**/node_modules && npm uninstall -g nmf-workspaces generator-nmfglsp nmeta-glsp-client property-views-client && npm unlink nmf-workspaces generator-nmfglsp nmeta-glsp-client property-views-client",
     "reset:repo": "git clean -f -X -d"
   },
   "devDependencies": {
-    "@types/node": "~16.18.41",
+    "@types/node": "~20.19.25",
     "@types/vscode": "~1.67.0",
     "@types/ws": "^8.5.10",
-    "@typescript-eslint/eslint-plugin": "~6.4.1",
-    "@typescript-eslint/parser": "~6.4.1",
-    "@vitest/coverage-v8": "~1.0.0",
-    "@vitest/ui": "~1.5.0",
+    "@typescript-eslint/eslint-plugin": "^7.12.0",
+    "@typescript-eslint/parser": "^7.12.0",
+    "@vitest/coverage-v8": "^1.6.0",
+    "@vitest/ui": "^1.6.0",
     "concurrently": "~8.2.1",
     "editorconfig": "~2.0.0",
     "esbuild": "~0.19.2",
     "eslint": "~8.56.0",
-    "eslint-plugin-header": "~3.1.1",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-header": "^3.1.1",
+    "eslint-plugin-no-null": "^1.0.2",
     "shx": "~0.3.4",
-    "typescript": "~5.1.6",
-    "vitest": "~1.5.0"
+    "typescript": "~5.4.5",
+    "vitest": "^1.6.0",
+    "jsdom": "^24.1.0",
+    "prettier": "^3.3.1",
+    "start-server-and-test": "^2.0.4",
+    "vite": "^5.4.19",
+    "inversify": "^6.0.1",
+    "reflect-metadata": "^0.2.1",
+    "ts-loader": "^9.4.4",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-merge": "^5.9.0"
   },
   "overrides": {
-    "@types/node": "~16.18.41"
+    "@types/node": "~20.19.25"
   },
   "volta": {
-    "node": "18.19.1",
+    "node": "20.19.25",
     "npm": "10.2.4"
   },
   "workspaces": [
