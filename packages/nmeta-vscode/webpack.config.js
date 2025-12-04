@@ -10,6 +10,9 @@ const config = {
     target: 'node',
 
     entry: path.resolve(__dirname, 'src/nmeta-extension.ts'),
+    stats: {
+        warnings: false
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'nmeta-extension.js',
